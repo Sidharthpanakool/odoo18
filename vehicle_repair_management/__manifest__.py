@@ -1,0 +1,24 @@
+{
+    'name': 'vehicle_repair_management',
+    'version': '1.2',
+    'license': "LGPL-3",
+    'category': 'Sales/Vehicle',
+    'sequence': 1,
+    'summary': 'Vehicle Repair',
+    'description': "SIDHARTH P",
+    'author': "ASMI",
+    'data': ["security/ir.model.access.csv",
+             "views/vehicle_repair_views.xml",
+             "views/vehicle_repair_menu.xml",
+             "views/vehicle_repair_service_history_views.xml",
+             "views/create_invoice_extended.xml",
+             "data/vehicle_type_data.xml",
+             "data/product_data.xml",
+             "data/email_template.xml"
+             ],
+    'depends': ['base','fleet','product', 'sale', 'hr','account','mail', 'sale_management', 'contacts'],
+    'application': True,
+    'auto_install': True,
+    'installable': True,
+
+}

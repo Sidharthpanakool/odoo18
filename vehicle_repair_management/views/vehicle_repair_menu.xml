@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Main menu-->
+
+    <menuitem
+            id="menu_vehicle_repair"
+            name="Vehicle Repair Management"
+            sequence="1"
+            />
+
+    <!--sub menu-->
+
+    <menuitem
+            id="menu_vehicle_repair_Home"
+            name="Repair"
+            parent="menu_vehicle_repair"
+            sequence="1"
+            action="action_vehicle_repair_home"
+            />
+
+
+    <menuitem
+            id="menu_vehicle_repair_tags"
+            name="Repair Tags"
+            parent="menu_vehicle_repair"
+            sequence="2"
+            action="action_vehicle_repair_tags"
+            />
+
+
+</odoo>

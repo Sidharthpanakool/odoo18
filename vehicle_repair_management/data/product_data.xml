@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_labour_cost" model="product.template">
+        <field name="name">Labour Cost</field>
+        <field name="type">service</field>
+        <field name="list_price">100</field>
+        <field name="default_code">labour_Cost</field>
+
+    </record>
+
+
+</odoo>
