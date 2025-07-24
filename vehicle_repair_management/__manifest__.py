@@ -14,7 +14,8 @@
              "views/create_invoice_extended.xml",
              "data/vehicle_type_data.xml",
              "data/product_data.xml",
-             "data/email_template.xml"
+             "data/email_template.xml",
+             "data/archive_repair_order.xml"
              ],
     'depends': ['base','fleet','product', 'sale', 'hr','account','mail', 'sale_management', 'contacts'],
     'application': True,

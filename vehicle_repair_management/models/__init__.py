@@ -7,3 +7,4 @@ from . import service_history
 from . import labour_cost
 from . import consumed_parts
 from . import create_invoice
+from . import archive_repair_order

@@ -64,10 +64,6 @@
                             invisible="status not in ['progress','done','delivery']"/>
 
 
-
-
-
-
                     <field name="status" widget="statusbar"
                            statusbar_visible="draft,progress,delivery,done,cancelled"
                            options="{'clickable':1}"/>
