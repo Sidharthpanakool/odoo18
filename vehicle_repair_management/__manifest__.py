@@ -15,7 +15,7 @@
              "data/vehicle_type_data.xml",
              "data/product_data.xml",
              "data/email_template.xml",
-             "data/archive_repair_order.xml"
+             "data/ir_cron_data.xml"
              ],
     'depends': ['base','fleet','product', 'sale', 'hr','account','mail', 'sale_management', 'contacts'],
     'application': True,

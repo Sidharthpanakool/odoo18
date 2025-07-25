@@ -104,6 +104,14 @@ class VehicleRepair(models.Model):
     ]
 
     @api.model
+    def action_cron_test_method(self):
+        print('self', self)
+        orders = self.env['vehicle.repair'].search([('status', '=', 'cancelled')])
+        print('orders', orders)
+        for order in orders:
+            order.write({'active': False})
+
+    @api.model
     def create(self, vals):
         """For the sequence generating here this function is used ,it is the reference number of particular repair service
         here new is the reference number as default,if the reference number is new,it changes to number while saving"""
