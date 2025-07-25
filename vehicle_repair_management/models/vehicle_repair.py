@@ -4,6 +4,8 @@ from email.policy import default
 
 from odoo import api, fields, models
 from datetime import datetime, timedelta
+
+from odoo.addons.test_convert.tests.test_env import record
 from odoo.exceptions import AccessError, UserError, ValidationError
 
 from dateutil.relativedelta import relativedelta
@@ -143,6 +145,18 @@ class VehicleRepair(models.Model):
     def action_done(self):
         """For changing the status of the repair,if the button confirm clicks,the status changes to done"""
         self.status = "done"
+        # for record in self:
+        #     if record.start_date and self.action_done:
+        #         record.delivery_date = record.delivery_date.Date.today()
+
+    def _compute_delivery_date(self):
+        """For calculating estimated delivery date,this function is using timedelta duration is added with start date and calculate delivery date
+        """
+        for record in self:
+            if record.start_date and record.duration:
+                record.delivery_date = record.start_date + timedelta(days=record.duration)
+            else:
+                record.delivery_date = record.start_date
 
     @api.depends('consumed_parts_ids.total_price')
     def total_sum(self):
@@ -158,18 +172,6 @@ class VehicleRepair(models.Model):
         for rec in self:
             rec.labour_cost_sum = sum(rec.labour_cost_ids.mapped('sub_total_cost'))
             print('total_labour_cost', rec.total_labour_sum)
-
-    def _compute_delivery_date(self):
-        """For calculating estimated delivery date,this function is using timedelta duration is added with start date and calculate delivery date
-        """
-        for record in self:
-            if record.start_date and record.duration:
-                record.delivery_date = record.start_date + timedelta(days=record.duration)
-
-            # elif record.start_date and record.action_done:
-            #     record.delivery_date=date(action_done)
-            else:
-                record.delivery_date = record.start_date
 
     def action_create_invoice(self):
         invoice_vals_list = []
