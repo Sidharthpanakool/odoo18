@@ -50,11 +50,11 @@
                             data-hotkey="c" style="position: relative;"
                             invisible="status not in ['cancel','delivery']"/>
 
-                    <button name="action_send_mail"
-                            type="object"
-                            string="Send Email"
-                            class="oe_highlight"
-                            invisible="status!= 'done'"/>
+                    <!--                    <button name="action_send_mail"-->
+                    <!--                            type="object"-->
+                    <!--                            string="Send Email"-->
+                    <!--                            class="oe_highlight"-->
+                    <!--                            invisible="status!= 'done'"/>-->
 
                     <button name="action_create_invoice"
                             class=" btn btn-outline-primary o_form_button_create "

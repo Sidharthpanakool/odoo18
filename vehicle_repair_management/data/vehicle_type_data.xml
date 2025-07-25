@@ -14,4 +14,5 @@
     <record id="vehicle_type_id_05" model="fleet.vehicle.model.category">
         <field name="name"> offroad car</field>
     </record>
+
 </odoo>

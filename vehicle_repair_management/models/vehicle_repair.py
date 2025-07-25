@@ -116,9 +116,6 @@ class VehicleRepair(models.Model):
         print('orders', orders)
         for order in orders:
             order.write({'active': False})
-            # order=self.env['orders'].search([('start_date','>',fields.Date.subtract(fields.date.today(),months=1))
-            #
-            # for sta in order:
 
     @api.model
     def create(self, vals):
@@ -141,19 +138,21 @@ class VehicleRepair(models.Model):
     def action_confirm_delivery(self):
         """For changing the status of the repair,if the button confirm clicks,the status changes to Ready for delivery"""
         self.status = "delivery"
+        template = self.env.ref('vehicle_repair_management.email_template_id')
+        template.send_mail(self.id, force_send=True)
 
     def action_done(self):
         """For changing the status of the repair,if the button confirm clicks,the status changes to done"""
         self.status = "done"
-        # for record in self:
-        #     if record.start_date and self.action_done:
-        #         record.delivery_date = record.delivery_date.Date.today()
 
     def _compute_delivery_date(self):
         """For calculating estimated delivery date,this function is using timedelta duration is added with start date and calculate delivery date
         """
+        today = fields.Date.today()
         for record in self:
-            if record.start_date and record.duration:
+            if record.status == 'done':
+                record.delivery_date = today
+            elif record.start_date and record.duration:
                 record.delivery_date = record.start_date + timedelta(days=record.duration)
             else:
                 record.delivery_date = record.start_date
@@ -208,19 +207,7 @@ class VehicleRepair(models.Model):
 
         }
 
-    # invoice_service = fields.Integer(string="Invoice", compute='invoice_count')
-    #
-    # def invoice_count(self):
-    #     """For calculating count and for fetching service history"""
-    #     data = self.env['account.move.line']._read_group(
-    #         [('move_id.move_type', 'in', ['out_invoice', 'out_refund']),
-    #          ('analytic_distribution', 'in', self.invoice_id.ids)],
-    #         groupby=['analytic_distribution'],
-    #         aggregates=['__count'],
-    #     )
-    #     data = {int(invoice_id): move_count for invoice_id, move_count in data}
-    #     for record in self:
-    #         record.invoice_service = self.env['vehicle.repair'].search_count([('name', '=', self.id)])
+    # invoice_service = fields.Integer(string="Invoice")
 
     def action_get_invoice_history(self):
         """For fetching service history"""
@@ -244,11 +231,6 @@ class VehicleRepair(models.Model):
     def _compute_ribbon_color(self):
         for rec in self:
             rec.ribbon_color = 'green' if rec.invoice_paid else 'red'
-
-    def action_send_mail(self):
-        """Function for sending email"""
-        template = self.env.ref('vehicle_repair_management.email_template_id')
-        template.send_mail(self.id, force_send=True)
 
     @api.depends('status')
     def action_archive(self):

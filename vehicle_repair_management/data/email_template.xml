@@ -70,8 +70,7 @@
                 </p>
             </div>
             </field>
-            <!--    <field name="lang">{{ object.service_advisor_id.lang or object.name.lang }}</field>-->
-            <!--    <field name="auto_delete" eval="True"/>-->
+
         </record>
     </data>
 </odoo>
