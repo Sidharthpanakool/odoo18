@@ -72,7 +72,6 @@
                 </header>
                 <sheet>
                     <div name="button_box" position="inside" invisible="invoice_active==False">
-                        <!--invisible="invoice_active=False"-->
 
                         <button class="oe_stat_button" type="object" icon="fa-book"
                                 name="action_get_invoice_history" string="Invoice">
@@ -178,7 +177,6 @@
         </field>
     </record>
 
-
     <data noupdate="1">
         <record id="reference_number_seq" model="ir.sequence">
             <field name="name">Reference number Sequence</field>
@@ -190,13 +188,11 @@
         </record>
     </data>
 
-
     <record id="action_vehicle_repair_home" model="ir.actions.act_window">
         <field name="name">Vehicle Repair</field>
         <field name="res_model">vehicle.repair</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">list,form,kanban,graph,pivot</field>
     </record>
-
 
     <record id="action_vehicle_repair_search" model="ir.ui.view">
         <field name="name">repair.search</field>
@@ -216,7 +212,6 @@
                         domain="[('status','in',('draft','progress','delivery','done','cancelled'))]"
                         icon="terp-project"/>
 
-
                 <group expand="1" string="Group By">
                     <filter string="customer" name="name"
                             context="{'group_by':'name', 'residual_visible':True}"/>
@@ -233,7 +228,6 @@
             </search>
         </field>
     </record>
-
 
     <record id="action_vehicle_repair_tags_list_view"
             model="ir.ui.view">
@@ -265,12 +259,10 @@
         </field>
     </record>
 
-
     <record id="action_vehicle_repair_tags" model="ir.actions.act_window">
         <field name="name">Vehicle Repair Tags</field>
         <field name="res_model">vehicle.tags</field>
         <field name="view_mode">list,form</field>
     </record>
-
 
 </odoo>

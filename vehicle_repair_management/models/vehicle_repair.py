@@ -207,7 +207,6 @@ class VehicleRepair(models.Model):
 
         }
 
-    # invoice_service = fields.Integer(string="Invoice")
 
     def action_get_invoice_history(self):
         """For fetching service history"""
