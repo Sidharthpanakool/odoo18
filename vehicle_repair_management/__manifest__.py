@@ -9,6 +9,7 @@
     'author': "ASMI",
     'data': ["security/ir.model.access.csv",
              "security/user_groups.xml",
+             "security/user_groups_access.xml",
              "data/ir_cron_data.xml",
              "data/product_data.xml",
              "data/email_template.xml",

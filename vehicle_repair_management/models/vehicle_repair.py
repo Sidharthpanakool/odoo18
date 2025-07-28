@@ -167,7 +167,7 @@ class VehicleRepair(models.Model):
     @api.depends('labour_cost_ids.sub_total_cost')
     def total_labour_sum(self):
         """For calculating labour cost this function is used
-        calculated using the sub total cost"""
+        calculated using the subtotal cost"""
         for rec in self:
             rec.labour_cost_sum = sum(rec.labour_cost_ids.mapped('sub_total_cost'))
             print('total_labour_cost', rec.total_labour_sum)
@@ -209,7 +209,7 @@ class VehicleRepair(models.Model):
 
 
     def action_get_invoice_history(self):
-        """For fetching service history"""
+        """For fetching invoice history"""
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
