@@ -12,8 +12,8 @@
         <record model="res.groups" id="user_group_technician">
             <field name="name">vehicle repair list Access technician</field>
             <field name="category_id"
-                   ref="base.group_user"/>
-
+                   ref="base.module_category_administration_administration"/>
         </record>
     </data>
 </odoo>
+

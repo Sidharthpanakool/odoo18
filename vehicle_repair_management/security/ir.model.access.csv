@@ -4,5 +4,3 @@ access_user_group_technician,access_user_group_technician,model_vehicle_repair,u
 access_vehicle_tags,access.vehicle_tags,model_vehicle_tags,base.group_user,1,1,1,1
 access_consumed_parts,access.consumed_parts,model_consumed_parts,base.group_user,1,1,1,1
 access_labour_cost,access.labour_cost,model_labour_cost,base.group_user,1,1,1,1
-
-

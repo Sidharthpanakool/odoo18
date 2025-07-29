@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
+from email.policy import default
 
 from odoo import api, fields, models
 
@@ -39,5 +40,8 @@ class ServiceHistory(models.Model):
         repairs.write({'active': True})
         return res
 
-
-
+    # customer_status = fields.Selection([
+    #     ('service', 'Service Customer'),
+    #     ('non_service', 'Non Service Customer')
+    # ], default='non_service',
+    #     string='Customer Status')

@@ -12,15 +12,16 @@
                 <field name="name" context="{'show_address':1}"/>
                 <field name="reference_number"/>
                 <field name="vehicle_number"/>
-                <field name="service_advisor_id"/>
+                <field name="service_advisor_id" optional="hidden"/>
                 <field name="start_date"/>
                 <field name="delivery_date"/>
-                <field name="vehicle_type"/>
-                <field name="vehicle_model"/>
-                <field name="total_sum_sum"/>
-                <field name="labour_cost_sum"/>
-                <field name="customer_complaints"/>
-                <field name="company"/>
+                <field name="vehicle_type" optional="hidden"/>
+                <field name="vehicle_model" optional="hidden"/>
+                <field name="total_sum_sum" optional="hidden" string="Total price of consumed Products"/>
+                <field name="labour_cost_sum" optional="hidden"/>
+                <field name="total_cost"/>
+                <field name="customer_complaints" optional="hidden"/>
+                <field name="company_id"/>
 
             </list>
         </field>
@@ -128,7 +129,7 @@
 
                             <field name="repair_tags" widget="many2many_tags"
                                    options="{'color_field': 'color', 'no_create_edit': True}"/>
-                            <field name="company"/>
+                            <field name="company_id"/>
 
                         </group>
                     </group>

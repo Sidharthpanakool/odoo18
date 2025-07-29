@@ -80,7 +80,7 @@ class VehicleRepair(models.Model):
 
     repair_tags = fields.Many2many("vehicle.tags", string="Repair Tags")
 
-    company = fields.Many2one('res.company', string="Company name", default=lambda self: self.env.company,
+    company_id = fields.Many2one('res.company', string="Company name", default=lambda self: self.env.company,
                               readonly=True)
 
     customer_complaints = fields.Text()
@@ -110,7 +110,7 @@ class VehicleRepair(models.Model):
 
     @api.model
     def action_cron_test_method(self):
-        """For checking if any repair form is cancelled and been 1 month"""
+        """For checking if any repair form is cancelled and been 1 month,if true,it will archive"""
         print('self', self)
         orders = self.env['vehicle.repair'].search([
             ('start_date', '<', fields.Date.subtract(fields.date.today(), months=1)),
@@ -177,7 +177,7 @@ class VehicleRepair(models.Model):
 
     def action_create_invoice(self):
         invoice_vals_list = []
-        labour_product = self.env.ref('vehicle_repair_management.product_labour_cost')
+        # labour_product = self.env.ref('vehicle_repair_management.product_labour_cost')
         for order in self.labour_cost_ids:
             invoice_vals_list.append((0, 0, {
                 'name': f"Labour by {order.user_id.name}",
@@ -248,3 +248,10 @@ class VehicleRepair(models.Model):
         for rec in self:
             rec.highlight_red = rec.status == 'progress' and rec.delivery_date == today
             rec.highlight_yellow = rec.status == 'progress' and rec.delivery_date == tomorrow
+
+    # @api.model
+    # def create(self,vals):
+    #     record=super().create(vals)
+    #     if record.name:
+    #         record.name.customer_status='service'
+    #     return record
