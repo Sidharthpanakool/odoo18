@@ -6,17 +6,22 @@
         <field name="name">vehicle repair list</field>
         <field name="model">vehicle.repair</field>
         <field name="arch" type="xml">
-            <list string="Channel">
+            <list string="Channel"
+                  decoration-danger="highlight_red"
+                  decoration-warning="highlight_yellow">
                 <field name="name" context="{'show_address':1}"/>
                 <field name="reference_number"/>
                 <field name="vehicle_number"/>
                 <field name="service_advisor_id"/>
+                <field name="start_date"/>
+                <field name="delivery_date"/>
                 <field name="vehicle_type"/>
                 <field name="vehicle_model"/>
                 <field name="total_sum_sum"/>
                 <field name="labour_cost_sum"/>
                 <field name="customer_complaints"/>
                 <field name="company"/>
+
             </list>
         </field>
     </record>

@@ -32,12 +32,12 @@ class VehicleRepair(models.Model):
                                          string="Service Advisor", required=True)
 
     vehicle_type = fields.Many2one('fleet.vehicle.model.category',
-                                   string="Vehicle Type", required=True)
+                                   string="Vehicle Type")
 
     vehicle_model = fields.Many2one('fleet.vehicle.model',
                                     string="Vehicle Model",
-                                    domain="[('category_id','=',vehicle_type)]",
-                                    required=True)
+                                    domain="[('category_id','=',vehicle_type)]"
+                                    )
 
     vehicle_number = fields.Char(string="Vehicle Number",
                                  copy=False, required=True)
@@ -59,6 +59,9 @@ class VehicleRepair(models.Model):
     start_date = fields.Date(default=fields.date.today(), required=True)
     duration = fields.Integer(string="Duration(in Days)", required=True)
     delivery_date = fields.Date(string="Delivery Date", compute="_compute_delivery_date")
+    highlight_red = fields.Boolean(compute='_compute_highlight', store=False)
+    highlight_yellow = fields.Boolean(compute='_compute_highlight', store=False)
+
     service_type = fields.Selection(
         string="Service Type",
         selection=[('free', 'Free'), ('paid', 'Paid')],
@@ -207,7 +210,6 @@ class VehicleRepair(models.Model):
 
         }
 
-
     def action_get_invoice_history(self):
         """For fetching invoice history"""
         self.ensure_one()
@@ -238,3 +240,11 @@ class VehicleRepair(models.Model):
                 rec.active == False
             else:
                 rec.active == True
+
+    @api.depends('status', 'delivery_date')
+    def _compute_highlight(self):
+        today = fields.Date.today()
+        tomorrow = today + timedelta(days=1)
+        for rec in self:
+            rec.highlight_red = rec.status == 'progress' and rec.delivery_date == today
+            rec.highlight_yellow = rec.status == 'progress' and rec.delivery_date == tomorrow
