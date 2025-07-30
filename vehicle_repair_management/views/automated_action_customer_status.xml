@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+<!--    <record id="customer_selection_id" model="ir.ui.view">-->
+<!--        <field name="name">customer selection type</field>-->
+<!--        <field name="model">res.partner</field>-->
+<!--        <field name="inherit_id" ref="base.view_partner_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//header" position="inside">-->
+<!--                <field name="customer_status" widget="statusbar"-->
+<!--                       statusbar_visible="non_service,service"-->
+<!--                       options="{'clickable':1}"/>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    <record id="action_select_customer_status" model="ir.actions.server">-->
+<!--        <field name="name">Action Select Customer Status</field>-->
+<!--        <field name="model_id" ref="res.partner"/>-->
+<!--        <field name="type">code</field>-->
+<!--        <field name="code">status_change()-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    <record id="automated_action_select_customer_status" model="base.automation">-->
+<!--        <field name="name">Automated action Select Customer Status</field>-->
+<!--        <field name="model_id" ref="base.view_partner_form"/>-->
+<!--        <field name="trigger">on_create_or_write</field>-->
+<!--        <field name="filter_domain">[('customer_status', '=', 'service')]</field>-->
+<!--        <field name="action_server_ids" eval="[(4, ref('action_select_customer_status'))]"/>-->
+<!--    </record>-->
+
+</odoo>

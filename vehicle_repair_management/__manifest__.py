@@ -16,8 +16,9 @@
              "data/vehicle_type_data.xml",
              "data/ir_module_category_data.xml",
              "views/vehicle_repair_views.xml",
-             "views/vehicle_repair_service_history_views.xml",
+             "views/res_partner_views.xml",
              "views/vehicle_repair_menu.xml",
+             # "views/automated_action_customer_status.xml"
              ],
     'depends': ['base', 'fleet', 'product', 'sale', 'hr', 'account', 'mail', 'sale_management', 'contacts'],
     'application': True,

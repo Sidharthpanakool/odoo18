@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.my.blog</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button class=" btn btn-outline-primary o_form_button_create "
+                            name="button_service_customer"
+                            string="Service customer info"
+                            type="object"
+                            data-hotkey="c"
+                            style="position: relative;"
+                            invisible="customer_status!= 'service'"/>
+                    <field name="customer_status" widget="statusbar"
+                           statusbar_visible="non_service,service"
+                           options="{'clickable':0}"/>
+                </header>
+            </xpath>
+
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button"
+                        type="object"
+                        icon="fa-wrench"
+                        name="action_get_service_history">
+                    <field string="Service History"
+                           name="vehicle_service"
+                           widget="statinfo"/>
+                </button>
+            </div>
+
+        </field>
+
+    </record>
+    <!-- Server Action  -->
+    <record id="action_select_customer_status" model="ir.actions.server">
+        <field name="name">Action Select Customer Status</field>
+        <field name="model_id" ref="base.view_partner_form"/>
+        <field name="type">code</field>
+        <field name="code">record.status_change()</field>
+    </record>
+
+    <!-- Automated Action  -->
+    <record id="automated_action_select_customer_status" model="base.automation">
+        <field name="name">Automated action Select Customer Status</field>
+        <field name="model_id" ref="base.view_partner_form"/>
+        <field name="trigger">on_create_or_write</field>
+        <field name="filter_domain">[('vehicle_service', '>=', 1)]</field>
+        <field name="action_server_ids" eval="[(4, ref('action_select_customer_status'))]"/>
+    </record>
+</odoo>
