@@ -107,7 +107,6 @@ class VehicleRepair(models.Model):
     _sql_constraints = [
         ('unique_name', 'unique(vehicle_number)', "The vehicle number should be unique.")
     ]
-
     @api.model
     def action_cron_test_method(self):
         """For checking if any repair form is cancelled and been 1 month,if true,it will archive"""

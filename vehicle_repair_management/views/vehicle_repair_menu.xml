@@ -7,7 +7,6 @@
             name="Vehicle Repair Management"
             sequence="1"
             />
-
     <!--sub menu-->
 
     <menuitem
@@ -17,7 +16,6 @@
             sequence="1"
             action="action_vehicle_repair_home"
             />
-
     <menuitem
             id="menu_vehicle_repair_tags"
             name="Repair Tags"

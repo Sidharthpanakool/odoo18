@@ -18,7 +18,6 @@ class LabourCost(models.Model):
 
     labour_cost_id = fields.Many2one('vehicle.repair', 'Labour cost id')
 
-
     @api.depends('hourly_cost', 'worked_hours')
     def _compute_total_cost(self):
         """For calculating labour cost by multiplying the hourly cost and    worked hours"""

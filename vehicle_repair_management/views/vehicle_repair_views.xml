@@ -33,7 +33,6 @@
         <field name="arch" type="xml">
 
             <form string="Vehicle repair form view">
-
                 <header>
                     <button name="action_confirm"
                             class=" btn btn-outline-primary o_form_button_create "

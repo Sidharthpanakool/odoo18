@@ -73,4 +73,3 @@ class ResPartner(models.Model):
                         'default_image_1920': self.image_1920
                         }
         }
-

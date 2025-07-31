@@ -19,8 +19,6 @@ class ConsumedParts(models.Model):
     consumed_product_id = fields.Many2one('vehicle.repair',
                                           'Consumed products id')
 
-
-
     @api.depends( 'list_price', 'product_uom_qty')
     def _compute_total_price(self):
         """For calculating consumed parts price by multiplying price and product quantity"""

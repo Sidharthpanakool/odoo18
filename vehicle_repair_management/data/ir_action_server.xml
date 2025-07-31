@@ -5,7 +5,7 @@
         <field name="name">Action Select Customer Status</field>
         <field name="model_id" ref="model_vehicle_repair"/>
         <field name="state">code</field>
-        <field name="code"> records.status_change()</field>
+        <field name="code">records.status_change()</field>
     </record>
 <!--        Automated Action-->
     <record id="automated_action_select_customer_status" model="base.automation">

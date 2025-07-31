@@ -6,7 +6,6 @@
         <field name="type">service</field>
         <field name="list_price">100</field>
         <field name="default_code">labour_Cost</field>
-
     </record>
 
 
