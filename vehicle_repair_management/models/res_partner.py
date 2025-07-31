@@ -3,6 +3,7 @@
 from email.policy import default
 from odoo import api, fields, models
 
+
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
@@ -42,57 +43,34 @@ class ResPartner(models.Model):
         ('non_service', 'Non Service Customer'),
         ('service', 'Service Customer')
     ], default='non_service',
-        string='Customer Status'
+        string='Customer Status',
+
     )
+    # compute="_compute_customer_status"
 
-    def status_change(self):
-        self.customer_status.write('customer_status', 'service')
-
+    # @api.model
+    # def _compute_customer_status(self):
+    #     for rec in self:
+    #         if rec.vehicle_service >= 1:
+    #             rec.customer_status = 'service'
+    #         else:
+    #             rec.customer_status = 'non_service'
 
     def button_service_customer(self):
         print('button_service_customer')
 
-        # self.ensure_one()
-        # return {
-        #     'type': 'ir.actions.act_window',
-        #     'name': 'Service Customer',
-        #     'view_mode': 'Form',
-        #     'res_model': 'vehicle.repair',
-        #     'domain': [('vehicle_service', '=', self.id)],
-        #     'context': "{'create': True}"
-        # }
+        return {
+            'name': 'service customer',
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'res.partner',
+            'view_id': self.env.ref('vehicle_repair_management.action_service_customer_form_view').id,
+            'target': 'current',
+            'context': {'create': False,
+                        'default_name': self.name,
+                        'default_phone': self.phone,
+                        'default_image_1920': self.image_1920
+                        }
+        }
 
-        # return {
-        #     'type': 'ir.actions.act_window',
-        #     'res_model': 'account.move',
-        #     'res_id': self.invoice_id.id,
-        #     'view_mode': 'form',
-        #       'context': {
-        #         'name': self.id,
-        #         'phone': self.id,
-        #
-        #     },
-        #
-        # }
-
-        # for rec in self.customer_status:
-        #     if rec.customer_status=="service":
-
-
-        # compute = "_compute_customer_status"
-
-        # @api.model
-        # def write(self,):
-        #     self.customer_status.write("customer_status":'service')
-
-        # @api.model
-        # def automated_action_select_customer_status(self):
-        #     self.customer_status('customer_status':"service")
-        #
-        # @api.model
-        # def _compute_customer_status(self):
-        #     for rec in self:
-        #         if rec.vehicle_service >= 1:
-        #             rec.customer_status = 'service'
-        #         else:
-        #             rec.customer_status = 'non_service'

@@ -81,14 +81,14 @@ class VehicleRepair(models.Model):
     repair_tags = fields.Many2many("vehicle.tags", string="Repair Tags")
 
     company_id = fields.Many2one('res.company', string="Company name", default=lambda self: self.env.company,
-                              readonly=True)
+                                 readonly=True)
 
     customer_complaints = fields.Text()
 
     invoice_id = fields.Many2one('account.move', string="Invoice")
 
-    service_history_id = fields.Many2one('res.partner', string="Service",required=True)
-
+    # service_history_id = fields.Many2one('res.partner', string="Service")
+    # print(service_history_id)
     total_sum_sum = fields.Float(string="Total Price", compute="total_sum", store=True)
     labour_cost_sum = fields.Float(string="Total labour cost", compute="total_labour_sum", store=True)
 
@@ -249,25 +249,16 @@ class VehicleRepair(models.Model):
             rec.highlight_red = rec.status == 'progress' and rec.delivery_date == today
             rec.highlight_yellow = rec.status == 'progress' and rec.delivery_date == tomorrow
 
-
     # @api.model
-    # def create(self,vals):
-    #     record=super(VehicleRepair,self).create(vals)
-    #     for records in record:
-    #         if records.service_history_id:
-    #             records.service_history_id.customer_status='service'
-    #         return records
+    # def status_change(self):
+    #     print("hhh")
+    #     self.name.write({'customer_status': 'service'})
 
-    # @api.model
-    # def write(self):
-    #     service_history_id.write('customer_status':'service')
+    @api.model
+    def status_change(self):
+        for rec in self.name:
+            if rec.vehicle_service >= 1:
+                rec.customer_status = 'service'
+            else:
+                rec.customer_status = 'non_service'
 
-    # @api.model
-    # def write(self):
-    #     service_history_id.customer_status.write('customer_status':'service')
-
-    # @api.model
-    # def _compute_customer_status(self):
-    #     for rec in self.service_history_id:
-    #         if rec.vehicle_service>=1:
-    #             rec.customer_status='service'

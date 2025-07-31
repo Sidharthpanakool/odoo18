@@ -5,8 +5,6 @@
             <field name="name">vehicle repair list Access</field>
             <field name="category_id"
                    ref="base.module_category_administration_administration"/>
-<!--            <field name="domain_force">[('res.user','=',res.user.id)]</field>-->
-
         </record>
 
         <record model="res.groups" id="user_group_technician">
