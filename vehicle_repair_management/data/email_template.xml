@@ -9,7 +9,7 @@
             <field name="email_from">{{ object.service_advisor_id.email }}</field>
             <field name="email_to">{{ (object.name.email) }}</field>
             <field name="body_html" type="html">
-                <div >
+                <div style="font-family: Arial, sans-serif; font-size: 14px; color: #333;">
                 <p>Dear
                     <strong>
                         <t t-out="object.name.name"/>
