@@ -5,8 +5,7 @@
         <field name="name">Action Select Customer Status</field>
         <field name="model_id" ref="model_vehicle_repair"/>
         <field name="state">code</field>
-        <field name="code">if records:
-            action=records.status_change()</field>
+        <field name="code"> records.status_change()</field>
     </record>
 <!--        Automated Action-->
     <record id="automated_action_select_customer_status" model="base.automation">
@@ -16,3 +15,4 @@
         <field name="action_server_ids" eval="[(4, ref('action_select_customer_status'))]"/>
     </record>
 </odoo>
+
