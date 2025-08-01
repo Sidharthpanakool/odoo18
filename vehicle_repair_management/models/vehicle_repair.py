@@ -248,16 +248,16 @@ class VehicleRepair(models.Model):
             rec.highlight_red = rec.status == 'progress' and rec.delivery_date == today
             rec.highlight_yellow = rec.status == 'progress' and rec.delivery_date == tomorrow
 
-    # @api.model
-    # def status_change(self):
-    #     print("hhh")
-    #     self.name.write({'customer_status': 'service'})
-
     @api.model
     def status_change(self):
-        for rec in self.name:
-            if rec.vehicle_service >= 1:
-                rec.customer_status = 'service'
-            else:
-                rec.customer_status = 'non_service'
+        print("hhh")
+        self.name.write({'customer_status': 'service'})
+
+    # @api.model
+    # def status_change(self):
+    #     for rec in self.name:
+    #         if rec.vehicle_service >= 1:
+    #             rec.customer_status = 'service'
+    #         else:
+    #             rec.customer_status = 'non_service'
 

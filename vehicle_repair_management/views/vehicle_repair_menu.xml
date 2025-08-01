@@ -13,7 +13,7 @@
             id="menu_vehicle_repair_Home"
             name="Repair"
             parent="menu_vehicle_repair"
-            sequence="1"
+            sequence="2"
             action="action_vehicle_repair_home"
             />
     <menuitem

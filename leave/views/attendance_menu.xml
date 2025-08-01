@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--main menu-->
+    <menuitem
+        id="menu_attendance"
+        name="Leave"
+        sequence="1"
+        />
+    <!--sub menu-->
+    <menuitem
+        id="menu_attendance_home"
+        name="Home"
+        parent="menu_attendance"
+        sequence="1"
+        action="action_attendance_home"
+        />
+</odoo>
