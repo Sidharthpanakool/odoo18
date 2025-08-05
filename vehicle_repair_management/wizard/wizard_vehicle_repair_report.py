@@ -20,12 +20,12 @@ class WizardVehicleRepairReport(models.TransientModel):
 
     def action_print(self):
         data={
-            # 'model_id':self.id,
+            'model_id':self.id,
             'customer_id':self.customer_id,
             'start_date':self.start_date
         }
         # docids = self.env['purchase.order'].search([]).ids
-        return self.env.ref('wizard.vehicle.repair.report.vehicle_repair_report').report_action(None, data=data)
+        return self.env.ref('WizardVehicleRepairReport.vehicle_repair_report').report_action(None, data=data)
 
     # @api.model
     # def _get_report_values(self, docids, data=None):

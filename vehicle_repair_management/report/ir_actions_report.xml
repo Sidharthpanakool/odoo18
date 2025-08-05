@@ -4,9 +4,9 @@
        <field name="name">Vehicle Repair Report</field>
        <field name="model">vehicle.repair</field>
        <field name="report_type">qweb-pdf</field>
-       <field name="report_name">custom_report.vehicle_repair_report</field>
-       <field name="report_file">custom_report.vehicle_repair_report</field>
-       <field name="print_report_name">'Vehicle Repair Report</field>
+       <field name="report_name">vehicle_repair_management.vehicle_repair_report</field>
+       <field name="report_file">vehicle_repair_management.vehicle_repair_report</field>
+       <field name="print_report_name">Vehicle Repair Report</field>
        <field name="binding_model_id" ref="vehicle_repair_management.model_vehicle_repair"/>
        <field name="binding_type">report</field>
    </record>
