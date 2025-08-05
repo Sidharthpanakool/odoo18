@@ -2,7 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 from email.policy import default
 
-from odoo import api, fields, models,_
+from odoo import api, fields, models, _
 from datetime import datetime, timedelta
 
 from odoo.addons.test_convert.tests.test_env import record
@@ -108,6 +108,7 @@ class VehicleRepair(models.Model):
     _sql_constraints = [
         ('unique_name', 'unique(vehicle_number)', "The vehicle number should be unique.")
     ]
+
     @api.model
     def action_cron_test_method(self):
         """For checking if any repair form is cancelled and been 1 month,if true,it will archive"""
@@ -134,17 +135,15 @@ class VehicleRepair(models.Model):
         if self.name:
             self.mobile_number = self.name.phone
 
-
     def action_wizard_print_report(self):
         return {
-                'name': _('Vehicle Repair Report'),
-                'view_mode': 'form',
-                'res_model': 'wizard.vehicle.repair.report',
-                'type': 'ir.actions.act_window',
-                'target': 'new',
-            }
-
-
+            'name': _('Vehicle Repair Report'),
+            'view_mode': 'form',
+            'view_type': 'form',
+            'res_model': 'wizard.vehicle.repair.report',
+            'type': 'ir.actions.act_window',
+            'target': 'new',
+        }
 
     def action_confirm(self):
         """For changing the status of the repair,if the button confirm clicks,the status changes to in progress"""
@@ -272,4 +271,3 @@ class VehicleRepair(models.Model):
     #             rec.customer_status = 'service'
     #         else:
     #             rec.customer_status = 'non_service'
-

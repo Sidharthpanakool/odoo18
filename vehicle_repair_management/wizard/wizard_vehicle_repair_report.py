@@ -16,10 +16,12 @@ class WizardVehicleRepairReport(models.TransientModel):
                                    string="Vehicle Type")
     vehicle_model = fields.Many2one('fleet.vehicle.model',
                                     string="Vehicle Model",
-                                    domain="[('vehicle_type','=',vehicle_type)]"
+                                    domain="[('category_id','=',vehicle_type)]"
                                     )
+    # domain = "[('vehicle_type','=',vehicle_type)]"
     vehicle_number = fields.Char(string="Vehicle Number",
                                  domain = '[("customer_id", "=", name)]',
                                  )
     service_advisor_id = fields.Many2one('res.users',
                                          string="Service Advisor")
+

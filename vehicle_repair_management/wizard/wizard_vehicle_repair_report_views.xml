@@ -18,9 +18,10 @@
                     </group>
                 </sheet>
                 <footer>
-<!--                   <button name="action_send_message" string="Print" type="object"/>-->
-<!--                   <button name="cancel" string="Cancel" special="cancel"/>-->
-               </footer>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+<!--                    <button name="action_done" string="Submit" type="object" class="btn-primary"/>-->
+
+                </footer>
             </form>
         </field>
     </record>
@@ -29,6 +30,7 @@
         <field name="name">vehicle Repair report</field>
         <field name="res_model">wizard.vehicle.repair.report</field>
         <field name="view_mode">form</field>
+        <field name="target">new</field>
     </record>
 
 </odoo>
