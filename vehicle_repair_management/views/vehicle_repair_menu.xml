@@ -6,7 +6,7 @@
             id="menu_vehicle_repair"
             name="Vehicle Repair Management"
             sequence="1"
-            />
+    />
     <!--sub menu-->
 
     <menuitem
@@ -15,12 +15,20 @@
             parent="menu_vehicle_repair"
             sequence="2"
             action="action_vehicle_repair_home"
-            />
+    />
     <menuitem
             id="menu_vehicle_repair_tags"
             name="Repair Tags"
             parent="menu_vehicle_repair"
             sequence="2"
             action="action_vehicle_repair_tags"
-            />
+    />
+    <menuitem
+            id="menu_vehicle_repair_reporting"
+            name="Reporting"
+            parent="menu_vehicle_repair"
+            sequence="3"
+            action="action_vehicle_Repair_report"
+    />
+
 </odoo>

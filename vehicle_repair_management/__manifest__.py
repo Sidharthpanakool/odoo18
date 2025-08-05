@@ -19,6 +19,9 @@
              "views/vehicle_repair_views.xml",
              "views/res_partner_views.xml",
              "views/vehicle_repair_menu.xml",
+             "report/ir_actions_report.xml",
+             "report/vehicle_repair_report.xml",
+             "wizard/wizard_vehicle_repair_report_views.xml"
              ],
     'depends': ['base', 'fleet', 'product', 'sale', 'hr', 'account', 'mail', 'sale_management', 'contacts','base_automation'],
     'application': True,

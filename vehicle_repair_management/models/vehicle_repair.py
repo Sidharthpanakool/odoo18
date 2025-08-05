@@ -2,7 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 from email.policy import default
 
-from odoo import api, fields, models
+from odoo import api, fields, models,_
 from datetime import datetime, timedelta
 
 from odoo.addons.test_convert.tests.test_env import record
@@ -13,6 +13,7 @@ from dateutil.relativedelta import relativedelta
 
 class VehicleRepair(models.Model):
     _name = "vehicle.repair"
+    _rec_name = "name"
     _description = "Vehicle Repair"
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
@@ -133,6 +134,18 @@ class VehicleRepair(models.Model):
         if self.name:
             self.mobile_number = self.name.phone
 
+
+    def action_wizard_print_report(self):
+        return {
+                'name': _('Vehicle Repair Report'),
+                'view_mode': 'form',
+                'res_model': 'wizard.vehicle.repair.report',
+                'type': 'ir.actions.act_window',
+                'target': 'new',
+            }
+
+
+
     def action_confirm(self):
         """For changing the status of the repair,if the button confirm clicks,the status changes to in progress"""
         self.status = "progress"
@@ -250,7 +263,6 @@ class VehicleRepair(models.Model):
 
     @api.model
     def status_change(self):
-        print("hhh")
         self.name.write({'customer_status': 'service'})
 
     # @api.model
