@@ -13,7 +13,7 @@ from dateutil.relativedelta import relativedelta
 
 class VehicleRepair(models.Model):
     _name = "vehicle.repair"
-    _rec_name = "name"
+    # _rec_name = "reference_number"
     _description = "Vehicle Repair"
     _inherit = ['mail.thread', 'mail.activity.mixin']
 

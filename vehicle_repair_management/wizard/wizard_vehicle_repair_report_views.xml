@@ -18,8 +18,9 @@
                     </group>
                 </sheet>
                 <footer>
+
+                    <button name="action_print" string="Print" type="object" class="btn-primary"/>
                     <button string="Cancel" class="btn-secondary" special="cancel"/>
-<!--                    <button name="action_done" string="Submit" type="object" class="btn-primary"/>-->
 
                 </footer>
             </form>
