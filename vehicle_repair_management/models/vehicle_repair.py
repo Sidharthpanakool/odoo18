@@ -54,12 +54,12 @@ class VehicleRepair(models.Model):
 
     active = fields.Boolean(default=True)
     invoice_active = fields.Boolean(default=False)
-    invoice_paid = fields.Boolean(default=False, compute="_check_payment_status")
+    invoice_paid = fields.Boolean(default=False, compute="_check_payment_status",store=True)
     ribbon_color = fields.Char(compute="_compute_ribbon_color")
 
     start_date = fields.Date(default=fields.date.today(), required=True)
     duration = fields.Integer(string="Duration(in Days)", required=True)
-    delivery_date = fields.Date(string="Delivery Date", compute="_compute_delivery_date")
+    delivery_date = fields.Date(string="Delivery Date", compute="_compute_delivery_date",store=True)
     highlight_red = fields.Boolean(compute='_compute_highlight', store=False)
     highlight_yellow = fields.Boolean(compute='_compute_highlight', store=False)
 
@@ -97,7 +97,7 @@ class VehicleRepair(models.Model):
 
     labour_cost_ids = fields.One2many('labour.cost', 'labour_cost_id', "Labour cost")
 
-    total_cost = fields.Char(String="Total Cost", compute="_compute_total_cost")
+    total_cost = fields.Char(String="Total Cost", compute="_compute_total_cost",store=True)
 
     def _compute_total_cost(self):
         """For calculating consumed parts price from the depends total price from consumed parts"""
