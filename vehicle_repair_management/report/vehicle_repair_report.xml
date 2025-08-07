@@ -2,16 +2,125 @@
 <odoo>
     <template id="vehicle_repair_report">
         <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="o">
-                <t t-call="web.external_layout">
-                    <div class="page">
-                        <div class="oe_structure"/>
-                        <h2>Vehicle Repair Report</h2>
-                        <br></br>
-                        <p>
-                            <span t-field="o.name"/>
-                        </p>
-                    </div>
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <t t-esc="docs"/>
+                            <div class="oe_structure"/>
+                            <h2>Vehicle Repair Report</h2>
+                            <br>
+                            </br>
+                            <p>
+                                <t t-esc="d['name']"/>
+                            </p>
+
+
+                            <h4>
+                                <strong>Customer:</strong>
+                                <span t-field="o.name"/>
+                            </h4>
+                            <h4>
+                                <strong>Vehicle Model:</strong>
+                                <span t-field="o.vehicle_model"/>
+                            </h4>
+                            <h4>
+                                <strong>Vehicle Number:</strong>
+                                <span t-field="o.vehicle_number"/>
+                            </h4>
+                            <h4>
+                                <strong>Service Advisor:</strong>
+                                <span t-field="o.service_advisor_id"/>
+                            </h4>
+                            <h4>
+                                <strong>Start Date:</strong>
+                                <span t-field="o.start_date"/>
+                            </h4>
+                            <h4>
+                                <strong>Delivery Date:</strong>
+                                <span t-field="o.delivery_date"/>
+                            </h4>
+                            <h4>
+                                <strong>State:</strong>
+                                <span t-field="o.status"/>
+                            </h4>
+                            <h4>
+                                <strong>Vehicle Type:</strong>
+                                <span t-field="o.vehicle_type"/>
+                            </h4>
+                            <h4>
+                                <strong>Service Type:</strong>
+                                <span t-field="o.service_type"/>
+
+                            </h4>
+                            <h4>
+                                <strong>Estimated Amount:</strong>
+                                <span t-field="o.estimated_amt"/>
+                            </h4>
+                            <!--                        <h4>-->
+                            <!--                            <strong>Total cost:</strong>-->
+                            <!--                            <span t-field="o.total_cost"/>-->
+                            <!--                        </h4>-->
+                            <table style="border: 1px solid #ddd; border-collapse: collapse; width: 100%; margin-top: 10px;">
+                                <thead>
+                                    <tr style="background-color: #f2f2f2; text-align: left;">
+                                        <th style="border: 1px solid #ddd; padding: 8px;">Vehicle model</th>
+                                        <th style="border: 1px solid #ddd; padding: 8px;">Vehicle number</th>
+                                        <th style="border: 1px solid #ddd; padding: 8px;">Customer</th>
+                                        <th style="border: 1px solid #ddd; padding: 8px;">Service advisors</th>
+                                        <th style="border: 1px solid #ddd; padding: 8px;">Start date</th>
+                                        <th style="border: 1px solid #ddd; padding: 8px;">End date</th>
+                                        <th style="border: 1px solid #ddd; padding: 8px;">State</th>
+                                        <th style="border: 1px solid #ddd; padding: 8px;">Vehicle type</th>
+                                        <th style="border: 1px solid #ddd; padding: 8px;">Service type</th>
+                                        <th style="border: 1px solid #ddd; padding: 8px;">Estimated amount</th>
+                                        <!--                                    <th style="border: 1px solid #ddd; padding: 8px;">Subtotal</th>-->
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <t t-foreach="docs" t-as="line">
+                                        <tr>
+                                            <td style="border: 1px solid #ddd; padding: 8px;">
+                                                <t t-out="line.vehicle_model.name"/>
+                                            </td>
+                                            <td style="border: 1px solid #ddd; padding: 8px;">
+                                                <t t-out="line.vehicle_number"/>
+                                            </td>
+                                            <td style="border: 1px solid #ddd; padding: 8px;">
+                                                <t t-out="line.name.name"/>
+                                            </td>
+                                            <td style="border: 1px solid #ddd; padding: 8px;">
+                                                <t t-out="line.service_advisor_id.name"/>
+                                            </td>
+                                            <td style="border: 1px solid #ddd; padding: 8px;">
+                                                <t t-out="line.start_date"/>
+                                            </td>
+                                            <td style="border: 1px solid #ddd; padding: 8px;">
+                                                <t t-out="line.delivery_date"/>
+                                            </td>
+                                            <td style="border: 1px solid #ddd; padding: 8px;">
+                                                <t t-out="line.status"/>
+                                            </td>
+                                            <td style="border: 1px solid #ddd; padding: 8px;">
+                                                <t t-out="line.vehicle_type.name"/>
+                                            </td>
+                                            <td style="border: 1px solid #ddd; padding: 8px;">
+                                                <t t-out="line.service_type"/>
+                                            </td>
+                                            <td style="border: 1px solid #ddd; padding: 8px;">
+                                                <t t-out="line.estimated_amt"/>
+                                            </td>
+                                            <!--                                        <td style="border: 1px solid #ddd; padding: 8px;">-->
+                                            <!--                                            <t t-out="line.total_cost"/>-->
+                                            <!--                                        </td>-->
+
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
                 </t>
             </t>
         </t>

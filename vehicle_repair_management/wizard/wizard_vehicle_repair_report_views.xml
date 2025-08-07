@@ -8,13 +8,20 @@
             <form string="Vehicle Repair Report">
                 <sheet>
                     <group>
-                        <field name="customer_id"/>
-                        <field name="vehicle_type"/>
-                        <field name="vehicle_model"/>
-                        <field name="vehicle_number"/>
-                        <field name="start_date"/>
-                        <field name="delivery_date"/>
-                        <field name="service_advisor_id"/>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="customer_id" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="delivery_date"/>
+                            <field name="service_advisor_id" widget="many2many_tags"/>
+                        </group>
+                        <!--                        <field name="vehicle_type"/>-->
+                        <!--                        <field name="vehicle_model"/>-->
+                        <!--                        <field name="vehicle_number"/>-->
+                        <!--                        <field name="service_type"/>-->
+                        <!--                        <field name="estimated_amt"/>-->
+                        <!--                        <field name="total_cost"/>-->
                     </group>
                 </sheet>
                 <footer>
@@ -31,5 +38,4 @@
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
-
 </odoo>

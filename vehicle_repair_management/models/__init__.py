@@ -6,3 +6,4 @@ from . import vehicle_tags
 from . import res_partner
 from . import labour_cost
 from . import consumed_parts
+
