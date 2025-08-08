@@ -14,7 +14,7 @@
 
                         <h4>
                             <strong>Customer:</strong>
-                            <t t-esc="w['name']"/>
+                            <t t-esc="w['names']"/>
                         </h4>
                         <h4>
                             <strong>Vehicle Model:</strong>
@@ -60,10 +60,11 @@
                     </t>
                     <table style="border: 1px solid #ddd; border-collapse: collapse; width: 100%; margin-top: 10px;">
                         <thead>
+
                             <tr style="background-color: #f2f2f2; text-align: left;">
+                                <th style="border: 1px solid #ddd; padding: 8px;">Customer</th>
                                 <th style="border: 1px solid #ddd; padding: 8px;">Vehicle model</th>
                                 <th style="border: 1px solid #ddd; padding: 8px;">Vehicle number</th>
-                                <th style="border: 1px solid #ddd; padding: 8px;">Customer</th>
                                 <th style="border: 1px solid #ddd; padding: 8px;">Service advisors</th>
                                 <th style="border: 1px solid #ddd; padding: 8px;">Start date</th>
                                 <th style="border: 1px solid #ddd; padding: 8px;">End date</th>
@@ -79,13 +80,13 @@
                             <t t-foreach="docs" t-as="line">
                                 <tr>
                                     <td style="border: 1px solid #ddd; padding: 8px;">
+                                        <t t-out="line['names']"/>
+                                    </td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">
                                         <t t-out="line['vehicle_model']"/>
                                     </td>
                                     <td style="border: 1px solid #ddd; padding: 8px;">
                                         <t t-out="line['vehicle_number' ]"/>
-                                    </td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">
-                                        <t t-out="line['name']"/>
                                     </td>
                                     <td style="border: 1px solid #ddd; padding: 8px;">
                                         <t t-out="line['service_advisor_id']"/>

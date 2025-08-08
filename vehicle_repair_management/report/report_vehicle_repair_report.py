@@ -9,16 +9,21 @@ class ReportVehicleRepairReport(models.AbstractModel):
     @api.model
     def _get_report_values(self, docids, data=None):
         print('_get_report_values')
+        vehicle_repair_id=data.get('customer_id')
+        start_date = data.get('start_date')
+        end_date=data.get('delivery_date')
+        service_advisor=data.get('service_advisor_id')
+
         query = """
-                    select
-                        pr.name as name,
-                        fvmc.name as vehicle_model,
+                    select 
+                         pr.name as names,
+                        fvmc.name as vehicle_type,
                         vehicle_number,
                         par.name as service_advisor_id,
-                        start_date,
-                        delivery_date,
+                        vehicle_repair.start_date,
+                        vehicle_repair.delivery_date,
+						fvm.name as vehicle_model,
                         status,
-                        fvm.name as vehicle_type,
                         service_type,
                         estimated_amt,
                         total_cost
@@ -26,22 +31,38 @@ class ReportVehicleRepairReport(models.AbstractModel):
                         vehicle_repair
                     left join res_partner as pr on pr.id=vehicle_repair.name
                     left join res_users as usr on usr.id=vehicle_repair.service_advisor_id                    
-                    left join fleet_vehicle_model as fvm on fvm.category_id=vehicle_repair.vehicle_type
-                    left join fleet_vehicle_model_category as fvmc on fvmc.sequence=vehicle_repair.vehicle_model
+                    left join fleet_vehicle_model_category as fvmc on fvmc.id=vehicle_repair.vehicle_type
                     left join res_partner as par on par.id=usr.partner_id 
-                    
-                    where usr.active=true 
+					left join fleet_vehicle_model as fvm on fvm.id=vehicle_repair.vehicle_model
+                    where 
+                        usr.active=true
                     
                 """
-        # # if self.from_date:
-        # #     query += """ where tb.date >= '%s' and tb.date <= '%s'""" % self.from_date, %self.to_date
-        # self.env.cr.execute(query)
+
+        # if start_date:
+        #     query+="""and vehicle_repair.start_date >='%s' """% start_date
+        # if end_date:
+        #     query+="""and vehicle_repair.start_date <='%s' """% end_date
+        if start_date and end_date:
+            query+="""and vehicle_repair.start_date >='%s' and vehicle_repair.start_date <='%s' """% (start_date,end_date)
+        if vehicle_repair_id:
+            # print(vehicle_repair_id)
+            query+="""and vehicle_repair.name in '%s' """% vehicle_repair_id
+        if service_advisor:
+            print('service_advisor',service_advisor)
+            query+="""and vehicle_repair.service_advisor_id in '%s' """% service_advisor
+
+
+        # if start_date and end_date:
+        #     query+="""and vehicle_repair.start_date >='%s' and vehicle_repair.end_date<='%s' """% start_date, % end_date
+
         self.env.cr.execute(query)
         report = self.env.cr.dictfetchall()
+        # print(len(report))
         # report = self.env['action_report_vehicle_repair']._get_report_from_name('module.vehicle_repair_management_vehicle_repair_report')
 
-        docs = self.env['wizard.vehicle.repair.report'].browse(docids)
-        print(docs)
+        # docs = self.env['wizard.vehicle.repair.report'].browse(docids)
+        # print(docs)
         return {
             'doc_ids': docids,
             'doc_model': 'vehicle.repair',

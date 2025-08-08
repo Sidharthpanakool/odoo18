@@ -59,7 +59,7 @@ class VehicleRepair(models.Model):
 
     start_date = fields.Date(default=fields.date.today(), required=True)
     duration = fields.Integer(string="Duration(in Days)", required=True)
-    delivery_date = fields.Date(string="Delivery Date", compute="_compute_delivery_date",store=True)
+    delivery_date = fields.Date(string="Delivery Date", compute="_compute_delivery_date")
     highlight_red = fields.Boolean(compute='_compute_highlight', store=False)
     highlight_yellow = fields.Boolean(compute='_compute_highlight', store=False)
 

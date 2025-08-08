@@ -10,11 +10,11 @@
                     <group>
                         <group>
                             <field name="start_date"/>
-                            <field name="customer_id" widget="many2many_tags"/>
+                            <field name="vehicle_repair_id" widget="many2many_tags"/>
                         </group>
                         <group>
-                            <field name="delivery_date"/>
-                            <field name="service_advisor_id" widget="many2many_tags"/>
+                            <field name="end_date"/>
+                            <field name="service_advisor" widget="many2many_tags"/>
                         </group>
                         <!--                        <field name="vehicle_type"/>-->
                         <!--                        <field name="vehicle_model"/>-->
