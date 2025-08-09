@@ -28,7 +28,7 @@
     </record>
 
     <record id="action_vehicle_Repair_report" model="ir.actions.act_window">
-        <field name="name">vehicle Repair report</field>
+        <field name="name">Vehicle Repair Report</field>
         <field name="res_model">wizard.vehicle.repair.report</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>

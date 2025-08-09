@@ -3,6 +3,7 @@
 from vobject.base import params_re
 
 from odoo import api, fields, models
+from odoo.addons.test_convert.tests.test_env import record
 
 
 class ReportVehicleRepairReport(models.AbstractModel):
@@ -15,7 +16,14 @@ class ReportVehicleRepairReport(models.AbstractModel):
         vehicle_repair_id = tuple(data.get('customer_id'))
         start_date = data.get('start_date')
         end_date = data.get('delivery_date')
-        service_advisor =tuple(data.get('service_advisor_id'))
+        service_advisor = tuple(data.get('service_advisor_id'))
+
+        length_service_advisor=(len(service_advisor))
+        length_vehicle_repair_id=(len(vehicle_repair_id))
+
+        print(length_service_advisor)
+        print(length_vehicle_repair_id)
+
         params = []
 
         query = """
@@ -41,11 +49,6 @@ class ReportVehicleRepairReport(models.AbstractModel):
                     where 
                         usr.active=true
                 """
-
-        # if start_date:
-        #     query+="""and vehicle_repair.start_date >='%s' """% start_date
-        # if end_date:
-        #     query+="""and vehicle_repair.start_date <='%s' """% end_date
         if start_date and end_date:
             query += """and vehicle_repair.start_date >='%s' and vehicle_repair.start_date <='%s' """ % (start_date,
                                                                                                          end_date)
@@ -57,13 +60,31 @@ class ReportVehicleRepairReport(models.AbstractModel):
             query += """and vehicle_repair.service_advisor_id in %s """
             params.append(service_advisor)
 
+        # customer_ids = set(records.mapped('vehicle_repair_id').ids)
+        # advisor_ids = set(service_advisor.mapped('service_advisor').ids)
+
         self.env.cr.execute(query, params)
         report = self.env.cr.dictfetchall()
+        # print(report[0]['service_type'].title())
         print(report)
+        # for i in range(len(report)):
+        #     report[i]=report[i]['service_type'].title()
+        #     print("IIII",report)
+
+        # print("docs",report)
         return {
             'doc_ids': docids,
             'doc_model': 'vehicle.repair',
             'docs': report,
             'data': data,
+            'length_vehicle_repair_id':length_vehicle_repair_id,
+            'length_service_advisor': length_service_advisor,
 
         }
+
+
+    # 'single_advisor_name': service_advisor[0].service_advisor.name if len(advisor_ids) == 1 else '',
+    # 'records': records,
+    # 'show_customer_column': len(customer_ids) > 1,
+    # 'show_advisor_column': len(advisor_ids) > 1,
+    # 'single_customer_name': records[0].vehicle_repair_id.name if len(customer_ids) == 1 else '',

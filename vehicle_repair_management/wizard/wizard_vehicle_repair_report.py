@@ -14,6 +14,7 @@ class WizardVehicleRepairReport(models.TransientModel):
     service_advisor = fields.Many2many('res.users',
                                           string="Service Advisor")
 
+
     def action_print(self):
         print("action_print")
         # report = self.env['vehicle.repair'].search_read([])
@@ -23,9 +24,11 @@ class WizardVehicleRepairReport(models.TransientModel):
             'delivery_date':self.end_date,
             'service_advisor_id':self.service_advisor.ids,
 
-
         }
+        print("customer_id",data["customer_id"])
+        print("service_advisor_id",data["service_advisor_id"])
         print(data)
+
         return self.env.ref('vehicle_repair_management.action_report_vehicle_repair').report_action(None, data=data)
 
 

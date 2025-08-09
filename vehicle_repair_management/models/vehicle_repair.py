@@ -135,15 +135,15 @@ class VehicleRepair(models.Model):
         if self.name:
             self.mobile_number = self.name.phone
 
-    def action_wizard_print_report(self):
-        return {
-            'name': _('Vehicle Repair Report'),
-            'view_mode': 'form',
-            'view_type': 'form',
-            'res_model': 'wizard.vehicle.repair.report',
-            'type': 'ir.actions.act_window',
-            'target': 'new',
-        }
+    # def action_wizard_print_report(self):
+    #     return {
+    #         'name': _('Vehicle Repair Report'),
+    #         'view_mode': 'form',
+    #         'view_type': 'form',
+    #         'res_model': 'wizard.vehicle.repair.report',
+    #         'type': 'ir.actions.act_window',
+    #         'target': 'new',
+    #     }
 
     def action_confirm(self):
         """For changing the status of the repair,if the button confirm clicks,the status changes to in progress"""
@@ -246,11 +246,14 @@ class VehicleRepair(models.Model):
 
     @api.depends('status')
     def action_archive(self):
+        res = super().action_archive()
         for rec in self:
             if rec.status == 'cancelled':
                 rec.active == False
             else:
                 rec.active == True
+        return res
+
 
     @api.depends('status', 'delivery_date')
     def _compute_highlight(self):

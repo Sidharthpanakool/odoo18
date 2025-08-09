@@ -4,70 +4,49 @@
         <t t-call="web.html_container">
             <t t-call="web.external_layout">
                 <div class="page">
-
                     <div class="oe_structure"/>
                     <h2>Vehicle Repair Report</h2>
                     <br>
                     </br>
 
                     <t t-foreach="docs" t-as="w">
-
-                        <h4>
-                            <strong>Customer:</strong>
-                            <t t-esc="w['names']"/>
-                        </h4>
-
-                        <h4>
-                            <strong>Vehicle Model:</strong>
-                            <t t-esc="w['vehicle_model']"/>
-                        </h4>
-                        <h4>
-                            <strong>Vehicle Number:</strong>
-                            <t t-esc="w['vehicle_number']"/>
-                        </h4>
-                        <h4>
-                            <strong>Service Advisor:</strong>
-                            <t t-esc="w['service_advisor_id']"/>
-                        </h4>
-                                                    <!--                        <h4>-->
-                                                    <!--                            <strong>Start Date:</strong>-->
-                                                    <!--                            <t t-esc="w['start_date']"/>-->
-                                                    <!--                        </h4>-->
-                                                    <!--                        <h4>-->
-                                                    <!--                            <strong>Delivery Date:</strong>-->
-                                                    <!--                            <t t-esc="w['delivery_date']"/>-->
-                                                    <!--                        </h4>-->
-                                                    <!--                        <h4>-->
-                                                    <!--                            <strong>State:</strong>-->
-                                                    <!--                            <t t-esc="w['status']"/>-->
-                                                    <!--                        </h4>-->
-                                                    <!--                        <h4>-->
-                                                    <!--                            <strong>Vehicle Type:</strong>-->
-                                                    <!--                            <t t-esc="w['vehicle_type']"/>-->
-                                                    <!--                        </h4>-->
-                                                    <!--                        <h4>-->
-                                                    <!--                            <strong>Service Type:</strong>-->
-                                                    <!--                            <t t-esc="w['service_type']"/>-->
-                                                    <!--                        </h4>-->
-                                                    <!--                        <h4>-->
-                                                    <!--                            <strong>Estimated Amount:</strong>-->
-                                                    <!--                            <t t-esc="w['estimated_amt']"/>-->
-                                                    <!--                        </h4>-->
-                                                    <!--                        <h4>-->
-                                                    <!--                            <strong>Total Amount:</strong>-->
-                                                    <!--                            <t t-esc="w['total_cost']"/>-->
-                                                    <!--                        </h4>-->
-
+                        <t t-if="not stop_loop">
+                            <t t-if="length_vehicle_repair_id==1">
+                                <h4>
+                                    <strong>Customer:</strong>
+                                    <span t-esc="w['names']"/>
+                                </h4>
+                                <t t-set="stop_loop" t-value="True"/>
+                            </t>
+                        </t>
+                        <t t-if="not stop_loop">
+                            <t t-if="length_service_advisor==1">
+                                <h4>
+                                    <strong>Service Advisor:</strong>
+                                    <t t-esc="w['service_advisor_id']"/>
+                                </h4>
+                                <t t-set="stop_loop" t-value="True"/>
+                            </t>
+                        </t>
                     </t>
 
                     <table style="border: 1px solid #ddd; border-collapse: collapse; width: 100%; margin-top: 10px;">
                         <thead>
 
                             <tr style="background-color: #f2f2f2; text-align: left;">
-                                <th style="border: 1px solid #ddd; padding: 8px;">Customer</th>
+                                <t t-if="not length_vehicle_repair_id==1">
+
+                                    <th style="border: 1px solid #ddd; padding: 8px;">Customer</th>
+                                </t>
+
                                 <th style="border: 1px solid #ddd; padding: 8px;">Vehicle model</th>
                                 <th style="border: 1px solid #ddd; padding: 8px;">Vehicle number</th>
-                                <th style="border: 1px solid #ddd; padding: 8px;">Service advisors</th>
+
+                                <t t-if="not length_service_advisor==1">
+
+                                    <th style="border: 1px solid #ddd; padding: 8px;">Service advisors</th>
+                                </t>
+
                                 <th style="border: 1px solid #ddd; padding: 8px;">Start date</th>
                                 <th style="border: 1px solid #ddd; padding: 8px;">End date</th>
                                 <th style="border: 1px solid #ddd; padding: 8px;">State</th>
@@ -81,18 +60,27 @@
 
                             <t t-foreach="docs" t-as="line">
                                 <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">
-                                        <t t-out="line['names']"/>
-                                    </td>
+                                    <t t-if="not length_vehicle_repair_id==1">
+
+                                        <td style="border: 1px solid #ddd; padding: 8px;">
+                                            <t t-out="line['names']"/>
+                                        </td>
+                                    </t>
+
                                     <td style="border: 1px solid #ddd; padding: 8px;">
                                         <t t-out="line['vehicle_model']"/>
                                     </td>
                                     <td style="border: 1px solid #ddd; padding: 8px;">
                                         <t t-out="line['vehicle_number' ]"/>
                                     </td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">
-                                        <t t-out="line['service_advisor_id']"/>
-                                    </td>
+
+                                    <t t-if="not length_service_advisor==1">
+
+                                        <td style="border: 1px solid #ddd; padding: 8px;">
+                                            <t t-out="line['service_advisor_id']"/>
+                                        </td>
+                                    </t>
+
                                     <td style="border: 1px solid #ddd; padding: 8px;">
                                         <t t-out="line['start_date']"/>
                                     </td>
@@ -120,53 +108,6 @@
                         </tbody>
                     </table>
 
-                    <!--                <h4>-->
-                    <!--                    <strong>Customer:</strong>-->
-                    <!--                    <span t-field="o.name"/>-->
-                    <!--                </h4>-->
-                    <!--                <h4>-->
-                    <!--                    <strong>Vehicle Model:</strong>-->
-                    <!--                    <span t-field="o.vehicle_model"/>-->
-                    <!--                </h4>-->
-                    <!--                <h4>-->
-                    <!--                    <strong>Vehicle Number:</strong>-->
-                    <!--                    <span t-field="o.vehicle_number"/>-->
-                    <!--                </h4>-->
-                    <!--                <h4>-->
-                    <!--                    <strong>Service Advisor:</strong>-->
-                    <!--                    <span t-field="o.service_advisor_id"/>-->
-                    <!--                </h4>-->
-                    <!--                <h4>-->
-                    <!--                    <strong>Start Date:</strong>-->
-                    <!--                    <span t-field="o.start_date"/>-->
-                    <!--                </h4>-->
-                    <!--                <h4>-->
-                    <!--                    <strong>Delivery Date:</strong>-->
-                    <!--                    <span t-field="o.delivery_date"/>-->
-                    <!--                </h4>-->
-                    <!--                <h4>-->
-                    <!--                    <strong>State:</strong>-->
-                    <!--                    <span t-field="o.status"/>-->
-                    <!--                </h4>-->
-                    <!--                <h4>-->
-                    <!--                    <strong>Vehicle Type:</strong>-->
-                    <!--                    <span t-field="o.vehicle_type"/>-->
-                    <!--                </h4>-->
-                    <!--                <h4>-->
-                    <!--                    <strong>Service Type:</strong>-->
-                    <!--                    <span t-field="o.service_type"/>-->
-
-                    <!--                </h4>-->
-                    <!--                <h4>-->
-                    <!--                    <strong>Estimated Amount:</strong>-->
-                    <!--                    <span t-field="o.estimated_amt"/>-->
-                    <!--                </h4>-->
-                    <!--                                                            <h4>-->
-                    <!--                                                                <strong>Total cost:</strong>-->
-                    <!--                                                                <span t-field="o.total_cost"/>-->
-                    <!--                                                             </h4>-->
-
-                    <!--            </t>-->
                 </div>
             </t>
         </t>
