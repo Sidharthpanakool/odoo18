@@ -16,6 +16,7 @@
                             <strong>Customer:</strong>
                             <t t-esc="w['names']"/>
                         </h4>
+
                         <h4>
                             <strong>Vehicle Model:</strong>
                             <t t-esc="w['vehicle_model']"/>
@@ -28,36 +29,37 @@
                             <strong>Service Advisor:</strong>
                             <t t-esc="w['service_advisor_id']"/>
                         </h4>
-                        <h4>
-                            <strong>Start Date:</strong>
-                            <t t-esc="w['start_date']"/>
-                        </h4>
-                        <h4>
-                            <strong>Delivery Date:</strong>
-                            <t t-esc="w['delivery_date']"/>
-                        </h4>
-                        <h4>
-                            <strong>State:</strong>
-                            <t t-esc="w['status']"/>
-                        </h4>
-                        <h4>
-                            <strong>Vehicle Type:</strong>
-                            <t t-esc="w['vehicle_type']"/>
-                        </h4>
-                        <h4>
-                            <strong>Service Type:</strong>
-                            <t t-esc="w['service_type']"/>
-                        </h4>
-                        <h4>
-                            <strong>Estimated Amount:</strong>
-                            <t t-esc="w['estimated_amt']"/>
-                        </h4>
-                        <h4>
-                            <strong>Total Amount:</strong>
-                            <t t-esc="w['total_cost']"/>
-                        </h4>
+                                                    <!--                        <h4>-->
+                                                    <!--                            <strong>Start Date:</strong>-->
+                                                    <!--                            <t t-esc="w['start_date']"/>-->
+                                                    <!--                        </h4>-->
+                                                    <!--                        <h4>-->
+                                                    <!--                            <strong>Delivery Date:</strong>-->
+                                                    <!--                            <t t-esc="w['delivery_date']"/>-->
+                                                    <!--                        </h4>-->
+                                                    <!--                        <h4>-->
+                                                    <!--                            <strong>State:</strong>-->
+                                                    <!--                            <t t-esc="w['status']"/>-->
+                                                    <!--                        </h4>-->
+                                                    <!--                        <h4>-->
+                                                    <!--                            <strong>Vehicle Type:</strong>-->
+                                                    <!--                            <t t-esc="w['vehicle_type']"/>-->
+                                                    <!--                        </h4>-->
+                                                    <!--                        <h4>-->
+                                                    <!--                            <strong>Service Type:</strong>-->
+                                                    <!--                            <t t-esc="w['service_type']"/>-->
+                                                    <!--                        </h4>-->
+                                                    <!--                        <h4>-->
+                                                    <!--                            <strong>Estimated Amount:</strong>-->
+                                                    <!--                            <t t-esc="w['estimated_amt']"/>-->
+                                                    <!--                        </h4>-->
+                                                    <!--                        <h4>-->
+                                                    <!--                            <strong>Total Amount:</strong>-->
+                                                    <!--                            <t t-esc="w['total_cost']"/>-->
+                                                    <!--                        </h4>-->
 
                     </t>
+
                     <table style="border: 1px solid #ddd; border-collapse: collapse; width: 100%; margin-top: 10px;">
                         <thead>
 

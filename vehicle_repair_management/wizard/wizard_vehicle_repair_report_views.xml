@@ -16,12 +16,7 @@
                             <field name="end_date"/>
                             <field name="service_advisor" widget="many2many_tags"/>
                         </group>
-                        <!--                        <field name="vehicle_type"/>-->
-                        <!--                        <field name="vehicle_model"/>-->
-                        <!--                        <field name="vehicle_number"/>-->
-                        <!--                        <field name="service_type"/>-->
-                        <!--                        <field name="estimated_amt"/>-->
-                        <!--                        <field name="total_cost"/>-->
+
                     </group>
                 </sheet>
                 <footer>

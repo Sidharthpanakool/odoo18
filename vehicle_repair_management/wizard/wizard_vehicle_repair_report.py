@@ -8,7 +8,7 @@ class WizardVehicleRepairReport(models.TransientModel):
     _description = "Wizard Vehicle Repair Report"
 
     vehicle_repair_id = fields.Many2many('res.partner', string="Customer")
-    start_date = fields.Date()
+    start_date = fields.Date(default=fields.date.today())
     # default=fields.date.today()
     end_date = fields.Date(string="End Date")
     service_advisor = fields.Many2many('res.users',

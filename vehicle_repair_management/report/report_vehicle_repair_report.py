@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
+from vobject.base import params_re
+
 from odoo import api, fields, models
 
 
@@ -9,10 +11,12 @@ class ReportVehicleRepairReport(models.AbstractModel):
     @api.model
     def _get_report_values(self, docids, data=None):
         print('_get_report_values')
-        vehicle_repair_id=data.get('customer_id')
+
+        vehicle_repair_id = tuple(data.get('customer_id'))
         start_date = data.get('start_date')
-        end_date=data.get('delivery_date')
-        service_advisor=data.get('service_advisor_id')
+        end_date = data.get('delivery_date')
+        service_advisor =tuple(data.get('service_advisor_id'))
+        params = []
 
         query = """
                     select 
@@ -36,7 +40,6 @@ class ReportVehicleRepairReport(models.AbstractModel):
 					left join fleet_vehicle_model as fvm on fvm.id=vehicle_repair.vehicle_model
                     where 
                         usr.active=true
-                    
                 """
 
         # if start_date:
@@ -44,25 +47,19 @@ class ReportVehicleRepairReport(models.AbstractModel):
         # if end_date:
         #     query+="""and vehicle_repair.start_date <='%s' """% end_date
         if start_date and end_date:
-            query+="""and vehicle_repair.start_date >='%s' and vehicle_repair.start_date <='%s' """% (start_date,end_date)
+            query += """and vehicle_repair.start_date >='%s' and vehicle_repair.start_date <='%s' """ % (start_date,
+                                                                                                         end_date)
         if vehicle_repair_id:
-            # print(vehicle_repair_id)
-            query+="""and vehicle_repair.name in '%s' """% vehicle_repair_id
+            query += """and vehicle_repair.name in %s """
+            params.append(vehicle_repair_id)
+
         if service_advisor:
-            print('service_advisor',service_advisor)
-            query+="""and vehicle_repair.service_advisor_id in '%s' """% service_advisor
+            query += """and vehicle_repair.service_advisor_id in %s """
+            params.append(service_advisor)
 
-
-        # if start_date and end_date:
-        #     query+="""and vehicle_repair.start_date >='%s' and vehicle_repair.end_date<='%s' """% start_date, % end_date
-
-        self.env.cr.execute(query)
+        self.env.cr.execute(query, params)
         report = self.env.cr.dictfetchall()
-        # print(len(report))
-        # report = self.env['action_report_vehicle_repair']._get_report_from_name('module.vehicle_repair_management_vehicle_repair_report')
-
-        # docs = self.env['wizard.vehicle.repair.report'].browse(docids)
-        # print(docs)
+        print(report)
         return {
             'doc_ids': docids,
             'doc_model': 'vehicle.repair',

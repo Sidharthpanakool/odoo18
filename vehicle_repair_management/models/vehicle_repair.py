@@ -42,7 +42,7 @@ class VehicleRepair(models.Model):
 
     vehicle_number = fields.Char(string="Vehicle Number",
                                  copy=False, required=True)
-    vehicle_image = fields.Binary(string="Vehicle Image")
+    vehicle_image = fields.Binary(string="Vehicle Image",store=True)
 
     mobile_number = fields.Char(
         comodel_name='res.partner',
