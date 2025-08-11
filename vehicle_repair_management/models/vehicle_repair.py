@@ -97,8 +97,8 @@ class VehicleRepair(models.Model):
 
     labour_cost_ids = fields.One2many('labour.cost', 'labour_cost_id', "Labour cost")
 
-    total_cost = fields.Char(String="Total Cost", compute="_compute_total_cost",store=True)
-
+    total_cost = fields.Float(String="Total Cost", compute="_compute_total_cost",store=True)
+    @api.depends('total_sum_sum','labour_cost_sum')
     def _compute_total_cost(self):
         """For calculating consumed parts price from the depends total price from consumed parts"""
         for rec in self:
