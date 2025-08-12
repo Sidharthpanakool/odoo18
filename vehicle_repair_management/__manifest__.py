@@ -23,6 +23,12 @@
              "wizard/wizard_vehicle_repair_report_views.xml",
              "views/vehicle_repair_menu.xml",
              ],
+    'assets': {
+        'web.assets_backend': [
+            'vehicle_repair_management/static/src/js/action_manager.js',
+        ]
+    },
+
     'depends': ['base', 'fleet', 'product', 'sale', 'hr', 'account', 'mail', 'sale_management', 'contacts',
                 'base_automation'],
     'application': True,

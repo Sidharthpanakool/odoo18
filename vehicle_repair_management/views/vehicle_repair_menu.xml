@@ -28,7 +28,14 @@
             name="Reporting"
             parent="menu_vehicle_repair"
             sequence="3"
-            action="action_vehicle_Repair_report"
     />
 
+    <menuitem
+            id="menu_vehicle_repair_reporting_pdf"
+            name="Report"
+            parent="menu_vehicle_repair_reporting"
+            sequence="1"
+            action="action_vehicle_Repair_report"
+    />
+f
 </odoo>

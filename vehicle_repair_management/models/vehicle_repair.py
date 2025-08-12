@@ -274,3 +274,6 @@ class VehicleRepair(models.Model):
     #             rec.customer_status = 'service'
     #         else:
     #             rec.customer_status = 'non_service'
+
+
+
