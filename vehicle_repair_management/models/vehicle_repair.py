@@ -16,6 +16,7 @@ class VehicleRepair(models.Model):
     # _rec_name = "reference_number"
     _description = "Vehicle Repair"
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    # _order = 'reference_number asc'
 
     name = fields.Many2one('res.partner',
                            string="Customer",
@@ -59,7 +60,7 @@ class VehicleRepair(models.Model):
 
     start_date = fields.Date(default=fields.date.today(), required=True)
     duration = fields.Integer(string="Duration(in Days)", required=True)
-    delivery_date = fields.Date(string="Delivery Date", compute="_compute_delivery_date")
+    delivery_date = fields.Date(string="Delivery Date", compute="_compute_delivery_date",store=True)
     highlight_red = fields.Boolean(compute='_compute_highlight', store=False)
     highlight_yellow = fields.Boolean(compute='_compute_highlight', store=False)
 
@@ -159,6 +160,7 @@ class VehicleRepair(models.Model):
         """For changing the status of the repair,if the button confirm clicks,the status changes to done"""
         self.status = "done"
 
+    @api.depends('status','start_date','duration')
     def _compute_delivery_date(self):
         """For calculating estimated delivery date,this function is using timedelta duration is added with start date and calculate delivery date
         """
