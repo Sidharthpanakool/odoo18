@@ -286,7 +286,6 @@ class ReportVehicleRepairReport(models.AbstractModel):
         print("EST",est)
         sum_o=sum(total_cost)
         print(sum_o,"sum")
-        # print((record['total_cost']))
         workbook.close()
         output.seek(0)
         response.stream.write(output.read())

@@ -16,6 +16,7 @@
              "data/vehicle_type_data.xml",
              "data/ir_module_category_data.xml",
              "data/ir_action_server.xml",
+             "data/web_form_template.xml",
              "views/vehicle_repair_views.xml",
              "views/res_partner_views.xml",
              "report/ir_actions_report.xml",

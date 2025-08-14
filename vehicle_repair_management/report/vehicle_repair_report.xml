@@ -31,6 +31,7 @@
                         <table style="border: 1px solid #ddd; border-collapse: collapse; width: 100%; margin-top: 10px;">
                             <thead>
 
+
                                 <tr style="background-color: #f2f2f2; text-align: left;">
                                     <t t-if="not length_vehicle_repair_id==1">
 
@@ -51,20 +52,20 @@
                                     <th style="border: 1px solid #ddd; padding: 8px;">Vehicle type</th>
                                     <th style="border: 1px solid #ddd; padding: 8px;">Service type</th>
 
-                                    <t t-if="not docs[0]['estimated_amt']==0">
+<!--                                    <t t-if="not docs[0]['estimated_amt']==0">-->
                                         <th style="border: 1px solid #ddd; padding: 8px;">Estimated amount</th>
-                                    </t>
-                                    <t t-if="not docs[0]['total_cost']==0">
+<!--                                    </t>-->
+<!--                                    <t t-if="not docs[0]['total_cost']==0">-->
                                         <th style="border: 1px solid #ddd; padding: 8px;">Total</th>
-                                    </t>
+<!--                                    </t>-->
                                 </tr>
                             </thead>
                             <tbody>
 
                                 <t t-foreach="docs" t-as="line">
+
                                     <tr>
                                         <t t-if="not length_vehicle_repair_id==1">
-
                                             <td style="border: 1px solid #ddd; padding: 8px;">
                                                 <t t-out="line['names']"/>
                                             </td>
@@ -100,21 +101,22 @@
                                             <t t-out="line['service_type']"/>
                                         </td>
 
-                                        <t t-if="not docs[0]['estimated_amt']==0">
+<!--                                        <t t-if="not docs[0]['estimated_amt']==0">-->
 
                                             <td style="border: 1px solid #ddd; padding: 8px;">
                                                 <t t-out="line['estimated_amt']"/>
                                             </td>
-                                        </t>
+<!--                                        </t>-->
 
-                                        <t t-if="not docs[0]['total_cost']==0">
+<!--                                        <t t-if="not docs[0]['total_cost']==0">-->
 
                                             <td style="border: 1px solid #ddd; padding: 8px;">
                                                 <t t-out="line['total_cost']"/>
                                             </td>
-                                        </t>
+<!--                                        </t>-->
                                     </tr>
                                 </t>
+
                             </tbody>
                         </table>
                     </t>

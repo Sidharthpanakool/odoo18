@@ -10,65 +10,65 @@
             <field name="email_to">{{ (object.name.email) }}</field>
             <field name="body_html" type="html">
                 <div style="font-family: Arial, sans-serif; font-size: 14px; color: #333;">
-                <p>Dear
-                    <strong>
-                        <t t-out="object.name.name"/>
-                    </strong>
+                    <p>Dear
+                        <strong>
+                            <t t-out="object.name.name"/>
+                        </strong>
 
-                </p>
-                <p>
-                    Thank you for your order! Please find the details of your vehicle repair order below:
-                </p>
-                <table style="border: 1px solid #ddd; border-collapse: collapse; width: 100%; margin-top: 10px;">
-                    <thead>
-                        <tr style="background-color: #f2f2f2; text-align: left;">
-                            <th style="border: 1px solid #ddd; padding: 8px;">Product used</th>
-                            <th style="border: 1px solid #ddd; padding: 8px;">Quantity</th>
-                            <th style="border: 1px solid #ddd; padding: 8px;">Unit Price</th>
-                            <th style="border: 1px solid #ddd; padding: 8px;">Subtotal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <t t-foreach="object.consumed_parts_ids" t-as="line">
-                            <tr>
-                                <td style="border: 1px solid #ddd; padding: 8px;">
-                                    <t t-out="line.product_id.display_name"/>
-                                </td>
-                                <td style="border: 1px solid #ddd; padding: 8px;">
-                                    <t t-out="line.product_uom_qty"/>
-                                </td>
-                                <td style="border: 1px solid #ddd; padding: 8px;">
-                                    <t t-out="line.list_price"/>
-                                </td>
-                                <td style="border: 1px solid #ddd; padding: 8px;">
-                                    <t t-out="line.total_price"/>
-                                </td>
+                    </p>
+                    <p>
+                        Thank you for your order! Please find the details of your vehicle repair order below:
+                    </p>
+                    <table style="border: 1px solid #ddd; border-collapse: collapse; width: 100%; margin-top: 10px;">
+                        <thead>
+                            <tr style="background-color: #f2f2f2; text-align: left;">
+                                <th style="border: 1px solid #ddd; padding: 8px;">Product used</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Quantity</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Unit Price</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Subtotal</th>
                             </tr>
-                        </t>
-                    </tbody>
-                </table>
-                <p style="margin-top: 20px;">
-                    <strong>Total product cost:</strong>
-                    <t t-out="object.total_sum_sum"/>
-                </p>
-                <p style="margin-top: 20px;">
-                    <strong>Total Labour cost:</strong>
-                    <t t-out="object.labour_cost_sum"/>
-                </p>
-                <p style="margin-top: 20px;">
-                    <strong>Total cost:</strong>
-                    <t t-out="object.total_cost"/>
-                </p>
-                <p>
-                    Please feel free to contact us if you have any questions about your order.
-                </p>
-                <p>Best Regards,</p>
-                <p>
-                    <strong>
-                        <t t-out="object.company_id.name"/>
-                    </strong>
-                </p>
-            </div>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="object.consumed_parts_ids" t-as="line">
+                                <tr>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">
+                                        <t t-out="line.product_id.display_name"/>
+                                    </td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">
+                                        <t t-out="line.product_uom_qty"/>
+                                    </td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">
+                                        <t t-out="line.list_price"/>
+                                    </td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">
+                                        <t t-out="line.total_price"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <p style="margin-top: 20px;">
+                        <strong>Total product cost:</strong>
+                        <t t-out="object.total_sum_sum"/>
+                    </p>
+                    <p style="margin-top: 20px;">
+                        <strong>Total Labour cost:</strong>
+                        <t t-out="object.labour_cost_sum"/>
+                    </p>
+                    <p style="margin-top: 20px;">
+                        <strong>Total cost:</strong>
+                        <t t-out="object.total_cost"/>
+                    </p>
+                    <p>
+                        Please feel free to contact us if you have any questions about your order.
+                    </p>
+                    <p>Best Regards,</p>
+                    <p>
+                        <strong>
+                            <t t-out="object.company_id.name"/>
+                        </strong>
+                    </p>
+                </div>
             </field>
 
         </record>
