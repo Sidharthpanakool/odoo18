@@ -1,179 +1,186 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <template id="web_form_template">
+    <template id="web_form_template" name="Vehicle Repair Order">
         <t t-call="website.layout">
             <div id="wrap" class="oe_structure oe_empty">
-                <section class="s_website_form">
+                <section class="">
                     <div class="container d-flex flex-colum justify-content-center">
-                        <form action="" method="post" enctype="multipart/form-data" class="o_mark_required">
-                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                            <div class="column pt-5 col-12 pb-5">
-                                <!-- Name Field -->
-                                <div class="form-group col-12  pt-5">
-                                    <div class="row">
-                                        <label class="col-form-label col-sm-auto" style="width: 200px;" for="name">
-                                            Name
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <div class="col-sm form_group">
-                                            <select id="name" type="text" class="form-control" name="name"
-                                                    required="1">
-                                                <option value="" disabled="disabled" selected="selected">Select
-                                                    Customer
-                                                </option>
-                                                <t t-foreach="res_partner" t-as="partner">
-                                                    <option t-esc="partner.name" t-att-value="partner.id"/>
 
-                                                </t>
-                                            </select>
+                        <form action="/website/customer/create" method="post">
+
+                            <div class="card shadow rounded-3 border-0">
+                                <div class="card-body p-4">
+                                    <h4 class="mb-4 text-center">Vehicle Repair Order</h4>
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <div class="column pt-1 col-12 pb-1">
+                                        <!-- Name Field -->
+                                        <div class="form-group col-12  pt-1">
+                                            <div class="row">
+                                                <label class="col-form-label col-sm-auto" style="width: 200px;"
+                                                       for="name">
+                                                    Name
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-sm form_group">
+                                                    <select id="name" type="text" class="form-control" name="name"
+                                                    >
+                                                        <option value="" disabled="disabled" selected="selected">Select
+                                                            Customer
+                                                        </option>
+                                                        <t t-foreach="res_partner" t-as="partner">
+                                                            <option t-esc="partner.name" t-att-value="partner.id"/>
+
+                                                        </t>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <!-- Phone Field-->
-                                <div class="form-group col-12  pt-2">
-                                    <div class="row">
-                                        <label class="col-form-label col-sm-auto" style="width: 200px;" for="phone">
-                                            Mobile Number
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <div class="col-sm">
-                                            <input id="mobile_number" type="text" class="form-control" name="phone"
-                                                   required="1"/>
+                                        <!--                                 Phone Field-->
+                                        <div class="form-group col-12  pt-2">
+                                            <div class="row">
+                                                <label class="col-form-label col-sm-auto" style="width: 200px;"
+                                                       for="mobile_number">
+                                                    Mobile Number
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-sm form_group">
+                                                    <input id="mobile_number" type="text" class="form-control"
+                                                           name="mobile_number"
+                                                    />
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <!--SERVICE ADV-->
-                                <div class="form-group col-12  pt-2">
-                                    <div class="row">
-                                        <label class="col-form-label col-sm-auto" style="width: 200px;"
-                                               for="service_advisor_id">
-                                            Service Advisor
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <div class="col-sm form_group">
-                                            <select id="service_advisor_id" type="text" class="form-control"
-                                                    name="service_advisor_id" required="1">
-                                                <option value="" disabled="disabled" selected="selected">
-                                                    Select Service Advisor
-                                                </option>
-                                                <t t-foreach="res_users" t-as="users">-->
-                                                    <option t-esc="users.name" t-att-value="users.name"/>
+                                        <!--                                SERVICE ADV-->
+                                        <div class="form-group col-12  pt-2">
+                                            <div class="row">
+                                                <label class="col-form-label col-sm-auto" style="width: 200px;"
+                                                       for="service_advisor_id">
+                                                    Service Advisor
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-sm form_group">
+                                                    <select id="service_advisor_id" type="text" class="form-control"
+                                                            name="service_advisor_id">
+                                                        <option value="" disabled="disabled" selected="selected">
+                                                            Select Service Advisor
+                                                        </option>
+                                                        <t t-foreach="res_users" t-as="users">
+                                                            <t t-log="res_users, 'jkasfjs'"/>
+                                                            <option t-esc="users.name" t-att-value="users.id"/>
 
-                                                </t>
-                                            </select>
+                                                        </t>
+                                                    </select>
 
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
+                                        <!--                                SERVICE TYPE-->
+                                        <div class="form-group col-12  pt-2">
+                                            <div class="row">
+                                                <label class="col-form-label col-sm-auto" style="width: 200px;"
+                                                       for="service_type">
+                                                    Service Type
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-sm form_group">
+                                                    <!--                                            <field name="srvice_type" widget="selection"/>-->
+                                                    <select id="service_type" type="text" class="form-control"
+                                                            name="service_type"
+                                                    >
+                                                        <option value="" disabled="disabled" selected="selected">
+                                                            Select Service Type
+                                                        </option>
+                                                        <option value="">PAID</option>
+                                                        <option value="">FREE</option>
 
-                                <!--SERVICE TYPE-->
-                                <div class="form-group col-12  pt-2">
-                                    <div class="row">
-                                        <label class="col-form-label col-sm-auto" style="width: 200px;"
-                                               for="service_type">
-                                            Service Type
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <div class="col-sm form_group">
-                                            <!--                                            <field name="srvice_type" widget="selection"/>-->
-                                            <select id="service_type" type="text" class="form-control"
-                                                    name="service_type"
-                                                    required="1">
-                                                <option value="" disabled="disabled" selected="selected">
-                                                    Select Service Type
-                                                </option>
-                                                <option value="">PAID</option>
-                                                <option value="">FREE</option>
-
-<!--                                                <option value="">-->
-<!--                                                    <t t-foreach="vehicle_repair" t-as="v_repair">-->
-<!--                                                        <t t-esc="v_repair.service_type"-->
-<!--                                                           t-att-value="v_repair.service_type"/>-->
-<!--                                                        &lt;!&ndash;                                                        <field name="v_repair.service_type" widget="selection"/>&ndash;&gt;-->
-<!--                                                    </t>-->
-<!--                                                </option>-->
-                                            </select>
+                                                        <!--                                                <option value="">-->
+                                                        <!--                                                    <t t-foreach="vehicle_repair" t-as="v_repair">-->
+                                                        <!--                                                        <t t-esc="v_repair.service_type"-->
+                                                        <!--                                                           t-att-value="v_repair.service_type"/>-->
+                                                        <!--                                                        <field name="v_repair.service_type" widget="selection"/>-->
+                                                        <!--                                                    </t>-->
+                                                        <!--                                                </option>-->
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
+                                        <!--                                VEHICLE TYPE-->
+                                        <div class="form-group col-12  pt-2">
+                                            <div class="row">
+                                                <label class="col-form-label col-sm-auto" style="width: 200px;"
+                                                       for="vehicle_type">
+                                                    Vehicle Type
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-sm">
 
+                                                    <select id="vehicle_type" type="text" class="form-control"
+                                                            name="vehicle_type"
+                                                    >
+                                                        <option value="" disabled="disabled" selected="selected">Select
+                                                            Vehicle
+                                                            Type
+                                                        </option>
+                                                        <t t-foreach="vehicle_type" t-as="v_type">
+                                                            <option t-esc="v_type.name" t-att-value="v_type.name"/>
 
-                                <!--VEHICLE TYPE-->
-                                <div class="form-group col-12  pt-2">
-                                    <div class="row">
-                                        <label class="col-form-label col-sm-auto" style="width: 200px;"
-                                               for="vehicle_type">
-                                            Vehicle Type
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <div class="col-sm">
+                                                        </t>
 
-                                            <select id="vehicle_type" type="text" class="form-control"
-                                                    name="vehicle_type"
-                                                    required="1">
-                                                <option value="" disabled="disabled" selected="selected">Select Vehicle
-                                                    Type
-                                                </option>
-                                                <t t-foreach="vehicle_type" t-as="v_type">
-                                                    <option t-esc="v_type.name" t-att-value="v_type.name"/>
-
-                                                </t>
-
-                                            </select>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-
-
-                                <!--VEHICLE MODEL-->
-                                <div class="form-group col-12  pt-2">
-                                    <div class="row">
-                                        <label class="col-form-label col-sm-auto" style="width: 200px;"
-                                               for="vehicle_model">
-                                            Vehicle Model
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <div class="col-sm form_group">
-                                            <select id="vehicle_model" type="text" class="form-control"
-                                                    name="vehicle_model" required="1">
-                                                <option value="" selected="selected" disabled="disabled">Select Vehicle
-                                                    Model
-                                                </option>
-                                                <t t-foreach="vehicle_model" t-as="v_model">
-                                                    <option t-esc="v_model.name" t-att-value="v_model.name"/>
-                                                </t>
-
-                                            </select>
+                                        <!--                                VEHICLE MODEL-->
+                                        <div class="form-group col-12  pt-2">
+                                            <div class="row">
+                                                <label class="col-form-label col-sm-auto" style="width: 200px;"
+                                                       for="vehicle_model">
+                                                    Vehicle Model
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-sm form_group">
+                                                    <select id="vehicle_model" type="text" class="form-control"
+                                                            name="vehicle_model">
+                                                        <option value="" selected="selected" disabled="disabled">Select
+                                                            Vehicle
+                                                            Model
+                                                        </option>
+                                                        <t t-foreach="vehicle_model" t-as="v_model">
+                                                            <option t-esc="v_model.name" t-att-value="v_model.name"/>
+                                                        </t>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--                                VEHICLE NUMBER-->
+                                        <div class="form-group col-12  pt-2">
+                                            <div class="row">
+                                                <label class="col-form-label col-sm-auto" style="width: 200px;"
+                                                       for="vehicle_number">
+                                                    Vehicle Number
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-sm">
+                                                    <input id="vehicle_number" type="text" class="form-control"
+                                                           name="vehicle_number"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Submit Button -->
+                                        <div class="form-group col-12 pt-3">
+                                            <div class="d-grid" style="width: 200px;">
+                                                <button type="submit" class="btn btn-primary text-center">
+                                                    Submit
+                                                </button>
+                                            </div>
                                         </div>
 
-
-                                    </div>
-                                </div>
-                                <!--VEHICLE NUMBER-->
-                                <div class="form-group col-12  pt-2">
-                                    <div class="row">
-                                        <label class="col-form-label col-sm-auto" style="width: 200px;"
-                                               for="vehicle_number">
-                                            Vehicle Number
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <div class="col-sm">
-                                            <input id="vehicle_number" type="text" class="form-control"
-                                                   name="vehicle_number"
-                                                   required="1"/>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <!-- Submit Button -->
-                                <div class="form-group col-12 ">
-                                    <div style="width: 200px;">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
                             </div>
                         </form>
+
                     </div>
                 </section>
             </div>

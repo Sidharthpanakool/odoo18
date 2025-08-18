@@ -30,7 +30,7 @@
         ]
     },
 
-    'depends': ['base', 'fleet', 'product', 'sale', 'hr', 'account', 'mail', 'sale_management', 'contacts',
+    'depends': ['base', 'fleet', 'product', 'sale', 'hr', 'account', 'mail', 'sale_management', 'contacts','website',
                 'base_automation'],
     'application': True,
     'auto_install': True,

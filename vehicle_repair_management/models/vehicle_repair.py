@@ -48,18 +48,21 @@ class VehicleRepair(models.Model):
     mobile_number = fields.Char(
         comodel_name='res.partner',
         compute='_compute_mobile_number',
-        store=True, readonly=False, required=True, precompute=True,
+        store=True, readonly=False,  precompute=True,
         check_company=True,
         index='btree_not_null',
-        string="Mobile Number")
+        string="Mobile Number",required=True)
+
 
     active = fields.Boolean(default=True)
     invoice_active = fields.Boolean(default=False)
     invoice_paid = fields.Boolean(default=False, compute="_check_payment_status",store=True)
     ribbon_color = fields.Char(compute="_compute_ribbon_color")
 
-    start_date = fields.Date(default=fields.date.today(), required=True)
-    duration = fields.Integer(string="Duration(in Days)", required=True)
+    start_date = fields.Date(default=fields.date.today(),)
+    # required=True
+    duration = fields.Integer(string="Duration(in Days)", )
+    #required=True
     delivery_date = fields.Date(string="Delivery Date", compute="_compute_delivery_date",store=True)
     highlight_red = fields.Boolean(compute='_compute_highlight', store=False)
     highlight_yellow = fields.Boolean(compute='_compute_highlight', store=False)
@@ -67,8 +70,9 @@ class VehicleRepair(models.Model):
     service_type = fields.Selection(
         string="Service Type",
         selection=[('free', 'Free'), ('paid', 'Paid')],
-        required=True
+
     )
+    #required=True
     estimated_amt = fields.Float(string="Estimated Amount")
 
     status = fields.Selection(
