@@ -22,8 +22,7 @@
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <div class="col-sm form_group">
-                                                    <select id="name" type="text" class="form-control" name="name"
-                                                    >
+                                                    <select id="name" type="text" class="form-control" name="name">
                                                         <option value="" disabled="disabled" selected="selected">Select
                                                             Customer
                                                         </option>
@@ -65,7 +64,7 @@
                                                             Select Service Advisor
                                                         </option>
                                                         <t t-foreach="res_users" t-as="users">
-                                                            <t t-log="res_users, 'jkasfjs'"/>
+                                                            <!--                                                            <t t-log="res_users, 'jkasfjs'"/>-->
                                                             <option t-esc="users.name" t-att-value="users.id"/>
 
                                                         </t>
@@ -90,16 +89,9 @@
                                                         <option value="" disabled="disabled" selected="selected">
                                                             Select Service Type
                                                         </option>
-                                                        <option value="">PAID</option>
-                                                        <option value="">FREE</option>
+                                                        <option value="paid">Paid</option>
+                                                        <option value="free">Free</option>
 
-                                                        <!--                                                <option value="">-->
-                                                        <!--                                                    <t t-foreach="vehicle_repair" t-as="v_repair">-->
-                                                        <!--                                                        <t t-esc="v_repair.service_type"-->
-                                                        <!--                                                           t-att-value="v_repair.service_type"/>-->
-                                                        <!--                                                        <field name="v_repair.service_type" widget="selection"/>-->
-                                                        <!--                                                    </t>-->
-                                                        <!--                                                </option>-->
                                                     </select>
                                                 </div>
                                             </div>
@@ -115,16 +107,16 @@
                                                 <div class="col-sm">
 
                                                     <select id="vehicle_type" type="text" class="form-control"
-                                                            name="vehicle_type"
-                                                    >
+                                                            name="vehicle_type">
                                                         <option value="" disabled="disabled" selected="selected">Select
-                                                            Vehicle
-                                                            Type
+                                                            Vehicle Type
                                                         </option>
+
                                                         <t t-foreach="vehicle_type" t-as="v_type">
-                                                            <option t-esc="v_type.name" t-att-value="v_type.name"/>
+                                                            <option t-esc="v_type.name" t-att-value="v_type.id"/>
 
                                                         </t>
+
 
                                                     </select>
                                                 </div>
@@ -146,7 +138,7 @@
                                                             Model
                                                         </option>
                                                         <t t-foreach="vehicle_model" t-as="v_model">
-                                                            <option t-esc="v_model.name" t-att-value="v_model.name"/>
+                                                            <option t-esc="v_model.name" t-att-value="v_model.id"/>
                                                         </t>
                                                     </select>
                                                 </div>
@@ -186,6 +178,7 @@
             </div>
         </t>
     </template>
+
     <record id="website_booking_menu" model="website.menu">
         <field name="name">Vehicle Repair</field>
         <field name="url">/webform</field>
@@ -194,18 +187,3 @@
     </record>
 
 </odoo>
-
-
-        <!-- Email Field -->
-        <!--                                <div class="form-group col-12">-->
-        <!--                                    <div class="row">-->
-        <!--                                        <label class="col-form-label col-sm-auto" style="width: 200px;" for="email">-->
-        <!--                                            Email-->
-        <!--                                            <span class="text-danger">*</span>-->
-        <!--                                        </label>-->
-        <!--                                        <div class="col-sm">-->
-        <!--                                            <input id="email" type="email" class="form-control" name="email"-->
-        <!--                                                   required="1"/>-->
-        <!--                                        </div>-->
-        <!--                                    </div>-->
-        <!--                                </div>-->

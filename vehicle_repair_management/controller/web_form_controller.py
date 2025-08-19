@@ -16,27 +16,17 @@ class WebFormController(http.Controller):
 
         data = {'res_partner': res_partner,
                 'res_users': res_users,
-                'vehicle_model': vehicle_model,
                 'vehicle_type': vehicle_type,
+                'vehicle_model': vehicle_model,
                 'vehicle_repair': vehicle_repair,
                 }
-        print('1',  data)
-        # print(vehicle_repair)
         return request.render('vehicle_repair_management.web_form_template', data)
 
     @http.route(['/website/customer/create'], methods=['POST'], type='http', auth='public', website=True, csrf=True)
     def create_customer(self, **post):
-        print('kk')
-        # print(post.get('name'))
-        # print(post.get('mobile_number'))
-        # print(post.get('service_advisor_id'))
-        # print(post.get('service_type'))
-        # print(post.get('vehicle_type'))
-        # print(post.get('vehicle_model'))
-        # print(post.get('vehicle_number'))
-        #
-        print('qq', post)
-        a = request.env['vehicle.repair'].sudo().create({
+        print('create_customer function')
+
+        request.env['vehicle.repair'].sudo().create({
             'name': post.get('name'),
             'mobile_number': post.get('mobile_number'),
             'service_advisor_id': post.get('service_advisor_id', False),
@@ -45,7 +35,6 @@ class WebFormController(http.Controller):
             'vehicle_model': post.get('vehicle_model',False),
             'vehicle_number': post.get('vehicle_number'),
         })
-        print('a',a)
         return request.redirect('/contactus-thank-you')
 
 
