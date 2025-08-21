@@ -11,6 +11,11 @@
             <field name="category_id"
                    ref="base.module_category_administration_administration"/>
         </record>
+<!--        <record model="res.groups" id="base_user">-->
+<!--            <field name="name">Base User</field>-->
+<!--            <field name="category_id"-->
+<!--                   ref="base.module_category_administration_administration"/>-->
+<!--        </record>-->
     </data>
 </odoo>
 

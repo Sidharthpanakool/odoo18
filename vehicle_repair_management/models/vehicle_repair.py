@@ -13,12 +13,13 @@ from dateutil.relativedelta import relativedelta
 
 class VehicleRepair(models.Model):
     _name = "vehicle.repair"
-    # _rec_name = "reference_number"
     _description = "Vehicle Repair"
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    # _order = 'reference_number asc'
+    _order = 'id desc'
 
-    name = fields.Many2one('res.partner',
+    name=fields.Char("Vehicle Repair")
+
+    partner_id = fields.Many2one('res.partner',
                            string="Customer",
                            required=True, change_default=True,
                            index=True,
@@ -43,7 +44,7 @@ class VehicleRepair(models.Model):
 
     vehicle_number = fields.Char(string="Vehicle Number",
                                  copy=False, required=True)
-    vehicle_image = fields.Binary(string="Vehicle Image",store=True)
+    vehicle_image = fields.Image(string="Vehicle Image")
 
     mobile_number = fields.Char(
         comodel_name='res.partner',
@@ -134,11 +135,11 @@ class VehicleRepair(models.Model):
             vals['reference_number'] = self.env['ir.sequence'].next_by_code('vehicle.repair.code') or 'New'
         return super(VehicleRepair, self).create(vals)
 
-    @api.onchange('name')
+    @api.onchange('partner_id')
     def num(self):
         """For getting mobile number correspond to the customer by using onchange"""
-        if self.name:
-            self.mobile_number = self.name.phone
+        if self.partner_id:
+            self.mobile_number = self.partner_id.phone
 
     # def action_wizard_print_report(self):
     #     return {
@@ -212,7 +213,7 @@ class VehicleRepair(models.Model):
             }))
 
         invoice = self.env['account.move'].create({
-            'partner_id': self.name.id,
+            'partner_id': self.partner_id.id,
             'move_type': 'out_invoice',
             'invoice_line_ids': invoice_vals_list
         })
@@ -271,7 +272,7 @@ class VehicleRepair(models.Model):
 
     @api.model
     def status_change(self):
-        self.name.write({'customer_status': 'service'})
+        self.partner_id.write({'customer_status': 'service'})
 
     # @api.model
     # def status_change(self):

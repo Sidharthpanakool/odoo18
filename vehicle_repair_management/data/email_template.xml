@@ -5,14 +5,14 @@
         <record id="email_template_id" model="mail.template">
             <field name="name">Vehicle Repair Email</field>
             <field name="model_id" ref="vehicle_repair_management.model_vehicle_repair"/>
-            <field name="subject">Repaired Vehicle Delivery for "{{ object.name.name }}"</field>
+            <field name="subject">Repaired Vehicle Delivery for "{{ object.partner_id.name }}"</field>
             <field name="email_from">{{ object.service_advisor_id.email }}</field>
-            <field name="email_to">{{ (object.name.email) }}</field>
+            <field name="email_to">{{ (object.partner_id.email) }}</field>
             <field name="body_html" type="html">
                 <div style="font-family: Arial, sans-serif; font-size: 14px; color: #333;">
                     <p>Dear
                         <strong>
-                            <t t-out="object.name.name"/>
+                            <t t-out="object.partner_id.name"/>
                         </strong>
 
                     </p>

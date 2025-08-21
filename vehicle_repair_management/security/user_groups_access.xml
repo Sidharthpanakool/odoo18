@@ -16,10 +16,10 @@
             <field name="groups" eval="[(4, ref('user_group_technician'))]"/>
 
         </record>
-<!--        <record id="vehicle_repair_company_own" model="ir.rule">-->
-<!--            <field name="name">User can only see their companies records</field>-->
+<!--        <record id="base_user_record_rules" model="ir.rule">-->
+<!--            <field name="name">Base user record rule</field>-->
 <!--            <field name="model_id" ref="model_vehicle_repair"/>-->
-<!--            <field name="domain_force">[('company_id', 'in',company_ids)]</field>-->
+<!--            <field name="domain_force">[('create_uid','=',user.id)]</field>-->
 <!--            <field name="global" eval="True"/>-->
 <!--        </record>-->
 

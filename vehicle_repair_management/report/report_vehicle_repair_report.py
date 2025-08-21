@@ -47,7 +47,7 @@ class ReportVehicleRepairReport(models.AbstractModel):
                         total_cost
                     from
                         vehicle_repair
-                    left join res_partner as pr on pr.id=vehicle_repair.name
+                    left join res_partner as pr on pr.id=vehicle_repair.partner_id
                     left join res_users as usr on usr.id=vehicle_repair.service_advisor_id                    
                     left join fleet_vehicle_model_category as fvmc on fvmc.id=vehicle_repair.vehicle_type
                     left join res_partner as par on par.id=usr.partner_id 
@@ -61,7 +61,7 @@ class ReportVehicleRepairReport(models.AbstractModel):
 
 
         if vehicle_repair_id:
-            query += """and vehicle_repair.name in %s """
+            query += """and vehicle_repair.partner_id in %s """
             params.append(vehicle_repair_id)
 
         if service_advisor:
@@ -113,7 +113,7 @@ class ReportVehicleRepairReport(models.AbstractModel):
                         total_cost
                     from
                         vehicle_repair
-                    left join res_partner as pr on pr.id=vehicle_repair.name
+                    left join res_partner as pr on pr.id=vehicle_repair.partner_id
                     left join res_users as usr on usr.id=vehicle_repair.service_advisor_id                    
                     left join fleet_vehicle_model_category as fvmc on fvmc.id=vehicle_repair.vehicle_type
                     left join res_partner as par on par.id=usr.partner_id 
@@ -126,7 +126,7 @@ class ReportVehicleRepairReport(models.AbstractModel):
             query += """and vehicle_repair.start_date >='%s' and vehicle_repair.start_date <='%s' """ % (start_date,
                                                                                                          end_date)
         if vehicle_repair_id:
-            query += """and vehicle_repair.name in %s """
+            query += """and vehicle_repair.partner_id in %s """
             params.append(vehicle_repair_id)
 
         if service_advisor:

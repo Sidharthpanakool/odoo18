@@ -27,7 +27,7 @@ class WebFormController(http.Controller):
         print('create_customer function')
 
         request.env['vehicle.repair'].sudo().create({
-            'name': post.get('name'),
+            'partner_id': post.get('partner_id'),
             'mobile_number': post.get('mobile_number'),
             'service_advisor_id': post.get('service_advisor_id', False),
             'service_type': post.get('service_type',False),
@@ -36,5 +36,7 @@ class WebFormController(http.Controller):
             'vehicle_number': post.get('vehicle_number'),
         })
         return request.redirect('/contactus-thank-you')
+
+
 
 
