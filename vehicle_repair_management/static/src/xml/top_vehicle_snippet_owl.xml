@@ -3,31 +3,22 @@
     <t t-name="vehicle_repair_management.category_data">
         <section class="categories_section">
             <div class="container" style="text-align:center; font-family:Arial, Helvetica,Serif; font-style:oblique;">
-                <h2 class="section_heading pt-5 pl-5">Latest 4 Repair Orders</h2>
-<!--                <div id="TopuniqueId" class="large-12 columns">-->
+                <h2 class="section_heading pt-5 pl-5">Latest Repair Orders</h2>
                <div id="bestSellCarousel" class="owl-carousel owl-theme owl-loaded owl-drag">
-                   <div class="owl-stage-outer">
+                   <div class="owl-stage-outer ">
                        <div id="course_carousel" class="owl-stage" style="transform: translate3d(-1500px, 0px, 0px); transition: all 0.25s ease 0s; width: 4321px;">
                     <t t-foreach="result.vehicles" t-as="veh" t-key="veh.id">
-
                         <div class="card shadow rounded-3 border-0  d-inline-block m-5" style="width: 20rem; height:27rem; background-color: coral; box-shadow: 10px 10px 5px red;">
                             <a t-attf-href="odoo/action-625/{{veh.id}}">
 <!--                        <a t-attf-href="odoo/action-625/{{veh.id}}">-->
-
                                 <img t-attf-src="data:image/png;base64,{{veh.vehicle_image}}"  alt="Avatar" style='height:55%; width:100%; object-fit:cover;'/>
-
                                 <div class="card-body">
-
                                     <h6>REF NO :
                                         <t t-esc="veh.reference_number"/>
                                     </h6>
-
-
                                     <p>
                                         <t t-esc="veh.vehicle_number"/>
                                     </p>
-
-
                                     <p class="card-text">Customer :
                                     <t t-esc="veh.partner_id[1]"/>
                                     </p>
@@ -37,62 +28,29 @@
                                     <p>Service Advisor :
                                         <t t-esc="veh.service_advisor_id[1]"/>
                                     </p>
-
-
-
                                 </div>
                             </a>
-
                         </div>
                     </t>
-
-
                        </div>
-<!--                       &lt;!&ndash; Controls &ndash;&gt;-->
-<!--                        <div class="o_arrows_wrapper gap-0 w-auto p-5"  style="background-color:black; width:100%;">-->
-<!--                            <button class="carousel-control-prev o_not_editable"  contenteditable="false" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide="prev" aria-label="Previous" title="Previous">-->
-<!--                                <span class="carousel-control-prev-icon" style="background-color:red; color:black border_radius:500px;" aria-hidden="true"/>-->
-<!--                                <span class="visually-hidden">Previous</span>-->
-<!--                            </button>-->
-<!--                            <button class="carousel-control-next o_not_editable"  contenteditable="false" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide="next" aria-label="Next" title="Next">-->
-<!--                                <span class="carousel-control-next-icon" style="background-color:red; color:black" aria-hidden="true"/>-->
-<!--                                <span class="visually-hidden">Next</span>-->
-<!--                            </button>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash; Indicators &ndash;&gt;-->
-<!--                        <div class="s_carousel_indicators_numbers carousel-indicators align-items-center flex-shrink-1 w-auto">-->
-<!--                            <button type="button" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide-to="0" class="active" aria-label="Carousel indicator"/>-->
-<!--                            <button type="button" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide-to="1" aria-label="Carousel indicator"/>-->
-<!--                            <button type="button" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide-to="2" aria-label="Carousel indicator"/>-->
-<!--                        </div>-->
 
                        </div>
                </div>
 <!--                </div>-->
-
-
             </div>
-
-
-
-
                 <a t-attf-href="#course_carousel" class="carousel-control-prev" data-bs-slide="prev" role="button" aria-label="Previous" title="Previous">
-
-                <span class="fa fa-chevron-circle-left fa-2x" style="color: #74c0fc"/>
+                <span class="fa fa-chevron-circle-left fa-2x" style="color: #714B67"/>
                 <span class="visually-hidden">Previous</span>
-
                 </a>
                  <a t-attf-href="#course_carousel" class="carousel-control-next" data-bs-slide="next" role="button" aria-label="Next" title="Next">
-
-                <span class="fa fa-chevron-circle-right fa-2x" style="color: #74c0fc"/>
+                <span class="fa fa-chevron-circle-right fa-2x" style="color: #714B67"/>
                 <span class="visually-hidden">Next</span>
-
                 </a>
                 <!-- Indicators -->
                 <div class="s_carousel_indicators_numbers carousel-indicators align-items-center flex-shrink-1 w-auto">
-                    <button type="button" style="background-color: #74c0fc;" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide-to="0" class="active" aria-label="Carousel indicator"/>
-                    <button type="button" style="background-color: #74c0fc;" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide-to="1" aria-label="Carousel indicator"/>
-                    <button type="button" style="background-color: #74c0fc;" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide-to="2" aria-label="Carousel indicator"/>
+                    <button type="button" style="background-color: #714B67;" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide-to="0" class="active" aria-label="Carousel indicator"/>
+                    <button type="button" style="background-color: #714B67;" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide-to="1" aria-label="Carousel indicator"/>
+                    <button type="button" style="background-color: #714B67;" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide-to="2" aria-label="Carousel indicator"/>
                 </div>
         </section>
     </t>
@@ -100,3 +58,73 @@
 
 
 
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+<!--<templates xml:space="preserve">-->
+<!--    <t t-name="vehicle_repair_management.category_data">-->
+<!--        <section class="categories_section">-->
+<!--            <div id="course_carousel" class="container" style="text-align:center; font-family:Arial, Helvetica,Serif; font-style:oblique;">-->
+<!--                <h2 class="section_heading pt-5 pl-5">Latest Repair Orders</h2>-->
+<!--&lt;!&ndash;                <div id="TopuniqueId" class="large-12 columns">&ndash;&gt;-->
+<!--               <div id="bestSellCarousel" class="owl-carousel owl-theme owl-loaded owl-drag">-->
+<!--                   <div class="owl-stage-outer ">-->
+<!--                       <div id="course_carousel" class="owl-stage" style="transform: translate3d(-1500px, 0px, 0px); transition: all 0.25s ease 0s; width: 4321px;">-->
+<!--&lt;!&ndash;                    <t t-foreach="result.vehicles" t-as="veh" t-key="veh.id">&ndash;&gt;-->
+
+<!--        <t t-foreach="chunks" t-as="chunk">-->
+
+<!--<div t-att-class="chunk.is_active ? 'carousel-item active' : 'carousel-item'">-->
+
+<!--<div class="row">-->
+
+<!--<t t-foreach="chunk" t-as="veh" t-key="veh.id">-->
+
+<!--                        <div class="card shadow rounded-3 border-0  d-inline-block m-5" style="width: 20rem; height:27rem; background-color: coral; box-shadow: 10px 10px 5px red;">-->
+<!--                            <a t-attf-href="odoo/action-625/{{veh.id}}">-->
+<!--&lt;!&ndash;                        <a t-attf-href="odoo/action-625/{{veh.id}}">&ndash;&gt;-->
+<!--                                <img t-attf-src="data:image/png;base64,{{veh.vehicle_image}}"  alt="Avatar" style='height:55%; width:100%; object-fit:cover;'/>-->
+<!--                                <div class="card-body">-->
+<!--                                    <h6>REF NO :-->
+<!--                                        <t t-esc="veh.reference_number"/>-->
+<!--                                    </h6>-->
+<!--                                    <p>-->
+<!--                                        <t t-esc="veh.vehicle_number"/>-->
+<!--                                    </p>-->
+<!--                                    <p class="card-text">Customer :-->
+<!--                                    <t t-esc="veh.partner_id[1]"/>-->
+<!--                                    </p>-->
+<!--                                    <p>Mob No :-->
+<!--                                        <t t-esc="veh.mobile_number"/>-->
+<!--                                    </p>-->
+<!--                                    <p>Service Advisor :-->
+<!--                                        <t t-esc="veh.service_advisor_id[1]"/>-->
+<!--                                    </p>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </t>-->
+<!--</div>-->
+<!--</div>-->
+<!--        </t>-->
+<!--                       </div>-->
+
+<!--                       </div>-->
+<!--               </div>-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--            </div>-->
+<!--                <a t-attf-href="#course_carousel" class="carousel-control-prev" data-bs-slide="prev" role="button" aria-label="Previous" title="Previous">-->
+<!--                <span class="fa fa-chevron-circle-left fa-2x" style="color: #714B67"/>-->
+<!--                <span class="visually-hidden">Previous</span>-->
+<!--                </a>-->
+<!--                 <a t-attf-href="#course_carousel" class="carousel-control-next" data-bs-slide="next" role="button" aria-label="Next" title="Next">-->
+<!--                <span class="fa fa-chevron-circle-right fa-2x" style="color: #714B67"/>-->
+<!--                <span class="visually-hidden">Next</span>-->
+<!--                </a>-->
+<!--                &lt;!&ndash; Indicators &ndash;&gt;-->
+<!--                <div class="s_carousel_indicators_numbers carousel-indicators align-items-center flex-shrink-1 w-auto">-->
+<!--                    <button type="button" style="background-color: #714B67;" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide-to="0" class="active" aria-label="Carousel indicator"/>-->
+<!--                    <button type="button" style="background-color: #714B67;" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide-to="1" aria-label="Carousel indicator"/>-->
+<!--                    <button type="button" style="background-color: #714B67;" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide-to="2" aria-label="Carousel indicator"/>-->
+<!--                </div>-->
+<!--        </section>-->
+<!--    </t>-->
+<!--</templates>-->

@@ -9,6 +9,7 @@
             <list string="Channel"
                   decoration-danger="highlight_red"
                   decoration-warning="highlight_yellow">
+                <field name="vehicle_image" widget="image" class="oe_avatar" optional="hidden"/>
                 <field name="partner_id" context="{'show_address':1}"/>
                 <field name="reference_number"/>
                 <field name="vehicle_number"/>
