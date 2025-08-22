@@ -16,12 +16,6 @@
             <field name="groups" eval="[(4, ref('user_group_technician'))]"/>
 
         </record>
-<!--        <record id="base_user_record_rules" model="ir.rule">-->
-<!--            <field name="name">Base user record rule</field>-->
-<!--            <field name="model_id" ref="model_vehicle_repair"/>-->
-<!--            <field name="domain_force">[('create_uid','=',user.id)]</field>-->
-<!--            <field name="global" eval="True"/>-->
-<!--        </record>-->
 
     </data>
 </odoo>

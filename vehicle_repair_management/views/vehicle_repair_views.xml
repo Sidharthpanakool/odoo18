@@ -119,7 +119,7 @@
                             <field name="mobile_number" readonly="status not in['draft']"/>
                         </group>
                         <group>
-                            <field name="vehicle_image" widget="image" />
+                            <field name="vehicle_image" widget="image" class=""/>
 
                         </group>
                     </group>
