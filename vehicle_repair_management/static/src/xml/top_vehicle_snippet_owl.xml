@@ -1,130 +1,108 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<templates xml:space="preserve">
-    <t t-name="vehicle_repair_management.category_data">
-        <section class="categories_section">
-            <div class="container" style="text-align:center; font-family:Arial, Helvetica,Serif; font-style:oblique;">
-                <h2 class="section_heading pt-5 pl-5">Latest Repair Orders</h2>
-               <div id="bestSellCarousel" class="owl-carousel owl-theme owl-loaded owl-drag">
-                   <div class="owl-stage-outer ">
-                       <div id="course_carousel" class="owl-stage" style="transform: translate3d(-1500px, 0px, 0px); transition: all 0.25s ease 0s; width: 4321px;">
-                    <t t-foreach="result.vehicles" t-as="veh" t-key="veh.id">
-                        <div class="card shadow rounded-3 border-0  d-inline-block m-5" style="width: 20rem; height:27rem; background-color: coral; box-shadow: 10px 10px 5px red;">
-                            <a t-attf-href="odoo/action-625/{{veh.id}}">
-<!--                        <a t-attf-href="odoo/action-625/{{veh.id}}">-->
-                                <img t-attf-src="data:image/png;base64,{{veh.vehicle_image}}"  alt="Avatar" style='height:55%; width:100%; object-fit:cover;'/>
-                                <div class="card-body">
-                                    <h6>REF NO :
-                                        <t t-esc="veh.reference_number"/>
-                                    </h6>
-                                    <p>
-                                        <t t-esc="veh.vehicle_number"/>
-                                    </p>
-                                    <p class="card-text">Customer :
-                                    <t t-esc="veh.partner_id[1]"/>
-                                    </p>
-                                    <p>Mob No :
-                                        <t t-esc="veh.mobile_number"/>
-                                    </p>
-                                    <p>Service Advisor :
-                                        <t t-esc="veh.service_advisor_id[1]"/>
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                    </t>
-                       </div>
 
-                       </div>
-               </div>
-<!--                </div>-->
-            </div>
-                <a t-attf-href="#course_carousel" class="carousel-control-prev" data-bs-slide="prev" role="button" aria-label="Previous" title="Previous">
-                <span class="fa fa-chevron-circle-left fa-2x" style="color: #714B67"/>
-                <span class="visually-hidden">Previous</span>
-                </a>
-                 <a t-attf-href="#course_carousel" class="carousel-control-next" data-bs-slide="next" role="button" aria-label="Next" title="Next">
-                <span class="fa fa-chevron-circle-right fa-2x" style="color: #714B67"/>
-                <span class="visually-hidden">Next</span>
-                </a>
-                <!-- Indicators -->
-                <div class="s_carousel_indicators_numbers carousel-indicators align-items-center flex-shrink-1 w-auto">
-                    <button type="button" style="background-color: #714B67;" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide-to="0" class="active" aria-label="Carousel indicator"/>
-                    <button type="button" style="background-color: #714B67;" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide-to="1" aria-label="Carousel indicator"/>
-                    <button type="button" style="background-color: #714B67;" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide-to="2" aria-label="Carousel indicator"/>
-                </div>
-        </section>
-    </t>
-</templates>
-
-
-
-<!--<?xml version="1.0" encoding="UTF-8" ?>-->
 <!--<templates xml:space="preserve">-->
 <!--    <t t-name="vehicle_repair_management.category_data">-->
-<!--        <section class="categories_section">-->
-<!--            <div id="course_carousel" class="container" style="text-align:center; font-family:Arial, Helvetica,Serif; font-style:oblique;">-->
+<!--            <div class="container" style="text-align:center; font-family:Arial, Helvetica,Serif; font-style:oblique;">-->
 <!--                <h2 class="section_heading pt-5 pl-5">Latest Repair Orders</h2>-->
-<!--&lt;!&ndash;                <div id="TopuniqueId" class="large-12 columns">&ndash;&gt;-->
-<!--               <div id="bestSellCarousel" class="owl-carousel owl-theme owl-loaded owl-drag">-->
-<!--                   <div class="owl-stage-outer ">-->
-<!--                       <div id="course_carousel" class="owl-stage" style="transform: translate3d(-1500px, 0px, 0px); transition: all 0.25s ease 0s; width: 4321px;">-->
-<!--&lt;!&ndash;                    <t t-foreach="result.vehicles" t-as="veh" t-key="veh.id">&ndash;&gt;-->
-
-<!--        <t t-foreach="chunks" t-as="chunk">-->
-
-<!--<div t-att-class="chunk.is_active ? 'carousel-item active' : 'carousel-item'">-->
-
-<!--<div class="row">-->
-
-<!--<t t-foreach="chunk" t-as="veh" t-key="veh.id">-->
-
-<!--                        <div class="card shadow rounded-3 border-0  d-inline-block m-5" style="width: 20rem; height:27rem; background-color: coral; box-shadow: 10px 10px 5px red;">-->
-<!--                            <a t-attf-href="odoo/action-625/{{veh.id}}">-->
-<!--&lt;!&ndash;                        <a t-attf-href="odoo/action-625/{{veh.id}}">&ndash;&gt;-->
-<!--                                <img t-attf-src="data:image/png;base64,{{veh.vehicle_image}}"  alt="Avatar" style='height:55%; width:100%; object-fit:cover;'/>-->
-<!--                                <div class="card-body">-->
-<!--                                    <h6>REF NO :-->
-<!--                                        <t t-esc="veh.reference_number"/>-->
-<!--                                    </h6>-->
-<!--                                    <p>-->
-<!--                                        <t t-esc="veh.vehicle_number"/>-->
-<!--                                    </p>-->
-<!--                                    <p class="card-text">Customer :-->
-<!--                                    <t t-esc="veh.partner_id[1]"/>-->
-<!--                                    </p>-->
-<!--                                    <p>Mob No :-->
-<!--                                        <t t-esc="veh.mobile_number"/>-->
-<!--                                    </p>-->
-<!--                                    <p>Service Advisor :-->
-<!--                                        <t t-esc="veh.service_advisor_id[1]"/>-->
-<!--                                    </p>-->
+<!--                <div id="course_carousel" class="owl-stage" style="transform: translate3d(-1500px, 0px, 0px); transition: all 0.25s ease 0s; width: 4321px;">-->
+<!--                    <t t-foreach="result.vehicles" t-as="veh" t-key="veh.id">-->
+<!--                        <div class="carousal-item-active">-->
+<!--                            <div class="row">-->
+<!--                                <div class="card shadow rounded-3 border-0  d-inline-block m-5" style="width: 20rem; height:27rem; background-color: coral; box-shadow: 10px 10px 5px red;">-->
+<!--                                    <a t-attf-href="odoo/action-625/{{veh.id}}">-->
+<!--                                        <img t-attf-src="data:image/png;base64,{{veh.vehicle_image}}"  alt="Avatar" style='height:55%; width:100%; object-fit:cover;'/>-->
+<!--                                        <div class="card-body">-->
+<!--                                            <h6>REF NO :-->
+<!--                                                <t t-esc="veh.reference_number"/>-->
+<!--                                            </h6>-->
+<!--                                            <p>-->
+<!--                                                <t t-esc="veh.vehicle_number"/>-->
+<!--                                            </p>-->
+<!--                                            <p class="card-text">Customer :-->
+<!--                                            <t t-esc="veh.partner_id[1]"/>-->
+<!--                                            </p>-->
+<!--                                            <p>Mob No :-->
+<!--                                                <t t-esc="veh.mobile_number"/>-->
+<!--                                            </p>-->
+<!--                                            <p>Service Advisor :-->
+<!--                                                <t t-esc="veh.service_advisor_id[1]"/>-->
+<!--                                            </p>-->
+<!--                                        </div>-->
+<!--                                    </a>-->
 <!--                                </div>-->
-<!--                            </a>-->
+<!--                            </div>-->
 <!--                        </div>-->
 <!--                    </t>-->
-<!--</div>-->
-<!--</div>-->
-<!--        </t>-->
-<!--                       </div>-->
-
-<!--                       </div>-->
 <!--               </div>-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--            </div>-->
-<!--                <a t-attf-href="#course_carousel" class="carousel-control-prev" data-bs-slide="prev" role="button" aria-label="Previous" title="Previous">-->
+
+<!--            <a t-attf-href="#course_carousel" class="carousel-control-prev" data-bs-slide="prev" role="button" aria-label="Previous" title="Previous">-->
 <!--                <span class="fa fa-chevron-circle-left fa-2x" style="color: #714B67"/>-->
 <!--                <span class="visually-hidden">Previous</span>-->
-<!--                </a>-->
-<!--                 <a t-attf-href="#course_carousel" class="carousel-control-next" data-bs-slide="next" role="button" aria-label="Next" title="Next">-->
+<!--            </a>-->
+<!--            <a t-attf-href="#course_carousel" class="carousel-control-next" data-bs-slide="next" role="button" aria-label="Next" title="Next">-->
 <!--                <span class="fa fa-chevron-circle-right fa-2x" style="color: #714B67"/>-->
 <!--                <span class="visually-hidden">Next</span>-->
-<!--                </a>-->
-<!--                &lt;!&ndash; Indicators &ndash;&gt;-->
-<!--                <div class="s_carousel_indicators_numbers carousel-indicators align-items-center flex-shrink-1 w-auto">-->
-<!--                    <button type="button" style="background-color: #714B67;" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide-to="0" class="active" aria-label="Carousel indicator"/>-->
-<!--                    <button type="button" style="background-color: #714B67;" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide-to="1" aria-label="Carousel indicator"/>-->
-<!--                    <button type="button" style="background-color: #714B67;" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide-to="2" aria-label="Carousel indicator"/>-->
-<!--                </div>-->
-<!--        </section>-->
+<!--            </a>-->
+
+<!--            &lt;!&ndash; Indicators &ndash;&gt;-->
+<!--            <div class="s_carousel_indicators_numbers carousel-indicators align-items-center flex-shrink-1 w-auto">-->
+<!--                <button type="button" style="background-color: #714B67;" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide-to="0" class="active" aria-label="Carousel indicator"/>-->
+<!--                <button type="button" style="background-color: #714B67;" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide-to="1" aria-label="Carousel indicator"/>-->
+<!--                <button type="button" style="background-color: #714B67;" t-attf-data-bs-target="#myCarouselIntro{{uniq}}" data-bs-slide-to="2" aria-label="Carousel indicator"/>-->
+<!--            </div>-->
+<!--        </div>-->
 <!--    </t>-->
 <!--</templates>-->
+
+<templates id="template" xml:space="preserve">
+    <t t-name="vehicle_repair_management.category_data">
+        <div id="course_carousel" class="container carousel slide" data-bs-ride="carousel" t-att-data-bs-interval="interval"
+             style="text-align:center; font-family:Arial, Helvetica,Serif; font-style:oblique;">
+            <div class="carousel-inner row w-100 mx-auto pt-4" role="listbox">
+<!--                <t t-log="result.vehicles,'aesrdftyghuijkl'"/>-->
+                <t t-foreach="result.vehicles" t-as="veh" t-key="veh.id">
+                    <div class="carousel-item active   d-flex justify-content-center">
+                        <div class="row">
+                            <div class="block span3 col-12">
+                                <div class="card-group">
+                                    <a t-attf-href="odoo/action-625/{{veh.id}}">
+                                        <div class="card shadow rounded-4 border-5  d-inline-block  m-0"
+                                                style="width: 50rem; height:50rem; background-color: white; box-shadow: 10px 10px 10px 10px coral;">
+                                            <img t-attf-src="data:image/png;base64,{{veh.vehicle_image}}" alt="Avatar"
+                                                style='height:55%; width:100%; object-fit:cover;'
+                                                class="p-4 rounded-5"/>
+                                            <h3 class="p-2">REF NO :
+                                                <t t-esc="veh.reference_number"/>
+                                            </h3>
+                                            <h4 class="p-2"> VEHICLE NO :
+                                                <t t-esc="veh.vehicle_number"/>
+                                             </h4>
+                                            <h4 class="p-2">CUSTOMER :
+                                                <t t-esc="veh.partner_id[1]"/>
+                                            </h4>
+                                            <h4 class="p-2">MOB NO :
+                                                <t t-esc="veh.mobile_number"/>
+                                             </h4>
+                                            <h4 class="p-2">SERVICE ADVISOR :
+                                                <t t-esc="veh.service_advisor_id[1]"/>
+                                            </h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+            <a t-attf-href="#course_carousel" class="carousel-control-prev" data-bs-slide="prev" role="button" aria-label="Previous" title="Previous">
+                <span class="fa fa-chevron-circle-left fa-3x" style="color: #714B67"/>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a t-attf-href="#course_carousel" class="carousel-control-next" data-bs-slide="next" role="button" aria-label="Next" title="Next">
+                <span class="fa fa-chevron-circle-right fa-3x" style="color: #714B67"/>
+                <span class="visually-hidden">Next</span>
+            </a>
+
+        </div>
+    </t>
+</templates>

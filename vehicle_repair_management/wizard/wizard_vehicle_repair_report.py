@@ -20,25 +20,18 @@ class WizardVehicleRepairReport(models.TransientModel):
                                        string="Service Advisor")
 
     def action_print(self):
-        print("action_print")
         report = self.env['vehicle.repair'].search_read([])
         data = {
             'customer_id': self.vehicle_repair_id.ids,
             'start_date': self.start_date,
             'delivery_date': self.end_date,
             'service_advisor_id': self.service_advisor.ids,
-
         }
-        print("customer_id", data["customer_id"])
-        print("service_advisor_id", data["service_advisor_id"])
-        print(data)
-
         return self.env.ref('vehicle_repair_management.action_report_vehicle_repair').report_action(None, data=data)
+
 
     def vehicle_repair_report_excel(self):
         record = self.env['vehicle.repair'].search_read([])
-        print("kkkk")
-
         data = {
             'customer_id': self.vehicle_repair_id.ids,
             'start_date': self.start_date,
@@ -46,7 +39,6 @@ class WizardVehicleRepairReport(models.TransientModel):
             'service_advisor_id': self.service_advisor.ids,
 
         }
-        print(data)
         return {
             'type': 'ir.actions.report',
             'data': {'model': 'report.vehicle_repair_management.vehicle_repair_report',
@@ -57,17 +49,3 @@ class WizardVehicleRepairReport(models.TransientModel):
                      },
             'report_type': 'xlsx',
         }
-
-
-
-        # 'customer': record.name,
-        # 'vehicle_model': self.vehicle_model,
-        # 'vehicle_number': self.vehicle_number,
-        # 'service_advisor': self.service_advisor_id.name,
-        # 'start_date': self.start_date,
-        # 'end_date': self.delivery_date,
-        # 'state': self.status,
-        # 'vehicle_type': self.vehicle_type,
-        # 'service_type': self.service_type,
-        # 'estimated_amt': self.estimated_amt,
-        # 'total_amt': self.total_cost

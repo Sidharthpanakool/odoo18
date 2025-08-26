@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <template id="top_four_vehicle" name="Latest Four Vehicle Orders">
+    <template id="top_four_vehicle" name="Vehicle Orders Carousal">
         <section class="categories_section">
             <div class="container d-flex flex-column justify-content-center">
-                <div class="alert alert-info">
-                    <h4>Your Category Highlight Tab snippet will be displayed here...
-                        Please save to view the snippet
-                    </h4>
+                <div class="" style="text-align:center; font-family:Arial, Helvetica,Serif; font-style:oblique;">
+                    <h1>Latest 4 Repair Orders</h1>
                 </div>
             </div>
-            <div id="top_products_carousel"/>
+            <div id="latest_cars"/>
         </section>
     </template>
 

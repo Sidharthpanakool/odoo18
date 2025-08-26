@@ -19,7 +19,7 @@
              "data/web_form_template.xml",
              "views/vehicle_repair_views.xml",
              "views/res_partner_views.xml",
-             "views/snippets/top_four_vehicle.xml",
+'views/snippets/top_four_vehicle.xml',
              "report/ir_actions_report.xml",
              "report/vehicle_repair_report.xml",
              "wizard/wizard_vehicle_repair_report_views.xml",
@@ -30,8 +30,9 @@
             'vehicle_repair_management/static/src/js/action_manager.js',
         ],
         'web.assets_frontend': [
-            'vehicle_repair_management/static/src/xml/top_vehicle_snippet_owl.xml',
             'vehicle_repair_management/static/src/js/snippet.js',
+            'vehicle_repair_management/static/src/xml/top_vehicle_snippet_owl.xml',
+
         ]
     },
     'depends': ['base', 'fleet', 'product', 'sale', 'hr', 'account', 'mail', 'sale_management', 'contacts', 'website',
