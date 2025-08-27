@@ -2,19 +2,19 @@
 <odoo>
     <record id="action_attendance_home_list" model="ir.ui.view">
         <field name="name">Attendance Home</field>
-        <field name="model">attendance</field>
+        <field name="model">hr.absentees</field>
         <field name="arch" type="xml">
-            <list name="employee_absentee_list">
+            <list name="employee_absentee_list" multi_edit="1">
                 <field name="name"/>
-<!--                <field name="check_in"/>-->
-<!--                <field name="check_out"/>-->
+                <field name="employee_ids" widget="many2one_avatar_user"/>
+
             </list>
         </field>
     </record>
 
     <record id="action_attendance_home_form_view" model="ir.ui.view">
         <field name="name">Attendance form</field>
-        <field name="model">attendance</field>
+        <field name="model">hr.absentees</field>
         <field name="arch" type="xml">
             <form string="Vehicle repair form view">
                 <header>
@@ -23,43 +23,36 @@
                 <sheet>
                     <group>
                         <field name="name"/>
-                        <field name="check_in"/>
-                        <field name="check_out"/>
+                        <field name="employee_ids"/>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-
     <record id="action_attendance_search" model="ir.ui.view">
         <field name="name">Attendance search</field>
-        <field name="model">attendance</field>
+        <field name="model">hr.absentees</field>
         <field name="arch" type="xml">
             <search string="name">
-
-                <!--                <field name="reference_number" string="Sequence"/>-->
                 <separator/>
-                <!--                <filter string="Archived" name="inactive"-->
-                <!--                        domain="[('active', '=', False)]"/>-->
                 <group expand="1" string="Group By">
                     <filter name="group_by_date"
                             string="Date"
-                            context="{'group_by':'check_in:day',
+                            context="{'group_by':'name:day',
                             'residual_visible':True,
                             'search_default_group_by_date':1}"/>
-                    <!--                    <field name="context">{'search_default_group_by_date': 1}</field>-->
+
                 </group>
             </search>
         </field>
     </record>
 
-
     <record id="action_attendance_home" model="ir.actions.act_window">
-        <field name="name">Attendance</field>
-        <field name="res_model">attendance</field>
+        <field name="name">Leave</field>
+        <field name="res_model">hr.absentees</field>
         <field name="view_mode">list,form</field>
         <field name="context">{'search_default_group_by_date': 1}</field>
-
     </record>
+
 </odoo>

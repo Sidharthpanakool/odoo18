@@ -8,6 +8,7 @@
     'description': "Daily Attendance By SIDHARTH P",
     'author': "ASMI",
     'data': ["security/ir.model.access.csv",
+             "data/ir_cron_data.xml",
              "views/attendance_views.xml",
              "views/attendance_menu.xml"
              ],

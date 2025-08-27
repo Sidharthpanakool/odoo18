@@ -7,7 +7,7 @@ class SnippetController(http.Controller):
     @http.route('/get_top_vehicles', auth="public", type='json',
                 website=True)
     def get_top_vehicle(self):
-        orders = (request.env['vehicle.repair'].sudo().search_read(
+        data = (request.env['vehicle.repair'].sudo().search_read(
             [('active', '=', True)],
             fields=['id','partner_id',
                     'reference_number',
@@ -18,10 +18,6 @@ class SnippetController(http.Controller):
                     'vehicle_type',
                     'vehicle_model'],
             order='id desc',
-            limit=4
             )
         )
-        values = {
-            'vehicles': orders,
-        }
-        return values
+        return data

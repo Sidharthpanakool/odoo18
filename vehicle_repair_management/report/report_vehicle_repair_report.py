@@ -82,9 +82,9 @@ class ReportVehicleRepairReport(models.AbstractModel):
             'length_service_advisor': length_service_advisor,
         }
 
-    def get_xlsx_report(self, data, response):
-        print("get_xlsx_report")
 
+
+    def get_xlsx_report(self, data, response):
         vehicle_repair_id = tuple(data.get('customer_id'))
         start_date = data.get('start_date')
         end_date = data.get('delivery_date')
@@ -92,9 +92,6 @@ class ReportVehicleRepairReport(models.AbstractModel):
 
         length_service_advisor = (len(service_advisor))
         length_vehicle_repair_id = (len(vehicle_repair_id))
-
-        print(length_service_advisor)
-        print(length_vehicle_repair_id)
 
         params = []
 
