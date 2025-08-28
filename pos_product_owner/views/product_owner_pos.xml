@@ -6,8 +6,8 @@
         <field name="inherit_id" ref="product.product_template_only_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='product_tooltip']" position="after">
-                    <field name="product_owner_id"/>
-                </xpath>
+                <field name="product_owner_id"/>
+            </xpath>
         </field>
     </record>
 </odoo>

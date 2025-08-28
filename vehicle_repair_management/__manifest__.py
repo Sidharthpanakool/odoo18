@@ -26,18 +26,19 @@
              "views/vehicle_repair_menu.xml",
              ],
     'assets': {
+        'point_of_sale._assets_pos': [
+        ],
         'web.assets_backend': [
             'vehicle_repair_management/static/src/js/action_manager.js',
         ],
         'web.assets_frontend': [
             'vehicle_repair_management/static/src/js/snippet.js',
             'vehicle_repair_management/static/src/xml/top_vehicle_snippet_owl.xml',
-            "vehicle_repair_management/static/src/app/generic_components/orderline/orderline_pos.xml",
-
         ]
     },
+
     'depends': ['base', 'fleet', 'product', 'sale', 'hr', 'account', 'mail', 'sale_management', 'contacts', 'website',
-                'base_automation'],
+                'base_automation', 'point_of_sale'],
     'application': True,
     'auto_install': True,
     'installable': True,
