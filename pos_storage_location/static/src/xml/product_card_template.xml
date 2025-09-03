@@ -3,9 +3,21 @@
     <t t-name="product_qty.product_card" t-inherit="point_of_sale.ProductCard" t-inherit-mode="extension">
         <xpath expr="//div[hasclass('product-information-tag')]" position="before">
 <!--            <t t-if="res.config.settings.enable_storage_location">-->
-                <field name="product_qty">Available Qty:
-                <t t-esc="product_qty" t-key="product_qty"/>
-                </field>
+<!--                <field name="product_qty">Available Qty:-->
+<!--                <t t-esc="product_qty" t-key="product_qty"/>-->
+<!--                </field>-->
+<!--        <t t-log="this, 'hhhhh'"/>-->
+        <t t-log="this.props.product.product_qty,this.props.name,this.props.productId, 'hhhhh'"/>
+<!--            <t t-foreach="product.product_qty">-->
+                <div class="product-stock">Qty:
+
+                 <t t-esc="this.props.product.product_qty"/>
+            </div>
+<!--            </t>-->
+
+<!--        </t>-->
+
+
 <!--            </t>-->
 
        </xpath>
