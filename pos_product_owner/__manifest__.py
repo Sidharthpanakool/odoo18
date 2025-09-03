@@ -21,7 +21,7 @@
         ]
     },
 
-    'depends': ['base', 'product','hr', 'sale', 'sale_management', 'contacts',
+    'depends': ['base', 'hr', 'sale', 'contacts',
                 'point_of_sale'],
     'application': True,
     'auto_install': True,

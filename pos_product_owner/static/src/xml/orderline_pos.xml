@@ -2,16 +2,14 @@
 <templates xml:space="preserve">
     <t t-name="inheritance_pos_orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension">
 
-<!--    <xpath expr="//li[hasclass('orderline')]/div[hasclass('d-flex')]/div[hasclass('d-flex')]" position="after" >-->
-
-        <xpath expr="//ul[hasclass('info-list')]" position="inside" >
-        <br/>
-        <t t-if="line.product_owner_id[1]">
-            <span><b>Product Owner:</b>
-                <t t-esc="line.product_owner_id[1]"/>
-            </span>
-        </t>
-        hhhhhhh
+        <xpath expr="//ul[hasclass('info-list')]" position="inside">
+            <br/>
+            <t t-if="line.product_owner_id">
+                <span><b>Product Owner:</b>
+                    <t t-esc="line.product_owner_id"/>
+                </span>
+            </t>
         </xpath>
     </t>
 </templates>
+

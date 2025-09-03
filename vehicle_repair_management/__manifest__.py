@@ -26,8 +26,6 @@
              "views/vehicle_repair_menu.xml",
              ],
     'assets': {
-        'point_of_sale._assets_pos': [
-        ],
         'web.assets_backend': [
             'vehicle_repair_management/static/src/js/action_manager.js',
         ],
@@ -38,7 +36,7 @@
     },
 
     'depends': ['base', 'fleet', 'product', 'sale', 'hr', 'account', 'mail', 'sale_management', 'contacts', 'website',
-                'base_automation', 'point_of_sale'],
+                'base_automation'],
     'application': True,
     'auto_install': True,
     'installable': True,

@@ -2,15 +2,13 @@
 <templates id="template" xml:space="preserve">
     <t t-name="product_qty.product_card" t-inherit="point_of_sale.ProductCard" t-inherit-mode="extension">
         <xpath expr="//div[hasclass('product-information-tag')]" position="before">
-           <h1>AAaaaaaaaaaaaaaaaaaaa</h1>
+<!--            <t t-if="res.config.settings.enable_storage_location">-->
+                <field name="product_qty">Available Qty:
+                <t t-esc="product_qty" t-key="product_qty"/>
+                </field>
+<!--            </t>-->
+
        </xpath>
     </t>
 
-
-<!--           <span style="color:red">Available Qty:-->
-<!--&lt;!&ndash;            <t t-esc="pos.db.product_by_id[props.productId].qty_available"/>&ndash;&gt;-->
-<!--           </span>-->
-<!--            <field name="product_qty"/>-->
-<!--            <h1>H1</h1>-->
-<!--            <t t-esc="props.name"/>/-->
 </templates>

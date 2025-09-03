@@ -96,3 +96,76 @@
 //        },
 //    },
 //});
+//
+//
+///** @odoo-module */
+//
+//import { patch } from "@web/core/utils/patch";
+//import { PosStore } from "@point_of_sale/app/store/pos_store";
+//import { ProductCard } from "@point_of_sale/app/generic_components/product_card/product_card";
+//
+//
+//patch(PosStore.prototype, {
+//    _compute_product_qty(products) {
+//    var self=this;
+//    super._compute_product_qty(...arguments);
+//
+//    for (const prod of products){
+//    self.db.product_by_id[prod.id].pos_qty_available=prod.pos_qty_available
+//    }
+//    },
+//});
+//
+//patch(ProductCard,{
+//    props:{
+//    ...ProductCard.props,
+//    qty:Number}
+//})
+
+
+
+
+
+///** @odoo-module **/
+//import { patch } from "@web/core/utils/patch";
+//import { PosStore } from "@point_of_sale/app/store/pos_store";
+//import { ProductCard } from "@point_of_sale/app/generic_components/product_card/product_card";
+//
+//patch(PosStore.prototype, {
+//    setup() {
+//       console.log(this)
+//           this.product_qty = this.product_id.product_qty || "";
+//            return super.setup(...arguments);
+//    },
+//    getDisplayData() {
+//        return {
+//            ...super.getDisplayData(),
+//            product_qty: this.get_product().product_qty || "",
+//            };
+//    },
+//
+//    prepareBaseLineForTaxesComputationExtraValues(customValues = {}) {
+//        const extraValues = super.prepareBaseLineForTaxesComputationExtraValues(customValues);
+//        extraValues.product_qty = this.product_id.product_qty;
+//        return extraValues;
+//    },
+//});
+//patch(ProductCard,{
+//    props:{
+//    ...ProductCard.props,
+//       product_qty:Number}
+//})
+
+//patch(ProductCard, {
+//    props: {
+//        ...Orderline.props,
+//        line: {
+//            ...Orderline.props.line,
+//            shape: {
+//                ...Orderline.props.line.shape,
+//                product_qty: { type: Number, optional: true },
+//            },
+//        },
+//    },
+//});
+
