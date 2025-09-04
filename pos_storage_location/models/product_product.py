@@ -3,6 +3,7 @@
 from odoo import Command, api, fields, models
 from odoo.exceptions import UserError
 from odoo import api,models,fields
+from ast import literal_eval
 from odoo.tools import groupby
 
 
@@ -14,17 +15,17 @@ class ProductProduct(models.Model):
     def _compute_product_qty(self):
 
         location_in_settings=self.env['ir.config_parameter'].sudo().get_param('res.config.settings.storage_location')
-        # print("location_in_settings",location_in_settings)
-        stock=self.env['stock.quant'].search([])
-        # print("stock.location_id",stock.location_id)
-        pos_config = self.env['product.product'].search([])
+        print("location_in_settings",location_in_settings)
 
+        stock=self.env['stock.quant'].search([])
+        stock=list(stock.location_id)
+        print("stock.location_id",stock)
+        pos_config = self.env['product.product'].search([])
         location_ids = pos_config if pos_config else False
 
         for product in self:
             qty = 0
             if location_ids:
-                # if location_in_settings in stock.location_id:
                 quants = self.env["stock.quant"].search([('product_id', '=',product.id)]).read()
                 print('quants', quants)
                 if quants:
