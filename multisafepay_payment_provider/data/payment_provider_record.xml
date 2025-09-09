@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="payment_provider_multisafepay" model="payment.provider">
+        <field name="name">Multisafepay</field>
+<!--        <field name="code">multisafepay</field>-->
+        <field name="sequence">1</field>
+        <field name="image_128" type="base64" file="multisafepay_payment_provider/static/description/icon.png"/>
+        <field name="module_id" ref="base.module_multisafepay_payment_provider"/>
+        <field name="payment_method_ids"
+               eval="[Command.set([
+                         ref('multisafepay_payment_provider.payment_method_multisafepay'),
+                     ])]"
+        />
+
+    </record>
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<odoo>-->
+
+<!--    <record id="payment_provider_multisafepay" model="payment.provider">-->
+<!--        <field name="code">multisafepay</field>-->
+<!--        <field name="redirect_form_view_id" ref="redirect_form"/>-->
+<!--    </record>-->
+
+<!--</odoo>-->
+
+
+<!--    <record id="payment_provider_mollie" model="payment.provider">-->
+<!--        <field name="name">Mollie</field>-->
+<!--        <field name="image_128" type="base64" file="payment_mollie/static/description/icon.png"/>-->
+<!--        <field name="module_id" ref="base.module_payment_mollie"/>-->
+<!--        &lt;!&ndash; https://www.mollie.com/en/payments &ndash;&gt;-->
+<!--        <field name="payment_method_ids"-->
+<!--               eval="[Command.set([-->
+<!--                         ref('payment.payment_method_bancontact'),-->
+<!--                         ref('payment.payment_method_bank_transfer'),-->
+<!--                         ref('payment.payment_method_belfius'),-->
+<!--                         ref('payment.payment_method_card'),-->
+<!--                         ref('payment.payment_method_eps'),-->
+<!--                         ref('payment.payment_method_giropay'),-->
+<!--                         ref('payment.payment_method_ideal'),-->
+<!--                         ref('payment.payment_method_kbc_cbc'),-->
+<!--                         ref('payment.payment_method_paypal'),-->
+<!--                         ref('payment.payment_method_paysafecard'),-->
+<!--                         ref('payment.payment_method_p24'),-->
+<!--                         ref('payment.payment_method_sofort'),-->
+<!--                         ref('payment.payment_method_twint'),-->
+<!--                     ])]"-->
+<!--        />-->
+
+<!--    </record>-->
+
+</odoo>
