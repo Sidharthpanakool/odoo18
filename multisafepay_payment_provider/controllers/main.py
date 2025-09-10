@@ -9,7 +9,6 @@ from odoo.http import request
 
 _logger = logging.getLogger(__name__)
 
-
 class MultisafepayController(http.Controller):
     _return_url = '/payment/multisafepay/return'
     _webhook_url = '/payment/multisafepay/webhook'
