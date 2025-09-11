@@ -1,7 +1,8 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
-
 import logging
 import pprint
+import uuid
+
 import requests
 
 from werkzeug import urls
@@ -9,9 +10,9 @@ from werkzeug import urls
 from odoo import _, models
 from odoo.exceptions import ValidationError
 
-from odoo.addons.payment.const import CURRENCY_MINOR_UNITS
-from odoo.addons.payment_mollie import const
-from odoo.addons.payment_mollie.controllers.main import MollieController
+# from odoo.addons.payment.const import CURRENCY_MINOR_UNITS
+# from odoo.addons.payment_mollie import const
+# from odoo.addons.payment_mollie.controllers.main import MollieController
 
 _logger = logging.getLogger(__name__)
 
@@ -26,44 +27,47 @@ class PaymentTransaction(models.Model):
         :rtype: dict
         """
         url = "https://testapi.multisafepay.com/v1/json/orders?api_key=832853d17d01547d6fbdad4c1e75573c426895ef"
-        # for i in range(3,):
-        #     i+=1
+
         payload = {
-            "payment_options": {
-                "close_window": False,
-                "notification_method": "POST",
-                "notification_url": "https://www.example.com/webhooks/payment",
-                "redirect_url": "https://www.example.com/order/success",
-                "cancel_url": "https://www.example.com/order/failed"
-            },
-            "customer": {
-                "locale": "en_US",
-                "disable_send_email": False
-            },
-            "checkout_options": {"validate_cart": False},
-            "days_active": 30,
-            "seconds_active": 2592000,
-            "type": "",
-            "gateway": "",
-            "order_id": "my-order-id-3",
-            "currency": "EUR",
-            "amount": 1000,
-            "description": "product description"
+                "payment_options": {
+                    "close_window": False,
+                    "notification_method": "POST",
+                    "notification_url": "https://www.example.com/webhooks/payment",
+                    "redirect_url": "https://www.example.com/order/success",
+                    "cancel_url": "https://www.example.com/order/failed"
+                },
+                "customer": {
+                    "locale": "en_US",
+                    "disable_send_email": False
+                },
+                "checkout_options": {"validate_cart": False},
+                "days_active": 30,
+                "seconds_active": 2592000,
+                "type": "",
+                "gateway": "",
+
+                "order_id": str(uuid.uuid4()),
+
+                "currency": "EUR",
+                "amount": 1000,
+                "description": "product description"
         }
         headers = {
             "accept": "application/json",
             "content-type": "application/json"
         }
-
         response = requests.post(url, json=payload, headers=headers)
-
         print(response.text)
+
         result=response.json()
         payment_url=result['data']['payment_url']
         # print("payment_url",payment_url)
-        return {
-            'api_url': payment_url
-        }
+        return {'api_url': payment_url}
+
+
+
+
+
 
     #     res = super()._get_specific_rendering_values(processing_values)
     #     if self.provider_code != 'multisafepay':
@@ -93,8 +97,8 @@ class PaymentTransaction(models.Model):
     #     """
     #     user_lang = self.env.context.get('lang')
     #     base_url = self.provider_id.get_base_url()
-    #     redirect_url = urls.url_join(base_url,multisafepayController._return_url)
-    #     webhook_url = urls.url_join(base_url, multisafepayController._webhook_url)
+    #     redirect_url = urls.url_join(base_url,MultisafepayController._return_url)
+    #     webhook_url = urls.url_join(base_url, MultisafepayController._webhook_url)
     #     decimal_places = CURRENCY_MINOR_UNITS.get(
     #         self.currency_id.name, self.currency_id.decimal_places
     #     )
