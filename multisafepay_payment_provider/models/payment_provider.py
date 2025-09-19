@@ -1,4 +1,5 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
+
 import logging
 import pprint
 
@@ -11,6 +12,7 @@ from odoo.exceptions import ValidationError
 from odoo.addons.payment_mollie import const
 
 _logger = logging.getLogger(__name__)
+
 
 class PaymentProvider(models.Model):
     _inherit = 'payment.provider'
@@ -47,21 +49,15 @@ class PaymentProvider(models.Model):
         :rtype: dict
         :raise: ValidationError if an HTTP error occurs
         """
+
         self.ensure_one()
-        endpoint = f'/v2/{endpoint.strip("/")}'
+        endpoint = f'/v1/json/{endpoint.strip("/")}'
         url = urls.url_join('https://testapi.multisafepay.com/', endpoint)
 
-        # v1/json/orders?api_key=832853d17d01547d6fbdad4c1e75573c426895ef
 
         odoo_version = service.common.exp_version()['server_version']
         module_version = self.env.ref('base.module_multisafepay_payment_provider').installed_version
-        headers = {
-            "Accept": "application/json",
-            "Authorization": f'Bearer {self.multisafepay_api_key}',
-            "Content-Type": "application/json",
-            # See https://docs.mollie.com/integration-partners/user-agent-strings
-            "User-Agent": f'Odoo/{odoo_version} MollieNativeOdoo/{module_version}',
-        }
+        headers = {"accept": "application/json"}
 
         try:
             response = requests.request(method, url, json=data, headers=headers, timeout=60)
@@ -88,4 +84,4 @@ class PaymentProvider(models.Model):
         default_codes = super()._get_default_payment_method_codes()
         if self.code != 'multisafepay':
             return default_codes
-        return const.DEFAULT_PAYMENT_METHOD_CODES
+        return {'multisafepay'}
