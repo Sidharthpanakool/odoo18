@@ -5,8 +5,9 @@
             <i class="fa fa-light fa-cloud" aria-hidden="true"
                title="weather icon"
                style="cursor: pointer; font-size: 25px; color:rgba(255, 255, 255, 0.9); padding:10px; "
-               t-on-click="showNotification"
+
             />
+<!--            t-on-click="showNotification"-->
         </div>
     </t>
 </templates>
