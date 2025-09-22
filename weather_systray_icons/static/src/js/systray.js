@@ -1,72 +1,207 @@
 /** @odoo-module **/
-console.log("aaa")
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 import { Component } from "@odoo/owl";
-class SystrayIcon extends Component {
-   setup() {
-       super.setup();
-       this.notification = useService("notification");
-       console.log(this)
-   }
-//   showNotification() {
-//       this.notification.add("Hello! This is a notification", {
-//           title: "Systray Notification",
-//           type: "info",
-//           sticky: false,
-//       });
-//   }
+import { Dialog } from "@web/core/dialog/dialog";
+
+/**
+ * Systray Weather Icon
+ */
+class SystrayWeatherIcon extends Component {
+
+    setup() {
+        this.dialog = useService("dialog");
+        console.log("aca",this)
+
+        // Default weather data
+        this.weather = {
+            date: "--",
+            temp: "--",
+            condition: "--",
+            description: "Fetching weather...",
+            city: "--",
+            last_update: "--"
+//            icon:"--"
+        };
+
+        this.fetchWeather();
+    }
+
+    async fetchWeather() {
+        const apiKey = "94195601549010db471631e5033a379f";
+
+        if (!navigator.geolocation) {
+            this.weather.description = "Geolocation not supported";
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(async (pos) => {
+            try {
+                const lat = pos.coords.latitude;
+                const lon = pos.coords.longitude;
+                const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+                const res = await fetch(url);
+                const data = await res.json();
+                console.log('data',data)
+
+                this.weather = {
+                    date: new Date().toLocaleDateString(),
+                    temp: data.main?.temp ?? "--",
+                    condition: data.weather?.[0]?.main ?? "--",
+                    description: data.weather?.[0]?.description ?? "--",
+                    city: data.name ?? "--",
+                    last_update: new Date().toLocaleString(),
+                    icon: data.weather?.[0]?.icon ?? "--",
+                    temp_min:data.main?.temp_min ?? "--",
+                    temp_max:data.main?.temp_max ?? "--",
+                };
+                this.render();
+            } catch (e) {
+                this.weather.description = "Weather fetch failed";
+                this.render();
+            }
+        }, () => {
+            this.weather.description = "Location access denied";
+            this.render();
+        });
+    }
+
+    openPopup() {
+        console.log("Opening Weather Popup…", this.weather); // ✅ Debug
+
+        this.dialog.add(WeatherPopup, {
+            props: { weather: this.weather },
+            title: "Weather Info",
+        });
+    }
 }
-SystrayIcon.template = "systray_icon";
-export const systrayItem = {
-   Component: SystrayIcon,
-};
-registry.category("systray").add("SystrayIcon", systrayItem, { sequence: 1 });
+
+/**
+ * Popup Component
+ */
+class WeatherPopup extends Component {
+    setup(){
+    console.log("WeatherPopup",this)
+    }
+    static components = { Dialog };
+    static template = "weather_systray_icons.WeatherPopup";
+    static props = { weather: { type: Object, optional: true } };
+
+}
 
 
-///** @odoo-module */
+SystrayWeatherIcon.template = "weather_systray_icons.SystrayWeatherIcon";
+
+// Register in systray
+registry.category("systray").add("SystrayWeatherIcon", {
+    Component: SystrayWeatherIcon,
+}, { sequence: 1 });
+
+
+
+
+
+
+
+
+
+
+/////** @odoo-module **/
 //
-//import { useService } from '@web/core/utils/hooks';
-//import { Component } from '@odoo/owl';
 //import { registry } from "@web/core/registry";
+//import { useService } from "@web/core/utils/hooks";
+//import { Component } from "@odoo/owl";
+//import { Dropdown } from "@web/core/dropdown/dropdown";
+//import { DropdownItem } from "@web/core/dropdown/dropdown_item";
 //
-//export class LocationUpdater extends Component {
-//    static template = "odoo_live_location.location_updater_template";
+///**
+// * Systray Weather Icon
+// */
+//class SystrayWeatherIcon extends Component {
 //
 //    setup() {
-//        console.log("setup");
-//        this.rpc = useService("rpc");
-//        this.getAndUpdateLocation(1);
+//        this.dialog = useService("dialog");
+//        console.log("aca",this)
+//
+////        // Default weather data
+////        this.weather = {
+////            date: "--",
+////            temp: "--",
+////            condition: "--",
+////            description: "Fetching weather...",
+////            city: "--",
+////            last_update: "--"
+//////            icon:"--"
+////        };
+//
+//        this.fetchWeather();
 //    }
 //
-//    async updateLocationOnServer(latitude, longitude, recordId) {
-//        console.log("Updating location on server...");
-//        const response = await this.rpc({
-//            model: 'location.info',
-//            method: 'update_location',
-//            args: [[recordId], {
-//                'partner_latitude': latitude,
-//                'partner_longitude': longitude,
-//            }],
+//    async fetchWeather() {
+//        const apiKey = "94195601549010db471631e5033a379f";
+//
+////        if (!navigator.geolocation) {
+////            this.weather.description = "Geolocation not supported";
+////            return;
+////        }
+//
+//        navigator.geolocation.getCurrentPosition(async (pos) => {
+//            try {
+//                const lat = pos.coords.latitude;
+//                const lon = pos.coords.longitude;
+//                const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+//                const res = await fetch(url);
+//                const data = await res.json();
+//                console.log('data',data)
+//
+//                this.weather = {
+//                    date: new Date().toLocaleDateString(),
+//                    temp: data.main?.temp ?? "--",
+//                    condition: data.weather?.[0]?.main ?? "--",
+//                    description: data.weather?.[0]?.description ?? "--",
+//                    city: data.name ?? "--",
+//                    last_update: new Date().toLocaleString(),
+//                    icon: data.weather?.[0]?.icon ?? "--",
+//                    temp_min:data.main?.temp_min ?? "--",
+//                    temp_max:data.main?.temp_max ?? "--",
+//                };
+//                this.render();
+//            } catch (e) {
+//                this.weather.description = "Weather fetch failed";
+//                this.render();
+//            }
+//        }, () => {
+//            this.weather.description = "Location access denied";
+//            this.render();
 //        });
-//        console.log("Location updated:", response);
 //    }
 //
-//    async getAndUpdateLocation(recordId) {
-//        console.log("Fetching location...");
-//        if (navigator.geolocation) {
-//            navigator.geolocation.getCurrentPosition(async (position) => {
-//                const latitude = position.coords.latitude;
-//                const longitude = position.coords.longitude;
-//                await this.updateLocationOnServer(latitude, longitude, recordId);
-//                console.log('Location updated successfully!');
-//            }, (error) => {
-//                console.error("Error fetching location:", error);
-//            });
-//        } else {
-//            console.error("Geolocation is not supported by this browser.");
-//        }
+//    openPopup() {
+//        console.log("Opening Weather Popup…", this); // ✅ Debug
+//        this.dialog.add(SystrayWeatherIcon, {
+//            props: { weather: this.weather },
+//            title: "Weather Info",
+//        });
 //    }
 //}
 //
-//registry.category("actions").add("LocationUpdater", LocationUpdater);
+///**
+// * Popup Component
+//// */
+////class WeatherPopup extends Component {
+////    setup(){
+////    console.log("WeatherPopup",this)
+////    }
+//////    static components = { Dialog };
+////    static template = "weather_systray_icons.WeatherPopup";
+////    static props = { weather: { type: Object, optional: true } };
+////
+////}
+//
+//SystrayWeatherIcon.template = "weather_systray_icons.SystrayWeatherIcon";
+//SystrayWeatherIcon.components = {Dropdown};
+//
+//// Register in systray
+//registry.category("systray").add("SystrayWeatherIcon", {
+//    Component: SystrayWeatherIcon,
+//}, { sequence: 1 });
