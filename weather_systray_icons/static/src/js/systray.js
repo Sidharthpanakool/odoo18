@@ -2,7 +2,6 @@
 import { registry } from "@web/core/registry";
 import { Component, useState, onMounted } from "@odoo/owl";
 import { Dropdown } from "@web/core/dropdown/dropdown";
-import { DropdownItem } from "@web/core/dropdown/dropdown_item";
 
 class SystrayWeatherDropdown extends Component {
     setup() {
@@ -54,9 +53,9 @@ class SystrayWeatherDropdown extends Component {
 }
 
 SystrayWeatherDropdown.template = "weather_systray_dropdown";
-SystrayWeatherDropdown.components = { Dropdown, DropdownItem };
+SystrayWeatherDropdown.components = { Dropdown};
 
 export const systrayItem = {
     Component: SystrayWeatherDropdown,
 };
-registry.category("systray").add("SystrayWeatherDropdown", systrayItem, { sequence: 1 });
+registry.category("systray").add("SystrayWeatherDropdown", systrayItem, { sequence: 100 });
