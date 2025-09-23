@@ -1,133 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
-    <!-- Systray Icon -->
-        <t t-name="weather_systray_icons.SystrayWeatherIcon" owl="1">
-            <div>
-                <i class="fa fa-cloud"
-                   title="Weather Info"
-                   style="cursor: pointer; font-size: 20px; color: white; padding:13px;"
-                   t-on-click="openPopup"
-                />
-            </div>
-        </t>
-
-        <!-- Weather Popup -->
-        <t t-name="weather_systray_icons.WeatherPopup" owl="1">
-            <Dialog>
-                <div class="o_dialog_content" style="min-width:280px;">
-                    <div class="p-4 d-flex flex-row">
+   <t t-name="weather_systray_dropdown" owl="1">
+       <Dropdown>
+           <div class="new_icon">
+               <div class="icon_div">
+                   <div class="toggle-icon" role="button">
+                       <i class="fa fa-cloud"
+                          style="color: white; font-size:20px; padding:14px;"
+                          title="Weather Info"/>
+                   </div>
+               </div>
+           </div>
+           <t t-set-slot="content">
+               <div class="p-3 d-flex flex-row" style="min-width: 300px;">
+                   <group>
+                       <h5>
+                           <t t-esc="state.date"/>
+                       </h5>
+                        <p>Day
+                            <t t-esc="state.temp_max || '--'"/>°,
+                           Night
+                            <t t-esc="state.temp_min || '--'"/>°
+                        </p>
+                       <h1>
+                           <t t-esc="state.temp"/>°
+                           <t t-esc="state.condition"/>
+                       </h1>
+                       <p><t t-esc="state.description"/>
+                       in
+                       <t t-esc="state.city"/>
+                       </p>
+                       <p>Near  <t t-esc="state.city"/></p>
+                       <small>
+                           <b>Last update:</b><br/>
+                           <t t-esc="state.last_update"/>
+                       </small>
+                   </group>
                         <group>
+                        <div>
+                            <img t-attf-src="https://openweathermap.org/img/wn/{{state.icon }}@2x.png" width="140"/>
+                        </div>
+                   </group>
+               </div>
+           </t>
+       </Dropdown>
+   </t>
+</templates>
 
-                            <p>
-                            <t t-esc="props.props.weather?.date || '--'"/>
-                            </p>
-                            <p>
-                                Day
-                            <t t-esc="props.props.weather?.temp_max || '--'"/>°,
-                                Night
-                            <t t-esc="props.props.weather?.temp_min || '--'"/>°
-
-
-                            </p>
-                            <h1>
-                                <t t-esc="props.props.weather?.temp || '--'"/>°
-                                <t t-esc="props.props.weather?.condition || '--'"/>
-                            </h1>
-
-                            <p>
-                            <t t-esc="props.props.weather?.description || '--'"/>
-                            in
-                            <t t-esc="props.props.weather?.city || '--'"/>
-                            </p>
-                            <p>
-                                Near <t t-esc="props.props.weather?.city || '--'"/>
-                            </p>
-                            <p>
-                                <b>Last update : </b>
-                                <br/>
-                                <t t-esc="props.props.weather?.last_update || '--'"/>
-                            </p>
-                        </group>
-
-                        <group>
-                            <div>
-                                <img t-attf-src="https://openweathermap.org/img/wn/{{props.props.weather?.icon }}@2x.png" width="200"/>
-                            </div>
-
-                        </group>
-
-                    </div>
-                    <div>
-
-                    </div>
-                </div>
-            </Dialog>
-        </t>
-    </templates>
-
-
-
-
-
-<!--&lt;!&ndash; Systray Icon &ndash;&gt;-->
-<!--    <t t-name="weather_systray_icons.SystrayWeatherIcon" owl="1">-->
-<!--        <Dropdown>-->
-<!--            <t t-set-slot="toggler">-->
-<!--                <div>-->
-<!--                    <i class="fa fa-cloud"-->
-<!--                       title="Weather Info"-->
-<!--                       style="cursor: pointer; font-size: 20px; color: white; padding:13px;"-->
-<!--                       t-on-click="openPopup"-->
-<!--                    />-->
-<!--                </div>-->
-<!--             </t>-->
-<!--        &lt;!&ndash;    </t>&ndash;&gt;-->
-<!--        &lt;!&ndash; Weather Popup &ndash;&gt;-->
-<!--        &lt;!&ndash;    <t t-name="weather_systray_icons.WeatherPopup" owl="1">&ndash;&gt;-->
-<!--        &lt;!&ndash;        <Dialog>&ndash;&gt;-->
-<!--&lt;!&ndash;            <t t-set-slot="default">&ndash;&gt;-->
-<!--&lt;!&ndash;            <DropdownItem>&ndash;&gt;-->
-<!--                <div class="o_dialog_content" style="min-width:280px;">-->
-<!--                    <div class="p-4 d-flex flex-row">-->
-<!--                        <group>-->
-<!--                            <p>-->
-<!--                            <t t-esc="weather?.date || '&#45;&#45;'"/>-->
-<!--                            </p>-->
-<!--                            <p>-->
-<!--                                Day-->
-<!--                            <t t-esc="weather?.temp_max || '&#45;&#45;'"/>°,-->
-<!--                                Night-->
-<!--                            <t t-esc="weather?.temp_min || '&#45;&#45;'"/>°-->
-<!--                        </p>-->
-<!--                        <h1>-->
-<!--                            <t t-esc="weather?.temp || '&#45;&#45;'"/>°-->
-<!--                            <t t-esc="weather?.condition || '&#45;&#45;'"/>-->
-<!--                        </h1>-->
-<!--                            <p>-->
-<!--                            <t t-esc="weather?.description || '&#45;&#45;'"/>-->
-<!--                            in-->
-<!--                            <t t-esc="weather?.city || '&#45;&#45;'"/>-->
-<!--                        </p>-->
-<!--                        <p>-->
-<!--                            Near <t t-esc="weather?.city || '&#45;&#45;'"/>-->
-<!--                        </p>-->
-<!--                        <p>-->
-<!--                            <b>Last update : </b>-->
-<!--                            <br/>-->
-<!--                            <t t-esc="weather?.last_update || '&#45;&#45;'"/>-->
-<!--                        </p>-->
-<!--                        </group>-->
-<!--                        <group>-->
-<!--                        <div>-->
-<!--                            <img t-attf-src="https://openweathermap.org/img/wn/{{weather?.icon }}@2x.png" width="200"/>-->
-<!--                        </div>-->
-<!--                        </group>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--&lt;!&ndash;            </DropdownItem>&ndash;&gt;-->
-<!--&lt;!&ndash;            </t>&ndash;&gt;-->
-<!--        </Dropdown>-->
-<!--    </t>-->
-<!--</templates>-->
