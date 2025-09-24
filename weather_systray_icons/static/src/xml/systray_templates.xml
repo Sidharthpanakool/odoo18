@@ -2,15 +2,15 @@
 <templates xml:space="preserve">
    <t t-name="weather_systray_dropdown" owl="1">
        <Dropdown>
-           <div class="new_icon">
-               <div class="icon_div">
-                   <div class="toggle-icon" role="button">
+<!--           <div class="new_icon">-->
+<!--               <div class="icon_div">-->
+                   <div class="toggle-ico   n" role="button">
                        <i class="fa fa-cloud"
                           style="color: white; font-size:20px; padding:14px;"
                           title="Weather Info"/>
                    </div>
-               </div>
-           </div>
+<!--               </div>-->
+<!--           </div>-->
            <t t-set-slot="content">
                <div class="p-3 d-flex flex-row" style="min-width: 300px;">
                    <group>

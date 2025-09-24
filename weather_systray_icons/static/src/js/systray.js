@@ -19,11 +19,16 @@ class SystrayWeatherDropdown extends Component {
     }
     async fetchWeather() {
         const apiKey = "94195601549010db471631e5033a379f";
+
         if (!navigator.geolocation) {
             this.state.description = "Geolocation not supported";
             return;
         }
+        console.log("Navigator",navigator)
+
         navigator.geolocation.getCurrentPosition(async (pos) => {
+        console.log('pos',pos)
+
             try {
                 const lat = pos.coords.latitude;
                 const lon = pos.coords.longitude;
