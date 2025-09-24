@@ -4,7 +4,26 @@
         <template id="survey_session_idle_time" name="survey_session_idle_time">
 
         </template>
+<!--<div class="o_survey_timer col-lg-2 pt-4">-->
+<!--                        <h1 class="o_survey_timer_container timer text-end">-->
+<!--                        </h1>-->
+<!--                    </div>-->
+<!--        -->
 
+<!--<templates id="survey_session_idle_time" xml:space="preserve">-->
+<!--    <t t-name="pos_self_order.ReceiptHeader" t-inherit="point_of_sale.ReceiptHeader" t-inherit-mode="extension">-->
+<!--        <xpath expr="//h1[hasclass('tracking-number')]" position="after">-->
+<!--&lt;!&ndash;            <div t-if="props.data.pickingService" class="picking-service text-center pb-2">&ndash;&gt;-->
+<!--&lt;!&ndash;                <span t-if="props.data.pickingService == 'table'" >Service at Table</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                <span t-else="">Pickup At Counter</span>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--            <div t-if="props.data.tableTracker" class="table-tracker text-center pb-2">-->
+<!--                Table Tracker:-->
+<!--                <span class="pt-3" t-esc="props.data.tableTracker" />-->
+<!--            </div>-->
+<!--        </xpath>-->
+<!--    </t>-->
+<!--</templates>-->
 
 <!--            <template id="survey_fill_header" name="Survey: main page header">-->
 <!--        <div class="o_survey_nav pt16 mb-2">-->
