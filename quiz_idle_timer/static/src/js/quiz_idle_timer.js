@@ -214,33 +214,105 @@
 
 
 
+
+
+
+
+
+
+///** @odoo-module **/
+//
+//import { Component, xml } from "@odoo/owl";
+//import { useInterval } from "@web/core/utils/timing";
+//
+//export class CountdownTimer extends Component {
+//    setup() {
+//        super.setup();
+//        this.targetDate = new Date(this.props.targetDate); // Expects a date string or Date object
+//        this.remainingTime = this._calculateRemainingTime();
+//
+//        useInterval(() => {
+//            this.remainingTime = this._calculateRemainingTime();
+//            if (this.remainingTime.total <= 0) {
+//                // Optional: Emit an event or perform an action when countdown finishes
+//                // this.env.bus.trigger('countdown_finished', this.props.id);
+//            }
+//        }, 1000); // Update every second
+//    }
+//
+//    _calculateRemainingTime() {
+//        const now = new Date();
+//        const difference = this.targetDate.getTime() - now.getTime(); // Difference in milliseconds
+//
+//        const total = difference;
+//        const seconds = Math.floor((total / 1000) % 60);
+//        const minutes = Math.floor((total / (1000 * 60)) % 60);
+//        const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+//        const days = Math.floor(total / (1000 * 60 * 60 * 24));
+//
+//        return {
+//            total,
+//            days,
+//            hours,
+//            minutes,
+//            seconds
+//        };
+//    }
+//
+//    get formattedTime() {
+//        if (this.remainingTime.total <= 0) {
+//            return "Countdown Finished!";
+//        }
+//        const { days, hours, minutes, seconds } = this.remainingTime;
+//        return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+//    }
+//}
+//
+//CountdownTimer.template = xml`
+//    <div class="o_countdown_timer">
+//        <span t-esc="formattedTime"/>
+//    </div>
+//`;
+//
+//CountdownTimer.props = {
+//    targetDate: { type: [String, Date] },
+//    id: { type: String, optional: true },
+//};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Timeout in seconds
 var timeout = 10; // 10 seconds
-
 // You don't have to change anything below this line, except maybe
 // the alert('Welcome back!') :-)
 // ----------------------------------------------------------------
 var pos = '', prevpos = '', timer = 0, interval = timeout / 5 * 1000;
 timeout = timeout * 1000 - interval;
-
 function mouseHasMoved(e){
-
     console.log("mouseHasMoved")
-
     document.onmousemove = null;
     prevpos = pos;
     pos = e.pageX + '+' + e.pageY;
     if(timer > timeout){
         timer = 0;
 //        alert('Welcome back!');
-
     }
 }
-
 setInterval(function(){
     console.log("idle")
-
-
     if(pos == prevpos){
 //        alert('Time is running!');
         timer += interval;
@@ -252,3 +324,84 @@ setInterval(function(){
         mouseHasMoved(e);
     }
 }, interval);
+
+
+
+
+
+
+
+
+
+
+//// Define some global vars for our idle timer
+//var idleTime = 0;
+//var countdown = 10;
+//var idlemin = 10;
+//var idlemax = 20;
+//
+////
+////
+//// you need to define your own HTML and css styles for the warning message and fade layer.
+//// the warning message goes in a div with the ID #idlewarn
+//// the css should style for a fade layer with the id #fade
+////
+////
+//
+//
+//// N.B. using jQuery - easily adapted for other *.js library.
+//$(document).ready(function(){
+//
+//  // every N sec this example goes every 1 sec BUT that's a bit much in practice.
+//  var idleInterval = setInterval("timerIncrement()", 1000);
+//
+//    // Zero the idle timer on mouse movement.
+//    $(this).mousemove(function (e) {
+//        // hide warning + countdown
+//        countdown = 10;
+//         $('#fade').remove();  // remove the lightbox fade layer
+//        $('#idlewarn').fadeOut('fast'); // hide our warning message
+//        idleTime = 0;
+//    });
+//    // Also Zero the timer on keypress
+//    $(this).keypress(function (e) {
+//        // hide warning + countdown
+//        countdown = 10;
+//         $('#fade').remove();  // remove the lightbox fade layer
+//        $('#idlewarn').fadeOut('fast'); // hide the warning message
+//        idleTime = 0;
+//    });
+//
+//}); // end document.ready block
+//
+//
+//// The function that gets called every second.
+//function timerIncrement() {
+//    idleTime = idleTime + 1;
+//
+//    // if user has been idle for the idlemin time do this - show warning message.
+//    if (idleTime >= idlemin && idleTime < idlemax) {
+//
+//      countdown = (idlemax - idleTime) ; //use a countdown to show user how long they have
+//      $('#countdown').html(countdown);
+//
+//      // Show the warning along with a countdown timer
+//      if ($('#idlewarn').css('display') != 'block') {
+//
+//        // Fade in the Popup and add close button
+//        $('#idlewarn').fadeIn()
+//
+//        //Fade in Background
+//        $('body').append('<div id="fade"></div>'); //Add the fade layer to bottom of the body tag.
+//        $('#fade').fadeIn(); // Fade in the fade layer
+//        return false;
+//      }
+//
+//    } else if (idleTime >= idlemax) {
+//      // User has been idle too long - they've exceeded idlemax time.
+//      // so take another action
+//      // in this example we simply send them back to the homepage with a logout flag
+//      window.location.href= '/?logout';
+//    }
+//
+//}//end timer increment
