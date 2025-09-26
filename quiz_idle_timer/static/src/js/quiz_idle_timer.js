@@ -6,11 +6,11 @@ console.log("console")
 publicWidget.registry.SurveyIdleTimer = publicWidget.Widget.extend({
  selector: ".o_survey_form",
  start: function () {
-                this.orm = this.bindService("orm");
-                console.log("bind",this.orm)
-                const searchRead= this.orm.searchRead('survey.survey',[],[])
-                console.log('searchRead',searchRead)
-                console.log("this",this)
+//                this.orm = this.bindService("orm");
+//                console.log("bind",this.orm)
+//                const searchRead= this.orm.searchRead('survey.survey',[],[])
+//                console.log('searchRead',searchRead)
+//                console.log("this",this)
 
     var timeout = 5,// Timeout in seconds
     //var timer = 0,
