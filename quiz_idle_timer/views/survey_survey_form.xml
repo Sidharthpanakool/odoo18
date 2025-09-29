@@ -8,14 +8,10 @@
             <field name="arch" type="xml">
                 <xpath expr="//label[@for='is_time_limited']" position="before">
                     <label for="quiz_idle_time" string="Idle Time Limit"/>
-<!--                    invisible="survey_type == 'live_session'"-->
-                    <div class="o_checkbox_optional_field" name="quiz_idle_time"
-                                         >
-<!--                        invisible="survey_type == 'live_session'"-->
+                    <div class="o_checkbox_optional_field" name="quiz_idle_time">
                         <field name="quiz_idle_time"/>
                         <div invisible="not quiz_idle_time">
-                            <field name="idle_time_limit" widget="float_time" nolabel="1" class="oe_inline"/> Minutes
-
+                            <field name="idle_time_limit"  nolabel="1" class="oe_inline"/>Seconds
                         </div>
                     </div>
                 </xpath>

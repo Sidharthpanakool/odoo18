@@ -1,58 +1,66 @@
 /** @odoo-module **/
 import publicWidget from "@web/legacy/js/public/public_widget";
 
-console.log("console")
-
 publicWidget.registry.SurveyIdleTimer = publicWidget.Widget.extend({
- selector: ".o_survey_form",
- start: function () {
-//                this.orm = this.bindService("orm");
-//                console.log("bind",this.orm)
-//                const searchRead= this.orm.searchRead('survey.survey',[],[])
-//                console.log('searchRead',searchRead)
-//                console.log("this",this)
+    selector: ".o_survey_form",
+    start: async function () {
 
-    var timeout = 5,// Timeout in seconds
-    //var timer = 0,
-    interval = 1000,//interval time in milliseconds ,1 sec=1000 milliseconds
-    my_time=0;
-        function mouseHasMoved(e){
-            my_time=0
-            document.onmousemove = null;
-            document.onkeydown = null;
-            console.log("mouseHasMoved",my_time)
+        this._super.apply(this,arguments);
+        this.orm=this.bindService('orm')
+        this.options=this.$('form').data()
+
+        const survey_data=await this.orm.searchRead('survey.survey', [['access_token','=',this.options.surveyToken]],
+        ['quiz_idle_time','idle_time_limit']);
+
+        if(survey_data){
+            const idle_time_enabled = survey_data[0].quiz_idle_time;
+            const idle_time =  survey_data[0].idle_time_limit;
+
+            if(idle_time_enabled && idle_time>0){
+                this.bindIdleTimeLimit(idle_time);
+                document.getElementById("time_limit").innerHTML = idle_time;
+            }
         }
-        setInterval(function(){
-            my_time=my_time+1
-            const start = document.querySelector('.btn-primary[value="start"]');
-            const next = document.querySelector('.btn-primary[value="next"]');
-            const finish = document.querySelector('.btn-secondary[value="finish"]');
-            const next_skipped = document.querySelector('.btn-primary[value="next-skipped"]')
+        },
+        bindIdleTimeLimit: function (idle_time){
+            let timeout=0;
+            const interval=1000;
 
-            if (my_time==timeout){
-                my_time=0
+            function mouseHasMoved(e){
+                timeout=0;
+                document.onmousemove = null;
+                document.onkeydown = null;
+            }
+            setInterval(function (){
+
+
+            document.getElementById("timer").innerHTML = timeout;
+            timeout++;
+
+            if (timeout == idle_time){
+                timeout=0;
+                const start = document.querySelector('.btn-primary[value="start"]');
+                const next = document.querySelector('.btn-primary[value="next"]');
+                const finish = document.querySelector('.btn-secondary[value="finish"]');
+                const next_skipped = document.querySelector('.btn-primary[value="next-skipped"]')
+
                 if(start){
                         start.click()
-                        console.log('start')
                 }else if(next){
                         next.click()
-                        console.log("next")
                 }else if(finish){
                         finish.click()
-                        console.log('Finish')
                 }else if(next_skipped){
                         next_skipped.click()
-                        console.log('next_skipped')
                 }
-            }
-            console.log('idle',my_time)
-
-            document.onmousemove = function(e){
-                mouseHasMoved(e);
-            }
-            document.onkeydown=function(e){
-                mouseHasMoved(e);
-            }
-        }, interval);
-    }
-})
+                }
+                document.onmousemove = function(e){
+                    mouseHasMoved(e);
+                }
+                document.onkeydown=function(e){
+                    mouseHasMoved(e);
+                }
+            }, interval);
+    },
+});
+export default publicWidget.registry.SurveyIdleTimer;
