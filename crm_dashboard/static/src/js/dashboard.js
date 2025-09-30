@@ -16,9 +16,8 @@ class CrmDashboard extends Component {
      let result = await this.orm.call("crm.lead", "get_tiles_data", [], {});
      document.getElementById('my_lead').innerHTML = `<span>${result.total_leads}</span>`;
      document.getElementById('my_opportunity').innerHTML = `<span>${result.total_opportunity}</span>`;
-     document.getElementById('revenue').innerHTML = `<span>${result.currency}${result.expected_revenue}</span>`;
-
-     console.log('this',this)
+     document.getElementById('exp_revenue').innerHTML = `<span>${result.currency}${result.expected_revenue}</span>`;
+     document.getElementById('revenue').innerHTML = `<span>${result.currency}${result.invoice_amt_sum}</span>`;
   }
 
 }
