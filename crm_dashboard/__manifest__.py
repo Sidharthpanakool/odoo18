@@ -19,7 +19,7 @@
         ]
     },
 
-    'depends': ['base','mail'],
+    'depends': ['base','mail','sale','crm'],
     'application': True,
     'auto_install': True,
     'installable': True,
