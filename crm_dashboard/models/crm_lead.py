@@ -6,20 +6,17 @@ class CrmLead(models.Model):
    @api.model
    def get_tiles_data(self):
        company_id = self.env.company
-       leads = self.search([('company_id', '=', company_id.id),
-                            ('user_id', '=', self.env.user.id)])
+       leads = self.search([('company_id', '=', company_id.id),('user_id', '=', self.env.user.id)])
        my_leads = leads.filtered(lambda r: r.type == 'lead')
        print('my_leads', my_leads)
 
        invoices = self.env['account.move'].search([('move_type', '=', 'out_invoice'),('state', '=', 'posted')])
-
        total_amount_sum = sum(invoice.amount_total for invoice in invoices)
 
        print('invoices', invoices)
        print("total",total_amount_sum)
 
        my_opportunity = leads.filtered(lambda r: r.type == 'opportunity')
-
        print('my_oppertunity',my_opportunity)
 
        currency = company_id.currency_id.symbol
