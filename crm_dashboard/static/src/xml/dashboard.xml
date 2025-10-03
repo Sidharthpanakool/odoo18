@@ -11,10 +11,7 @@
            <!-- Lead Tile-->
            <div id="leads" class="col-md-4 col-sm-6 tot_tasks oh-payslip"
                 style=" overflow: hidden; padding-top: 30px;"
-
-                t-on-click="() => this.redirect_to_leads(group)"
-
-           >
+                t-on-click="redirect_to_leads">
                <div class="oh-card" style="box-shadow:2px 4px 8px 2px rgba(0,0,0.3,0.2);
                display: flex; justify-content: center;" role="button">
                    <div class="oh-card-body"
@@ -45,7 +42,8 @@
            </div>
            <!-- Opportunity Tile-->
            <div id="opportunity" class="col-md-4 col-sm-6 tot_tasks oh-payslip"
-                style=" overflow: hidden; padding-top: 30px;">
+                style=" overflow: hidden; padding-top: 30px;"
+                t-on-click="redirect_to_opportunity">
                <div class="oh-card" style="box-shadow:2px 4px 8px 2px rgba(0,0,0.3,0.2);
                display: flex; justify-content: center;" role="button">
                    <div class="oh-card-body"
@@ -181,13 +179,12 @@
                                <div class="stat-content" style="
                                  text-align: center; font-weight: bold;
                                  padding-top: 20px; padding-left: 80px;">
-                                   <div class="stat_count_ex_rev"
-                                        style="font-size: 17px;">
-                                       <span id="templates">
-<!--                                            <div id="won"/>-->
-                                       </span>
-                                   </div>
-                                   <div class="stat-head" style="font-size: 14px;">:
+<!--                                   <div class="stat_count_ex_rev"-->
+<!--                                        style="font-size: 17px;">-->
+<!--&lt;!&ndash;                                       <span id="templates">&ndash;&gt;-->
+<!--&lt;!&ndash;                                       </span>&ndash;&gt;-->
+<!--                                   </div>-->
+                                   <div class="stat-head" style="font-size: 20px;">:
                                    </div>
                                </div>
 
@@ -215,4 +212,5 @@
 
         </div>
    </t>
+
 </templates>

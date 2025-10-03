@@ -7,7 +7,8 @@
     'summary': 'CRM Dashboard',
     'description': "Crm Dashboard SIDHARTH P",
     'author': "ASMI",
-    'data': ['views/ir_actions_views.xml'
+    'data': ['views/ir_actions_views.xml',
+             'views/inherit.xml',
              ],
      'assets': {
         'web.assets_backend': [

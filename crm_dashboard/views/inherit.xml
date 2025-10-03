@@ -5,12 +5,13 @@
         <field name="model">crm.team</field>
         <field name="inherit_id" ref="sales_team.crm_team_view_form"/>
         <field name="arch" type="xml">
-<!--            <xpath expr="//label[@for='user_id_0']" position="after">-->
-            <xpath expr="//field[@name='user_id']" position="after">
-                <h1>aaaa</h1>
+        <xpath expr="//div[@name='options_active']" position="before">
+            <div name="lead_state">
+                <label for="lead_state_id">Lead State</label>
+                <field name="lead_state_id" string="Default Lead State"/>
+            </div>
+
             </xpath>
         </field>
-
-<!--        <field name="user_id" widget="many2one_avatar_user" domain="[('share', '=', False)]"/>-->
     </record>
 </odoo>
