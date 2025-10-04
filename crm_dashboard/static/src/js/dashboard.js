@@ -53,13 +53,9 @@ class CrmDashboard extends Component {
             });
             }
             }
-
-
     async redirect_to_opportunity(){
-        console.log('redirect_to_opportunity')
         let result = await this.orm.call("crm.lead", "get_tiles_data", [], {});
         console.log(result)
-
 
         const my_opportunity= result.my_opportunity
         const regex = /\((.*?)\)/;

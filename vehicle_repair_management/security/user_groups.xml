@@ -2,12 +2,12 @@
 <odoo>
     <data>
         <record model="res.groups" id="user_group_manager">
-            <field name="name">vehicle repair list Access</field>
+            <field name="name">vehicle repair Access Manager</field>
             <field name="category_id"
                    ref="base.module_category_administration_administration"/>
         </record>
         <record model="res.groups" id="user_group_technician">
-            <field name="name">vehicle repair list Access technician</field>
+            <field name="name">vehicle repair Access technician</field>
             <field name="category_id"
                    ref="base.module_category_administration_administration"/>
         </record>

@@ -5,13 +5,38 @@
         <field name="model">crm.team</field>
         <field name="inherit_id" ref="sales_team.crm_team_view_form"/>
         <field name="arch" type="xml">
-        <xpath expr="//div[@name='options_active']" position="before">
-            <div name="lead_state">
-                <label for="lead_state_id">Lead State</label>
-                <field name="lead_state_id" string="Default Lead State"/>
-            </div>
-
+            <xpath expr="//div[@name='options_active']" position="before">
+                <div name="lead_state" class="">
+                    <label for="lead_state_id">Lead State</label>
+                    <field name="lead_state_id" string="Default Lead State"/>
+                </div>
             </xpath>
         </field>
     </record>
+
+
+<!--    <record id="crm_lead_view_search_inherit_dashboard" model="ir.ui.view">-->
+<!--        <field name="name">crm.lead.search.inherit.dashboard</field>-->
+<!--        <field name="model">crm.lead</field>-->
+<!--        <field name="inherit_id" ref="crm.crm_lead_view_search_forecast"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--&lt;!&ndash;            <xpath expr="//filter[@name='my_leads']" position="after">&ndash;&gt;-->
+
+<!--                <filter string="This Year" name="this_year"-->
+<!--                    domain="[('create_date','&gt;=',(context_today().replace(month=1,day=1)))]"/>-->
+
+<!--                <filter string="This Quarter" name="this_quarter"-->
+<!--                    domain="[('create_date','&gt;=',(context_today() - relativedelta(months=((context_today().month-1)%3))))]"/>-->
+
+<!--                <filter string="This Month" name="this_month"-->
+<!--                    domain="[('create_date','&gt;=',(context_today().replace(day=1)))]"/>-->
+
+<!--                <filter string="This Week" name="this_week"-->
+<!--                    domain="[('create_date','&gt;=',(context_today() - datetime.timedelta(days=context_today().weekday())))]"/>-->
+<!--&lt;!&ndash;            </xpath>&ndash;&gt;-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+
 </odoo>

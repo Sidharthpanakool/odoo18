@@ -54,5 +54,4 @@ class CrmLead(models.Model):
            'my_leads': my_leads,
            'my_opportunity': my_opportunity,
            'leads':leads
-
        }
