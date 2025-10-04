@@ -24,10 +24,7 @@ class SystrayWeatherDropdown extends Component {
             this.state.description = "Geolocation not supported";
             return;
         }
-        console.log("Navigator",navigator)
-
         navigator.geolocation.getCurrentPosition(async (pos) => {
-        console.log('pos',pos)
 
             try {
                 const lat = pos.coords.latitude;
@@ -47,6 +44,7 @@ class SystrayWeatherDropdown extends Component {
                 this.state.icon=data.weather?.[0]?.icon ?? "--";
                 this.state.temp_min=data.main?.temp_min ?? "--";
                 this.state.temp_max=data.main?.temp_max ?? "--";
+
 
             } catch (e) {
                 this.state.description = "Weather fetch failed";
