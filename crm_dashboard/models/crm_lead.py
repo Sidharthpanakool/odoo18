@@ -58,6 +58,39 @@ class CrmLead(models.Model):
        print(loss)
        print('loss',len(loss))
 
+
+
+
+       # activity_data = self.env['mail.activity'].read_group(
+       #     [('user_id', '=', user)],
+       #     ['activity_type_id'], ['activity_type_id']
+       # )
+       # print("activity_data",activity_data)
+       # activities = {
+       #     act['activity_type_id'][1]: act['activity_type_id_count']
+       #     for act in activity_data if act['activity_type_id']
+       # }
+       # print("activities",activities)
+       # # leads_by_month = self.env['crm.lead'].read_group(
+       # #     [('user_id', '=', user), ('create_date', '>=', start_date), ('create_date', '<=', end_date)],
+       # #     ['id:count', 'create_date:month'], ['create_date:month'], orderby='create_date:month'
+       # # )
+       # # print("leads_by_month",leads_by_month)
+       # leads_by_medium = self.env['crm.lead'].read_group(
+       #     [('user_id', '=', user)],
+       #     ['medium_id'], ['medium_id']
+       # )
+       # print("leads_by_medium",leads_by_medium)
+       #
+       # leads_by_campaign = self.env['crm.lead'].read_group(
+       #     [('user_id', '=', user)],
+       #     ['campaign_id'], ['campaign_id']
+       # )
+       # print("leads_by_campaign",leads_by_campaign)
+
+
+
+
        return {
            'total_leads': len(my_leads),
            'total_opportunity': len(my_opportunity),
@@ -70,9 +103,71 @@ class CrmLead(models.Model):
            'user': user,
            'my_leads': my_leads,
            'my_opportunity': my_opportunity,
-           'leads':leads
+           'leads':leads,
+           'lost_vs_won': {'Won': won, 'Lost': loss},
        }
 
+
+   def get_chart_data(self, filter_type='year'):
+       start, end = self._get_date_range(filter_type)
+       crm_lead = self.env['crm.lead']
+       user = self.env.user
+
+       lost_count = crm_lead.search_count([
+           ('user_id', '=', user.id),
+           ('stage_id.is_won', '=', False),
+           ('active', '=', False)
+       ])
+       won_count = crm_lead.search_count([
+           ('user_id', '=', user.id),
+           ('stage_id.is_won', '=', True)
+       ])
+
+       activity_data = self.env['mail.activity'].read_group(
+           [('user_id', '=', user.id)],
+           ['activity_type_id'], ['activity_type_id']
+       )
+       print("activity_data")
+       activities = {
+           act['activity_type_id'][1]: act['activity_type_id_count']
+           for act in activity_data if act['activity_type_id']
+       }
+       print("activities")
+       # leads_by_month = self.env['crm.lead'].read_group(
+       #     [('user_id', '=', user.id), ('create_date', '>=', start), ('create_date', '<=', end)],
+       #     ['id:count', 'create_date:month'], ['create_date:month'], orderby='create_date:month'
+       # )
+       # print("leads_by_month")
+       leads_by_medium = self.env['crm.lead'].read_group(
+           [('user_id', '=', user.id)],
+           ['medium_id'], ['medium_id']
+       )
+       print("leads_by_medium")
+
+       leads_by_campaign = self.env['crm.lead'].read_group(
+           [('user_id', '=', user.id)],
+           ['campaign_id'], ['campaign_id']
+       )
+       print("leads_by_campaign")
+
+       return {
+           'lost_vs_won': {'Won': won_count, 'Lost': lost_count},
+           'activity': activities,
+
+           'leads_by_medium': {
+               r['medium_id'][1] if r['medium_id'] else 'Unknown': r['medium_id_count']
+               for r in leads_by_medium
+           },
+           'leads_by_campaign': {
+               r['campaign_id'][1] if r['campaign_id'] else 'No Campaign': r['campaign_id_count']
+               for r in leads_by_campaign
+           },
+       }
+
+   # 'leads_by_month': [
+   #     {'month': r['create_date:month'], 'count': r['create_date:month_count']}
+   #     for r in leads_by_month
+   # ],
 
    def _get_date_range(self, filter_type):
        today = date.today()
