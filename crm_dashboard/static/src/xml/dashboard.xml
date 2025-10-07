@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
     <t t-name="crm_dashboard.CrmDashboard">
+        <div style="overflow-x: auto; max-width: 100%; max-height: 100%;">
+
 
         <div class="d-flex justify-content-center" style="margin: 10px 120px;">
           <select id="crm_filter" class="form-select" style="width:200px;" t-on-change="onFilterChange">
@@ -221,29 +223,79 @@
 
            </div>
 
-<!--           <div class="row">-->
-<!--               <KpiCard/>-->
+           <div id="charts_section" class="p-3 m-auto">
+              <div class="row mt-5 p-4">
+                <div class="col-md-3">
+                  <h4>Lost Opportunity / Lead</h4>
+                  <canvas id="lost_lead_chart" height="200"></canvas>
+                </div>
+                <div class="col-md-3">
+                  <h4>Activity</h4>
+                  <canvas id="activity_pie" height="200"></canvas>
+                </div>
+<!--              </div>-->
+<!--              <div class="row mt-4">-->
+                <div class="col-md-3">
+                  <h4>Leads by Medium</h4>
+                  <canvas id="leads_medium_donut" height="200"></canvas>
+                </div>
+                <div class="col-md-3">
+                  <h4>Leads by Campaign</h4>
+                  <canvas id="leads_campaign_chart" height="200"></canvas>
+                </div>
+                </div>
+              </div>
+           </div>
 
-<!--           </div>-->
 
+            <div class="d-flex flex-row justify-content-center p-5"
+                    style="box-shadow:2px 4px 8px 2px rgba(0,0,0.3,0.2);
+                            overflow: hidden; padding: 30px;
+                            height: auto; box-sizing: border-box">
+                 <t t-name="">
 
-<!--            <div id="charts_section" class="mt-5">-->
-<!--                <div class="row">-->
-<!--                    <div class="col-md-6">-->
-<!--                      <h4>Lost Opportunity/Lead</h4>-->
-<!--                      <canvas id="lost_lead_chart"></canvas>-->
-<!--                    </div>-->
-<!--    &lt;!&ndash;                <div class="col-md-6">&ndash;&gt;-->
-<!--    &lt;!&ndash;                  <h4>Activity</h4>&ndash;&gt;-->
-<!--    &lt;!&ndash;                  <canvas id="activity_pie"></canvas>&ndash;&gt;-->
-<!--    &lt;!&ndash;                </div>&ndash;&gt;-->
-<!--                </div>-->
-<!--            </div>-->
+                    <table style="border: 1px solid #ddd; border-collapse: collapse; width: 30%;
+                    margin-top: 50px; margin-bottom: 50px; margin-left: 200px; margin-right: 200px;
+                    padding:300px;">
+                        <thead>
+                            <tr style="background-color: #f2f2f2; text-align: left;">
+                                    <th style="border: 1px solid #ddd; padding: 8px;">Month</th>
+                                    <th style="border: 1px solid #ddd; padding: 8px;">Leads</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
+                            <tr>
+<!--                                    <t t-foreach="" t-as="" t-key="">-->
+                                     <td style="border: 1px solid #ddd; padding: 8px;">
+                                        <div id="month"/>
+                                     </td>
+<!--                                    </t>-->
+<!--                                    <t t-foreach="" t-as="" t-key="">-->
+                                     <td style="border: 1px solid #ddd; padding: 8px;">
+                                        <div id="lead_count"/>
+                                     </td>
+<!--                                    </t>-->
+                            </tr>
+<!--                                </t>-->
+
+<!--                                <t t-foreach="data.leads_by_month" t-as="w" t-key="w.id">-->
+<!--                                    <t t-log="data">sssssssss</t>-->
+<!--                                    <tr>-->
+<!--                                        <td style="border: 1px solid #ddd; padding: 8px;">-->
+<!--                                            <t t-out="w['month']"/>-->
+<!--                                        </td>-->
+<!--                                        <td style="border: 1px solid #ddd; padding: 8px;">-->
+<!--                                            <t t-out="w['lead_count' ]"/>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+<!--                                </t>-->
+
+                        </tbody>
+                    </table>
+                 </t>
+            </div>
         </div>
-
-
-
    </t>
 
 </templates>
