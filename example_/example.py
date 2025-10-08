@@ -81,19 +81,3 @@ class Example(models.Model):
 
         print(rec)
         # self.example_line_ids = [fields.Command.clear()]+unlinked_list
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
