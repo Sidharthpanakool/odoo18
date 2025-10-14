@@ -225,7 +225,6 @@ class VehicleRepair(models.Model):
             'res_model': 'account.move',
             'res_id': self.invoice_id.id,
             'view_mode': 'form',
-
         }
 
     def action_get_invoice_history(self):
