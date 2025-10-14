@@ -26,17 +26,4 @@
         </field>
     </record>
 
-<!--    <record id="res_partner_view_form_product" model="ir.ui.view">-->
-<!--        <field name="name">res.partner.view.form.inherit.product</field>-->
-<!--        <field name="model">res.partner</field>-->
-<!--        <field name="inherit_id" ref="base.view_partner_form"/>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <xpath expr="//field[@name='category_id']" position="after">-->
-<!--&lt;!&ndash;                <field name="products" widget="many2many_tags"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                <button name="action_recalculate_button" type="object" string="recalculate" class="btn btn-primary btn-lg lh-lg">Recalculate</button>&ndash;&gt;-->
-<!--&lt;!&ndash;                <button name="action_create_so" string="add_so" type="object" class="btn btn-secondary btn-lg lh-lg">Add Sale Order</button>&ndash;&gt;-->
-<!--            </xpath>-->
-<!--        </field>-->
-<!--    </record>-->
-
 </odoo>

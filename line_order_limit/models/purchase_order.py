@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
-from pip._internal.utils._jaraco_text import _
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
@@ -8,18 +7,24 @@ from odoo.exceptions import ValidationError
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    restricted_boolean = fields.Boolean("Restricted", readonly=True,compute="_compute_po_order_line_limit")
-    restricted_count = fields.Integer(readonly=True,compute="_compute_po_order_line_limit")
+    restricted_boolean = fields.Boolean("Restricted", readonly=True, compute="_compute_po_order_line_limit")
+    restricted_count = fields.Integer(readonly=True, compute="_compute_po_order_line_limit")
 
     @api.onchange('partner_id')
     def _compute_po_order_line_limit(self):
         self.restricted_count = self.partner_id.restricted_count
         self.restricted_boolean = self.partner_id.restricted
 
+
     def button_confirm(self):
         if self.restricted_boolean and self.restricted_count < len(self.order_line):
             raise ValidationError('Your Order Line Limit Exceeded')
         return super().button_confirm()
+
+
+
+
+
 
 
 
