@@ -7,15 +7,17 @@ class ProductProduct(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         print("aaaa")
-        if not self.env.user.has_group('product.group_product_manager'):
+        if  self.env.user.has_group('product_manager_approval.group_product_create_user'):
             print("Hiii")
             vals=vals_list[0]
             print(vals)
-            self.env['product.manager.approval'].create([{
+            self.env['product.creation.request'].create([{
                 'name':vals.get('name'),
                 'sales_price':vals.get('lst_price'),
                 'cost_price':vals.get('standard_price'),
             }])
+        elif  self.env.user.has_group('product_manager_approval.group_product_create_manager'):
+            print("Manager")
 
         return super().create(vals_list)
 
