@@ -22,8 +22,20 @@
             <xpath expr="//field[@name='partner_ref']" position="after">
                 <field name="restricted_boolean" invisible="restricted_boolean == False"/>
                 <field name="restricted_count" invisible="restricted_boolean == False"/>
+                <field name="sale_count_confirmed"/>
             </xpath>
         </field>
     </record>
+
+    <record id="purchase_list_inherit" model="ir.ui.view">
+    <field name="name">purchase.inherit.list.line.order.limit</field>
+    <field name="model">purchase.order</field>
+    <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+    <field name="arch" type="xml">
+        <xpath expr="field[@name='name']" position="after">
+                <field name="sale_count_confirmed"/>
+        </xpath>
+    </field>
+</record>
 
 </odoo>

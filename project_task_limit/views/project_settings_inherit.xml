@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_project_inherit_project_task_limit" model="ir.ui.view">
+        <field name="name">view.project.inherit.project.task.limit</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="project.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='tasks_management']" position="inside">
+                <setting id="open_task_limit" help="Set maximum task limit">
+                        <field name="open_task_limit"/>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

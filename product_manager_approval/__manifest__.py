@@ -1,13 +1,15 @@
 {
-    'name': 'line order limit',
+    'name': 'Product Approval by Manager',
     'version': '18.0.1.0.0',
     'license': "LGPL-3",
     'category': 'Sales',
     'sequence': 1,
     'summary': 'L o L',
-    'description': "LoL by SIDHARTH P",
-    'author': "ASMI",
-    'data': [ 'views/view_partner_form.xml',
+    'description': "Product Approval",
+    'author': "Cybro",
+    'data': ['security/product_access_groups.xml',
+             'security/ir.model.access.csv',
+             'views/request_form_view.xml'
              ],
      'assets': {
         'web.assets_backend': [
@@ -18,7 +20,7 @@
         ]
     },
 
-    'depends': ['base','purchase','contacts','sale'],
+    'depends': ['base','purchase','sale'],
     'application': True,
     'auto_install': True,
     'installable': True,

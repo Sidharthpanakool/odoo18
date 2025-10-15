@@ -7,7 +7,7 @@
     'summary': 'P T L',
     'description': "PTL by SIDHARTH P",
     'author': "ASMI",
-    'data': [
+    'data': ['views/project_settings_inherit.xml'
              ],
      'assets': {
         'web.assets_backend': [
