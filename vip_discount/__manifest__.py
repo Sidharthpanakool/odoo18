@@ -1,14 +1,13 @@
 {
-    'name': 'TASK',
+    'name': 'VIP Discount',
     'version': '18.0.1.0.0',
     'license': "LGPL-3",
-    'category': 'Sales/crm',
+    'category': 'Sales',
     'sequence': 1,
-    'summary': 'TASK',
-    'description': "TASK by SIDHARTH P",
+    'summary': 'L o L',
+    'description': "Discount for vip customer",
     'author': "ASMI",
-    'data': ['data/product_template_data.xml',
-             'views/view_partner_form.xml',
+    'data': ['views/res_partner_form_view.xml',
              ],
      'assets': {
         'web.assets_backend': [
@@ -19,7 +18,7 @@
         ]
     },
 
-    # 'depends': ['base','mail','sale','sale_management','purchase','contacts','stock','project',],
+    'depends': ['base','sale','sale_management'],
     'application': True,
     'auto_install': True,
     'installable': True,

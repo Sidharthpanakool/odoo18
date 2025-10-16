@@ -1,25 +1,52 @@
-from odoo import models,api
-
+from odoo import models,api ,fields
 
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        print("aaaa")
-        if  self.env.user.has_group('product_manager_approval.group_product_create_user'):
-            print("Hiii")
-            vals=vals_list[0]
-            print(vals)
-            self.env['product.creation.request'].create([{
-                'name':vals.get('name'),
-                'sales_price':vals.get('lst_price'),
-                'cost_price':vals.get('standard_price'),
-            }])
-        elif  self.env.user.has_group('product_manager_approval.group_product_create_manager'):
-            print("Manager")
+    approval_needed = fields.Boolean(string="Approval needed")
 
+    @api.model_create_multi
+    def create(self,vals_list):
+        for vals in vals_list:
+            if not self.env.user.has_group('product_manager_approval.group_product_create_manager'):
+                vals['approval_needed'] = True
+                vals['active'] = False
         return super().create(vals_list)
+
+    def action_approve_product(self):
+        self.approval_needed = False
+        self.active = True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # @api.model_create_multi
+    # def create(self, vals_list):
+    #     print("aaaa")
+    #     if  self.env.user.has_group('product_manager_approval.group_product_create_user'):
+    #         print("Hiii")
+    #         vals=vals_list[0]
+    #         print(vals)
+    #         self.env['product.creation.request'].create([{
+    #             'name':vals.get('name'),
+    #             'sales_price':vals.get('lst_price'),
+    #             'cost_price':vals.get('standard_price'),
+    #         }])
+    #     elif  self.env.user.has_group('product_manager_approval.group_product_create_manager'):
+    #         print("Manager")
+    #
+    #     return super().create(vals_list)
 
         # return {
         #     'type': 'ir.actions.act_window',
@@ -73,12 +100,12 @@ class ProductProduct(models.Model):
         #                 'default_image_1920': self.image_1920
         #                 }
         # }
-        print("Hi")
+        # print("Hi")
         # res = super(ProductProduct, self).create(values)
         # # if self.env.user.has_group('product.group_product_manager'):
 
-        self.env.ref('product_manager_approval.action_product_creation_request_form_view')
-        print()
+        # self.env.ref('product_manager_approval.action_product_creation_request_form_view')
+        # print()
 
 
 

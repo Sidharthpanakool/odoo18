@@ -1,30 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="action_product_creation_request_form_view" model="ir.ui.view">
-        <field name="name">product.creation.request.form</field>
-        <field name="model">product.creation.request</field>
+
+    <record id="view_product_form_inherit_statusbar" model="ir.ui.view">
+        <field name="name">product.product.form.statusbar</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
         <field name="arch" type="xml">
-            <form string="">
-                <header>
-
-                </header>
-                <sheet>
-                    <group>
-                        <field name="product_name"/>
-                        <field name="sales_price"/>
-                        <field name="cost_price"/>
-                    </group>
-
-                </sheet>
-            </form>
+            <xpath expr="//header" position="inside">
+                <button name="action_approve_product" string="Product Approval" type="object"  class="btn-primary"
+                        groups="product_manager_approval.group_product_create_manager"
+                        invisible="active == True"/>
+            </xpath>
         </field>
     </record>
 
     <record id="action_product_creation_request" model="ir.actions.act_window">
-        <field name="name">product_creation_request</field>
-        <field name="res_model">product.creation.request</field>
-        <field name="view_mode">form</field>
+        <field name="name">Product Creation Request</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">list,kanban,form</field>
         <field name="target">current</field>
+        <field name="domain">[("active", "=", False),('approval_needed','=',True)]</field>
     </record>
-
 </odoo>

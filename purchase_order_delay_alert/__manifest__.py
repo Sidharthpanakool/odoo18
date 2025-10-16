@@ -1,15 +1,14 @@
 {
-    'name': 'Product Approval by Manager',
+    'name': 'PO delay create activity',
     'version': '18.0.1.0.0',
     'license': "LGPL-3",
     'category': 'Sales',
     'sequence': 1,
     'summary': 'L o L',
-    'description': "Product Approval",
-    'author': "Cybro",
-    'data': ['security/product_access_groups.xml',
-             'views/request_form_view.xml',
-             'views/new_products_menu.xml',
+    'description': "PO Activity",
+    'author': "ASMI",
+    'data': ["data/ir_cron_data.xml",
+             "data/mail_template.xml",
              ],
      'assets': {
         'web.assets_backend': [
@@ -20,7 +19,7 @@
         ]
     },
 
-    'depends': ['base','purchase','sale','sale_management'],
+    'depends': ['base','purchase','contacts'],
     'application': True,
     'auto_install': True,
     'installable': True,

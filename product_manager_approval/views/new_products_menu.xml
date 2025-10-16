@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <menuitem id="new_product_create_and_approve"
+              name="Product Creation Request"
+              action="action_product_creation_request"
+              parent="sale.product_menu_catalog"
+              groups="product_manager_approval.group_product_create_manager"
+              sequence="1"/>
+</odoo>
