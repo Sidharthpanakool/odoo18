@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_sale_order_inherit_amount_limit" model="ir.ui.view">
+        <field name="name">view.sale.order,inherit.amount.limit</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='pricing_setting_container']" position="inside">
+                <setting id="amount_limit_set" help="Set Amount Limit">
+                        <field name="amount_limit"/>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>

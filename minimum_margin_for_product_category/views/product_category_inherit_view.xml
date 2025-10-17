@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_category_inherit_view_minimum_margin" model="ir.ui.view">
+        <field name="name">product.category.inherit.view.minimum.margin</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_title')]" position="after">
+                <div class="minimum_margin_threshold_percentage">
+                    <label for="minimum_margin_percent" string="Minimum Margin Percentage"/>
+                    <h1><field name="minimum_margin_percent"  widget="percentage"/></h1>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

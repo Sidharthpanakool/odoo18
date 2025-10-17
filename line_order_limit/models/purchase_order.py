@@ -17,8 +17,6 @@ class PurchaseOrder(models.Model):
         for rec in self:
             sale = self.env['sale.order'].search_count([('state','=','sale'),('partner_id','=',rec.partner_id.id)])
             rec.sale_count_confirmed = sale
-            print(sale)
-
 
     def button_confirm(self):
         if self.restricted_boolean and self.restricted_count < len(self.order_line):
@@ -28,19 +26,19 @@ class PurchaseOrder(models.Model):
 
 
 
-class DemoModel(models.Model):
-    _name="demo.model"
-
-    user=fields.Char()
-
-    @api.constrains('user')
-    def _unic_model(self,user):
-        record = self.browse(user)
-        if record.exists():
-            raise ValidationError('Already Exists')
-
-
-    _sql_constraints = [('user', 'unique(user)', "The user name must be unique!")]
+# class DemoModel(models.Model):
+#     _name="demo.model"
+#
+#     user=fields.Char()
+#
+#     @api.constrains('user')
+#     def _unic_model(self,user):
+#         record = self.browse(user)
+#         if record.exists():
+#             raise ValidationError('Already Exists')
+#
+#
+#     _sql_constraints = [('user', 'unique(user)', "The user name must be unique!")]
 
 
 
