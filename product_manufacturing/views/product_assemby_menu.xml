@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Main menu-->
+    <menuitem
+            id="new_product_assembly"
+            name="New Product Assembly"
+            sequence="1"
+    />
+    <!--sub menu-->
+
+    <menuitem
+            id="new_product_assembly_menu_product_assembly"
+            name="Product Assembly"
+            parent="new_product_assembly"
+            sequence="1"
+            action="product_assembly"
+    />
+<!--    <menuitem-->
+<!--            id="new_product_assembly_menu_product_variants"-->
+<!--            name="Product variants"-->
+<!--            parent="new_product_assembly"-->
+<!--            sequence="2"-->
+<!--            action="stock.stock_product_normal_action"-->
+<!--    />-->
+
+
+
+</odoo>

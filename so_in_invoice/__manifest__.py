@@ -1,13 +1,13 @@
 {
-    'name': 'Minimum Margin For Product Category',
+    'name': 'Sale Order In Invoice',
     'version': '18.0.1.0.0',
     'license': "LGPL-3",
     'category': 'Sales',
     'sequence': 1,
-    'summary': 'L o L',
-    'description': "Minimum Margin set for the product category,default 15%",
+    'summary': 'S o L',
+    'description': "SO in invoice",
     'author': "Cybro",
-    'data': ["views/product_category_inherit_view.xml",
+    'data': ['views/account_view_move_form.xml'
              ],
      'assets': {
         'web.assets_backend': [
@@ -18,7 +18,7 @@
         ]
     },
 
-    'depends': ['sale','sale_management'],
+    'depends': ['base','sale','account','sale_management'],
     'application': True,
     'auto_install': True,
     'installable': True,

@@ -118,12 +118,12 @@ class VehicleRepair(models.Model):
     @api.model
     def action_cron_test_method(self):
         """For checking if any repair form is cancelled and been 1 month,if true,it will archive"""
-        print('self', self)
+        # print('self', self)
         orders = self.env['vehicle.repair'].search([
             ('start_date', '<', fields.Date.subtract(fields.date.today(), months=1)),
             ('status', '=', 'cancelled')
         ])
-        print('orders', orders)
+        # print('orders', orders)
         for order in orders:
             order.write({'active': False})
 
