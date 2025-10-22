@@ -20,7 +20,7 @@
         ]
     },
 
-    'depends': ['base'],
+    'depends': ['base','stock'],
     'application': True,
     'auto_install': True,
     'installable': True,

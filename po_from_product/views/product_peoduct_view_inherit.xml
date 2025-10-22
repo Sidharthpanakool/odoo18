@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_product_view_form_inherit_button_wizard" model="ir.ui.view">
+        <field name="name">product.product.view.form.inherit.button.wizard</field>
+        <field name="model">product.product</field>
+        <field name="priority">4</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button string="Create PO" type="object" class="btn-primary" name="action_create_po"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

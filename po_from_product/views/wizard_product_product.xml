@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="wizard_product_product_view_form" model="ir.ui.view">
+        <field name="name">wizard.product.product.view.form</field>
+        <field name="model">wizard.product.product</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <form string="product_product">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="quantity"/>
+                        </group>
+                        <group>
+                            <field name="price"/>
+                        </group>
+
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_confirm_rfq" string="Confirm" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="wizard_product_product_view" model="ir.actions.act_window">
+        <field name="name">wizard product product</field>
+        <field name="res_model">wizard.product.product</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -20,10 +20,8 @@ class MultisafepayController(http.Controller):
     )
     def multisafepay_return_from_checkout(self, **data):
 
-        print("controller", data)
         _logger.info("handling redirection from Multisafepay with data:\n%s", pprint.pformat(data))
         request.env['payment.transaction'].sudo()._handle_notification_data('multisafepay', data)
-        print("ljgfd", data)
         return request.redirect('/payment/status')
 
 

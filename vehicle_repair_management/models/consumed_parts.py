@@ -24,4 +24,3 @@ class ConsumedParts(models.Model):
         """For calculating consumed parts price by multiplying price and product quantity"""
         for record in self:
             record.total_price = record.list_price * record.product_uom_qty
-

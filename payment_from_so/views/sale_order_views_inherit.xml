@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_order_form_views_add_button_payment" model="ir.ui.view">
+        <field name="name">sale.order.form.views.add_button_payment</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@id='create_invoice']" position="after">
+                 <button
+                    string="Register Payment"
+                    class="btn btn-primary"
+                    name="action_payment_direct_from_so"
+                    type="object"
+                 />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
