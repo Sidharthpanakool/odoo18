@@ -28,13 +28,13 @@ class ProductCreation(models.Model):
 
 
 
-    @api.onchange('product_id','quantity')
+    @api.onchange('quantity')
     def _onchange_product(self):
         print("Hiiii")
         print(self.quantity)
         # if self.quantity:
-        #     for record in self.components_ids:
-        #         record.product_uom_qty = record.product_uom_qty * self.quantity
+        for record in self.components_ids:
+            record.product_uom_qty = record.product_uom_qty * self.quantity
 
     # @api.depends('quantity','self.components_ids.product_uom_qty')
     # def _compute_product_uom_quantity(self):
