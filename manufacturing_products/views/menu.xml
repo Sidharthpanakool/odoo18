@@ -1,0 +1,17 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<odoo>
+    <!--Mainmenu-->
+    <menuitem id="product_assembly"
+              name="Product Manufacturing"
+              sequence="1"
+    />
+
+    <!--sub menu -->
+    <menuitem id="product_assembly_menu_bom"
+              name="Product Creation"
+              parent="product_assembly"
+              sequence="1"
+              action="bom_view_action"
+    />
+
+</odoo>

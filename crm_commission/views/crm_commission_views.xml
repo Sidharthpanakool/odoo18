@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="crm_commission_view" model="ir.actions.act_window">
+        <field name="name">crm.commission</field>
+        <field name="res_model">crm.commission</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
