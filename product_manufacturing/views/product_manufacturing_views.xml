@@ -1,0 +1,93 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<odoo>
+    <record id="view_product_bom_tree" model="ir.ui.view">
+        <field name="name">product.bom.tree</field>
+        <field name="model">product.bom</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="product_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_product_bom_form" model="ir.ui.view">
+        <field name="name">product.bom.form</field>
+        <field name="model">product.bom</field>
+        <field name="arch" type="xml">
+            <form string="Bill of Materials">
+                <sheet>
+                    <group>
+                        <field name="product_id"/>
+                        <field name="quantity"/>
+                    </group>
+                    <notebook>
+                        <page string="Components">
+                            <field name="bom_line_ids">
+                                <list editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="product_uom_qty"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_product_bom" model="ir.actions.act_window">
+        <field name="name">Product BOM</field>
+        <field name="res_model">product.bom</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_product_creation_tree" model="ir.ui.view">
+        <field name="name">product.creation.tree</field>
+        <field name="model">product.creation</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="product_id"/>
+                <field name="quantity"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_product_creation_form" model="ir.ui.view">
+        <field name="name">product.creation.form</field>
+        <field name="model">product.creation</field>
+        <field name="arch" type="xml">
+            <form string="Product Creation">
+                <header>
+                    <button name="action_produce" string="Produce" type="object"
+                            class="btn-primary" invisible="state=='done'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="product_id"/>
+                        <field name="bom_id"/>
+                        <field name="quantity"/>
+                        <field name="location_id"/>
+                    </group>
+                    <notebook>
+                        <page string="Components">
+                            <field name="component_line_ids">
+                                <list editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="quantity"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_product_creation" model="ir.actions.act_window">
+        <field name="name">Manufacturing Orders</field>
+        <field name="res_model">product.creation</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

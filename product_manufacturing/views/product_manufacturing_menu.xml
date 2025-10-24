@@ -7,11 +7,19 @@
     />
 
     <!--sub menu -->
-    <menuitem id="product_assembly_menu_bom"
+
+    <menuitem id="product_creation"
               name="Product Creation"
               parent="product_assembly"
               sequence="1"
-              action="bom_view_action"
+              action="action_product_creation"
+    />
+
+    <menuitem id="product_assembly_menu_bom"
+              name="Product BOM"
+              parent="product_assembly"
+              sequence="2"
+              action="action_product_bom"
     />
 
 </odoo>

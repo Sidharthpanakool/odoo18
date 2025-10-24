@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_product_creation,access.product.creation,model_product_creation,base.group_user,1,1,1,1
 access_product_bom,access.product.bom,model_product_bom,base.group_user,1,1,1,1
-access_order_line,access.order.line,model_order_line,base.group_user,1,1,1,1
-
+access_product_bom_line,access.product.bom.line,model_product_bom_line,base.group_user,1,1,1,1
+access_product_creation_component_line,access.product.creation.component.line,model_product_creation_component_line,base.group_user,1,1,1,1
